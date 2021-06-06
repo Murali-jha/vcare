@@ -88,7 +88,8 @@ class _StoreHomeState extends State<StoreHome> {
                     )
                 )
               ],
-            )
+            ),
+            SizedBox(width: 10.0,),
           ],
         ),
         drawer: MyDrawer(),
