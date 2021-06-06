@@ -13,16 +13,14 @@ class ErrorAlertDialog extends StatelessWidget
     return AlertDialog(
 
       key: key,
-      title: Text(message,style: TextStyle(fontFamily: "Poppins"),),
+      content: Text(message,style: TextStyle(fontFamily: "Poppins"),),
       actions: <Widget>[
         RaisedButton(onPressed: ()
         {
           Navigator.pop(context);
         },
           color: Colors.green,
-          child: Center(
-            child: Text("OK",style: TextStyle(fontFamily: "Poppins"),),
-          ),
+          child: Text("OK",style: TextStyle(fontFamily: "Poppins"),),
         )
       ],
     );

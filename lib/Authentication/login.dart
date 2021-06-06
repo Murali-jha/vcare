@@ -6,6 +6,7 @@ import 'package:e_shop/DialogBox/errorDialog.dart';
 import 'package:e_shop/DialogBox/loadingDialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../Store/storehome.dart';
 import 'package:e_shop/Config/config.dart';
 
@@ -184,8 +185,12 @@ class _LoginState extends State<Login>
 
   Future readData(FirebaseUser fUser) async
   {
+    EcommerceApp.sharedPreferences = await SharedPreferences.getInstance();
+
+    
     Firestore.instance.collection("users").document(fUser.uid).get().then((dataSnapshot)
     async {
+
       await EcommerceApp.sharedPreferences.setString("uid", dataSnapshot.data[EcommerceApp.userUID]);
 
       await EcommerceApp.sharedPreferences.setString(EcommerceApp.userEmail, dataSnapshot.data[EcommerceApp.userEmail]);

@@ -21,8 +21,6 @@ class StoreHome extends StatefulWidget {
 }
 
 class _StoreHomeState extends State<StoreHome> {
-  FirebaseAuth _auth = FirebaseAuth.instance;
-
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
@@ -94,13 +92,6 @@ class _StoreHomeState extends State<StoreHome> {
           ],
         ),
         drawer: MyDrawer(),
-        body: Center(
-          child: RaisedButton(
-            onPressed: () {
-              _auth.signOut();
-            },
-          ),
-        ),
       ),
     );
   }
