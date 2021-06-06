@@ -117,6 +117,16 @@ class _MyDrawerState extends State<MyDrawer> {
                       Navigator.push(context, route);
                     },
                   ),
+                  ListTile(
+                    leading: Icon(Icons.beenhere_rounded),
+                    title: Text("Tasks & Fun",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
+                    onTap: () {
+                      Route route = MaterialPageRoute(builder: (c) {
+                        return StoreHome();
+                      });
+                      Navigator.push(context, route);
+                    },
+                  ),
                   Divider(
                     height: 10.0,
                     color: Colors.deepOrangeAccent[300],
