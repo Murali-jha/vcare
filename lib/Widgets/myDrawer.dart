@@ -10,6 +10,8 @@ import 'package:e_shop/Widgets/loadingWidget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:launch_review/launch_review.dart';
+import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -55,6 +57,13 @@ class _MyDrawerState extends State<MyDrawer> {
                     borderRadius: BorderRadius.all(Radius.circular(80.0)),
                     elevation: 8.0,
                     child: Container(
+                      decoration: new BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: new Border.all(
+                          color: Colors.blueGrey,
+                          width: 2.0,
+                        ),
+                      ),
                       height: 160.0,
                       width: 160.0,
                       child: CircleAvatar(
@@ -80,7 +89,7 @@ class _MyDrawerState extends State<MyDrawer> {
             ),
             Divider(
               height: 10.0,
-              color: Colors.deepOrangeAccent[300],
+              color: Colors.blueGrey,
             ),
             Container(
               padding: EdgeInsets.only(top: 1.0),
@@ -129,7 +138,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   ),
                   Divider(
                     height: 10.0,
-                    color: Colors.deepOrangeAccent[300],
+                    color: Colors.blueGrey,
                   ),
                   ListTile(
                     leading: Icon(Icons.reorder),
@@ -173,13 +182,56 @@ class _MyDrawerState extends State<MyDrawer> {
                   ),
                   ListTile(
                     leading: Icon(Icons.update),
-                    title: Text("Update Details",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0)),
+                    title: Text("Update My Details",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0)),
                     onTap: () {
                       Route route = MaterialPageRoute(builder: (c) {
                         return AddAddress();
                       });
                       Navigator.push(context, route);
                     },
+                  ),
+                  Divider(
+                    height: 10.0,
+                    color: Colors.blueGrey,
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.info_rounded),
+                    title: Text("About App",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0)),
+                    onTap: () {
+                      Route route = MaterialPageRoute(builder: (c) {
+                        return AddAddress();
+                      });
+                      Navigator.push(context, route);
+                    },
+                  ),
+                  ListTile(
+                    onTap: () {
+                      final RenderBox box = context.findRenderObject();
+                      Share.share('Hey to download V-Care app click below link\n https://play.google.com/store/apps/details?id=com.muralijha.vcare');
+                    },
+                    leading: Icon(
+                      Icons.share,
+                      color: Colors.white,
+                    ),
+                    title: Text(
+                      "Share",
+                      style: TextStyle(color: Colors.white,fontSize: 16.0),
+                    ),
+                  ),
+                  ListTile(
+                      onTap: () {
+                        return LaunchReview.launch(
+                          androidAppId: "com.muralijha.vcare",
+                        );
+                      },
+                      leading: Icon(
+                        Icons.star_rate_outlined,
+                        color: Colors.white,
+                      ),
+                      title: Text(
+                        "Rate the app",
+                        style: TextStyle(color: Colors.white,fontSize: 16.0),
+                      )
                   ),
                   Divider(
                     height: 10.0,

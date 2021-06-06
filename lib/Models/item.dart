@@ -7,7 +7,7 @@ class ItemModel {
   String thumbnailUrl;
   String longDescription;
   String status;
-  int price;
+  String price;
 
   ItemModel(
       {this.title,
