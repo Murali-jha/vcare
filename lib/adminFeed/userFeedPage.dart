@@ -33,31 +33,34 @@ class _UserFeedPageHomeScreenState extends State<UserFeedPageHomeScreen> {
               );
             }
 
-            return ListView(
-              children: snapshot.data.documents.map((document) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black38,
-                      border: Border.all(
-                        color: Colors.blueGrey,
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(20))
-                  ),
-                  padding: EdgeInsets.all(10.0),
-                  margin: EdgeInsets.all(10.0),
-                  child: Column(
-                    children: [
-                      Text(document['message'],style: TextStyle(fontFamily: "Poppins"),),
-                      SizedBox(height: 10.0,),
-                      document['thumbnailUrl']==null?
-                          circularProgress():
-                      Image.network(
-                          document['thumbnailUrl']
-                      )
-                    ],
-                  ),
-                );
-              }).toList(),
+            return Scrollbar(
+              showTrackOnHover: true,
+              child: ListView(
+                children: snapshot.data.documents.map((document) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black38,
+                        border: Border.all(
+                          color: Colors.blueGrey,
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(20))
+                    ),
+                    padding: EdgeInsets.all(10.0),
+                    margin: EdgeInsets.all(10.0),
+                    child: Column(
+                      children: [
+                        Text(document['message'],style: TextStyle(fontFamily: "Poppins",fontSize: 17.0),),
+                        SizedBox(height: 10.0,),
+                        document['thumbnailUrl']==null?
+                            circularProgress():
+                        Image.network(
+                            document['thumbnailUrl']
+                        )
+                      ],
+                    ),
+                  );
+                }).toList(),
+              ),
             );
           },
         ));

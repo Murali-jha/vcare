@@ -4,6 +4,7 @@ import 'package:e_shop/Admin/adminShiftOrders.dart';
 import 'package:e_shop/Authentication/authenication.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
 import 'package:e_shop/adminFeed/adminFeedUpload.dart';
+import 'package:e_shop/adminFeed/adminTaskAndFun.dart';
 import 'package:e_shop/main.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -168,8 +169,11 @@ class _UploadPageState extends State<UploadPage>
                   "Upload Task",
                   style: TextStyle(color: Colors.white, fontFamily: "Poppins"),
                 ),
-                onPressed: (){
-
+                onPressed: () async{
+                  await selectFeedImageFromGallery();
+                  if(feedFile!=null){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => UploadTaskAndFun(file: feedFile,)));
+                  }
                 },
               ),
               SimpleDialogOption(
