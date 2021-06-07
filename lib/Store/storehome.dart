@@ -74,7 +74,12 @@ class _StoreHomeState extends State<StoreHome> {
                         child: Consumer<CartItemCounter>(
                           builder: (context, counter, _) {
                             return Text(
-                              (EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList).length -1).toString(),
+                              (EcommerceApp.sharedPreferences
+                                          .getStringList(
+                                              EcommerceApp.userCartList)
+                                          .length -
+                                      1)
+                                  .toString(),
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12.0,
@@ -127,278 +132,345 @@ class _StoreHomeState extends State<StoreHome> {
 
 Widget sourceInfo(ItemModel model, BuildContext context,
     {Color background, removeCartFunction}) {
-  // return InkWell(
-  //   splashColor: Colors.green,
-  //   child: Padding(
-  //     padding: EdgeInsets.all(10.0),
-  //     child: Container(
-  //       height: 190.0,
-  //       width: width,
-  //       child: Row(
-  //         children: [
-  //           Image.network(
-  //             model.thumbnailUrl,
-  //             width: 140.0,
-  //             height: 140.0,
-  //           ),
-  //           SizedBox(
-  //             width: 4.0,
-  //           ),
-  //           Expanded(
-  //               child: Column(
-  //             crossAxisAlignment: CrossAxisAlignment.start,
-  //             children: [
-  //               SizedBox(
-  //                 height: 15.0,
-  //               ),
-  //               Container(
-  //                 child: Row(
-  //                   mainAxisSize: MainAxisSize.max,
-  //                   children: [
-  //                     Expanded(
-  //                         child: Text(
-  //                       model.title,
-  //                       style: TextStyle(
-  //                           color: Colors.white,
-  //                           fontSize: 14.0,
-  //                           fontFamily: "Poppins"),
-  //                     ))
-  //                   ],
-  //                 ),
-  //               ),
-  //               SizedBox(
-  //                 height: 5.0,
-  //               ),
-  //               Container(
-  //                 child: Row(
-  //                   mainAxisSize: MainAxisSize.max,
-  //                   children: [
-  //                     Expanded(
-  //                         child: Text(
-  //                       model.shortInfo,
-  //                       style: TextStyle(
-  //                           color: Colors.white,
-  //                           fontSize: 12.0,
-  //                           fontFamily: "Poppins"),
-  //                     ))
-  //                   ],
-  //                 ),
-  //               ),
-  //               SizedBox(
-  //                 height: 20.0,
-  //               ),
-  //               Column(
-  //                 crossAxisAlignment: CrossAxisAlignment.start,
-  //                 children: [
-  //                   Padding(
-  //                       padding: EdgeInsets.only(top: 0.0),
-  //                     child: Row(
-  //                       children: [
-  //                         Expanded(
-  //                           child: Text(
-  //                             "Available Between",
-  //                             style: TextStyle(
-  //                               color: Colors.grey,
-  //                               fontSize: 14.0,
-  //                               fontFamily: "Poppins"
-  //                             ),
-  //                           ),
-  //                         ),
-  //                         Expanded(
-  //                           child: Text(
-  //                             model.price.toString(),
-  //                             style: TextStyle(
-  //                                 color: Colors.white,
-  //                                 fontFamily: "Poppins"
-  //                             ),
-  //                           ),
-  //                         )
-  //                       ],
-  //                     ),
-  //                   )
-  //                 ],
-  //               ),
-  //
-  //               Flexible(
-  //                   child: Container(
-  //
-  //                   )
-  //               )
-  //               //Implement cart item remove feature
-  //             ],
-  //           )
-  //           )
-  //         ],
-  //       ),
-  //     ),
-  //   ),
-  // );
   return InkWell(
-    onTap: (){
-      Route route = MaterialPageRoute(builder: (context)=>ProductPage(itemModel: model));
+    onTap: () {
+      Route route = MaterialPageRoute(
+          builder: (context) => ProductPage(itemModel: model));
       Navigator.push(context, route);
     },
     splashColor: Colors.green,
-    child: Container(
-      decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.grey.shade700,
-          ),
-          color: Colors.grey.shade900,
-          borderRadius: BorderRadius.all(Radius.circular(20))),
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.all(10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Material(
-            borderRadius: BorderRadius.all(Radius.circular(80.0)),
-            elevation: 8.0,
-            child: Container(
-              decoration: new BoxDecoration(
-                shape: BoxShape.circle,
-                border: new Border.all(
-                  color: Colors.blueGrey,
-                  width: 2.0,
+    child: Padding(
+      padding: EdgeInsets.all(10.0),
+      child: Container(
+        height: 200.0,
+        width: width,
+        child: Row(
+          children: [
+            Material(
+              borderRadius: BorderRadius.all(Radius.circular(80.0)),
+              elevation: 8.0,
+              child: Container(
+                decoration: new BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: new Border.all(
+                    color: Colors.blueGrey,
+                    width: 2.0,
+                  ),
                 ),
-              ),
-              height: 110.0,
-              width: 110.0,
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(
-                  model.thumbnailUrl,
+                height: 100.0,
+                width: 100.0,
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    model.thumbnailUrl,
+                  ),
                 ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 12.0,
-          ),
-          Text(
-            model.title,
-            style: TextStyle(
-              fontSize: 18.0,
-              fontFamily: "Poppins"
+            SizedBox(
+              width: 18.0,
             ),
-          ),
-          SizedBox(
-            height: 6.0,
-          ),
-          Text(
-            model.shortInfo,
-            style: TextStyle(
-                fontSize: 16.0,
-                fontFamily: "Poppins",
-              color: Colors.grey
-            ),
-          ),
-          Divider(),
-
-          Row(
-            children: [
-              Expanded(
-                  child: Center(
-                    child: Text(
-                      "Status : " ,
-                      style: TextStyle(
-                          fontSize: 16.0,
-                          fontFamily: "Poppins",
-                          color: Colors.white
+            Expanded(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 20.0,
+                ),
+                Container(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                          child: Text(
+                        model.title,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16.0,
+                            fontFamily: "Poppins"),
+                      ))
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                Container(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                          child: Text(
+                        model.shortInfo,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12.0,
+                            fontFamily: "Poppins"),
+                      ))
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 0.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              "Status: ",
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 14.0,
+                                  fontFamily: "Poppins"),
+                            ),
+                          ),
+                          Expanded(
+                            child: Text(
+                              model.status,
+                              style: TextStyle(
+                                  color: Colors.white, fontFamily: "Poppins"),
+                            ),
+                          )
+                        ],
                       ),
                     ),
-                  )
-              ),
-              Expanded(
-                  child: Center(
-                    child: Text(
-                      model.status,
-                      style: TextStyle(
-                          fontSize: 16.0,
-                          fontFamily: "Poppins",
-                          color: Colors.white
+                    Padding(
+                      padding: EdgeInsets.only(top: 0.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              "Availability: ",
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 14.0,
+                                  fontFamily: "Poppins"),
+                            ),
+                          ),
+                          Expanded(
+                            child: Text(
+                              model.price.toString(),
+                              style: TextStyle(
+                                  color: Colors.white, fontFamily: "Poppins"),
+                            ),
+                          )
+                        ],
                       ),
-                    ),
-                  )
-              )
-            ],
-          ),
-          Divider(),
-          Row(
-            children: [
-              Expanded(
-                  child: Center(
-                    child: Text(
-                      "Available Between : " ,
-                      style: TextStyle(
-                          fontSize: 16.0,
-                          fontFamily: "Poppins",
-                          color: Colors.white
-                      ),
-                    ),
-                  )
-              ),
-              Expanded(
-                  child: Center(
-                    child: Text(
-                      model.price,
-                      style: TextStyle(
-                          fontSize: 16.0,
-                          fontFamily: "Poppins",
-                          color: Colors.white
-                      ),
-                    ),
-                  )
-              )
-            ],
-          ),
+                    )
+                  ],
+                ),
 
+                Flexible(child: Container()),
+                Align(
+                    alignment: Alignment.centerRight,
+                    child: removeCartFunction == null
+                        ? IconButton(
+                            onPressed: () {
+                              checkItemInCart(model.shortInfo, context);
+                            },
+                            icon: Icon(
+                              Icons.star_border,
+                              color: Colors.white,
+                            ))
+                        : IconButton(
+                            onPressed: () {
+                              removeCartFunction();
+                              Route route = MaterialPageRoute(
+                                  builder: (context) => StoreHome());
+                              Navigator.pushReplacement(context, route);
+                            },
+                            icon: Icon(Icons.delete))),
+                Divider(
+                  color: Colors.green,
+                )
+                //Implement cart item remove feature
+              ],
+            )),
+          ],
+        ),
+      ),
+    ),
+  );
+  // return InkWell(
+  //   onTap: () {
+  //     Route route = MaterialPageRoute(
+  //         builder: (context) => ProductPage(itemModel: model));
+  //     Navigator.push(context, route);
+  //   },
+  //   splashColor: Colors.green,
+  //   child: Container(
+  //     decoration: BoxDecoration(
+  //         border: Border.all(
+  //           color: Colors.grey.shade700,
+  //         ),
+  //         color: Colors.grey.shade900,
+  //         borderRadius: BorderRadius.all(Radius.circular(20))),
+  //     padding: EdgeInsets.all(10),
+  //     margin: EdgeInsets.all(10),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.center,
+  //       children: [
+  //         Material(
+  //           borderRadius: BorderRadius.all(Radius.circular(80.0)),
+  //           elevation: 8.0,
+  //           child: Container(
+  //             decoration: new BoxDecoration(
+  //               shape: BoxShape.circle,
+  //               border: new Border.all(
+  //                 color: Colors.blueGrey,
+  //                 width: 2.0,
+  //               ),
+  //             ),
+  //             height: 110.0,
+  //             width: 110.0,
+  //             child: CircleAvatar(
+  //               backgroundImage: NetworkImage(
+  //                 model.thumbnailUrl,
+  //               ),
+  //             ),
+  //           ),
+  //         ),
+  //         SizedBox(
+  //           height: 12.0,
+  //         ),
+  //         Text(
+  //           model.title,
+  //           style: TextStyle(fontSize: 18.0, fontFamily: "Poppins"),
+  //         ),
+  //         SizedBox(
+  //           height: 6.0,
+  //         ),
+  //         Text(
+  //           model.shortInfo,
+  //           style: TextStyle(
+  //               fontSize: 16.0, fontFamily: "Poppins", color: Colors.grey),
+  //         ),
+  //         Divider(),
+  //         Row(
+  //           children: [
+  //             Expanded(
+  //                 child: Center(
+  //               child: Text(
+  //                 "Status : ",
+  //                 style: TextStyle(
+  //                     fontSize: 16.0,
+  //                     fontFamily: "Poppins",
+  //                     color: Colors.white),
+  //               ),
+  //             )),
+  //             Expanded(
+  //                 child: Center(
+  //               child: Text(
+  //                 model.status,
+  //                 style: TextStyle(
+  //                     fontSize: 16.0,
+  //                     fontFamily: "Poppins",
+  //                     color: Colors.white),
+  //               ),
+  //             ))
+  //           ],
+  //         ),
+  //         Divider(),
+  //         Row(
+  //           children: [
+  //             Expanded(
+  //                 child: Center(
+  //               child: Text(
+  //                 "Available Between : ",
+  //                 style: TextStyle(
+  //                     fontSize: 16.0,
+  //                     fontFamily: "Poppins",
+  //                     color: Colors.white),
+  //               ),
+  //             )),
+  //             Expanded(
+  //                 child: Center(
+  //               child: Text(
+  //                 model.price,
+  //                 style: TextStyle(
+  //                     fontSize: 16.0,
+  //                     fontFamily: "Poppins",
+  //                     color: Colors.white),
+  //               ),
+  //             ))
+  //           ],
+  //         ),
+  //         Align(
+  //             alignment: Alignment.centerRight,
+  //             child: removeCartFunction == null
+  //                 ? IconButton(
+  //                     onPressed: () {
+  //                       checkItemInCart(model.shortInfo, context);
+  //                     },
+  //                     icon: Icon(
+  //                       Icons.star_border,
+  //                       color: Colors.white,
+  //                     ))
+  //                 : IconButton(
+  //                     onPressed: () {
+  //                       removeCartFunction();
+  //                       Route route = MaterialPageRoute(
+  //                           builder: (context) => StoreHome());
+  //                       Navigator.pushReplacement(context, route);
+  //                     },
+  //                     icon: Icon(Icons.delete)))
+  //       ],
+  //     ),
+  //   ),
+  // );
+}
 
-          Align(
-            alignment: Alignment.centerRight,
-            child: removeCartFunction==null?
-            IconButton(
-                onPressed: (){
-                  checkItemInCart(model.shortInfo, context);
-                },
-                icon: Icon(Icons.star_border,color: Colors.white,)
-            ):IconButton(
-                onPressed: (){
-                  removeCartFunction();
-                  Route route  = MaterialPageRoute(builder: (context)=>StoreHome());
-                  Navigator.pushReplacement(context, route);
-                },
-                icon: Icon(Icons.delete)
-            )
-          )
-        ],
-
+Widget card({Color primaryColor = Colors.redAccent, String imgPath}) {
+  return Container(
+    height: 150.0,
+    width: width * .34,
+    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+    decoration: BoxDecoration(
+        color: primaryColor,
+        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+        boxShadow: <BoxShadow>[
+          BoxShadow(offset: Offset(0, 5), blurRadius: 10.0, color: Colors.grey[200]),
+        ]
+    ),
+    child: ClipRRect(
+      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+      child: Image.network(
+        imgPath,
+        height: 150.0,
+        width: width * .34,
+        fit: BoxFit.fill,
       ),
     ),
   );
 }
 
-Widget card({Color primaryColor = Colors.redAccent, String imgPath}) {
-  return Container();
-}
-
 void checkItemInCart(String shortInfoAsId, BuildContext context) {
-  EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList).contains(shortInfoAsId)
-      ?Fluttertoast.showToast(msg: "Person Already added to favourites"):
-      addItemToCart(shortInfoAsId,context);
+  EcommerceApp.sharedPreferences
+          .getStringList(EcommerceApp.userCartList)
+          .contains(shortInfoAsId)
+      ? Fluttertoast.showToast(msg: "Person Already added to favourites")
+      : addItemToCart(shortInfoAsId, context);
 }
 
-addItemToCart(String shortInfoAsId, BuildContext context){
-  List tempCartList = EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
+addItemToCart(String shortInfoAsId, BuildContext context) {
+  List tempCartList =
+      EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
   tempCartList.add(shortInfoAsId);
 
-
-  EcommerceApp.firestore.collection(EcommerceApp.collectionUser).document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
-  .updateData({
+  EcommerceApp.firestore
+      .collection(EcommerceApp.collectionUser)
+      .document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
+      .updateData({
     EcommerceApp.userCartList: tempCartList,
-    
-  }).then((v){
+  }).then((v) {
     Fluttertoast.showToast(msg: "Added to favourite Successfully!");
-    EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, tempCartList);
-    Provider.of<CartItemCounter>(context,listen: false).displayResult();
+    EcommerceApp.sharedPreferences
+        .setStringList(EcommerceApp.userCartList, tempCartList);
+    Provider.of<CartItemCounter>(context, listen: false).displayResult();
   });
 }
