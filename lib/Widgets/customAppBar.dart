@@ -38,6 +38,7 @@ class MyAppBar extends StatelessWidget
         borderRadius: BorderRadius.vertical(bottom: Radius.circular(16.0)),
       ),
       centerTitle: true,
+      bottom: bottom,
       actions: [
         Stack(
           children: [
