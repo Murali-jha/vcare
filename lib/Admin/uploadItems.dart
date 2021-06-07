@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Admin/adminShiftOrders.dart';
 import 'package:e_shop/Authentication/authenication.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
+import 'package:e_shop/adminFeed/adminFeedUpload.dart';
 import 'package:e_shop/main.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class _UploadPageState extends State<UploadPage>
     with AutomaticKeepAliveClientMixin<UploadPage> {
   bool get wantKeepAlive => true;
   File file;
+  File feedFile;
   TextEditingController _descriptionTextEditingController =
       TextEditingController();
   TextEditingController _titleTextEditingController = TextEditingController();
@@ -37,6 +39,16 @@ class _UploadPageState extends State<UploadPage>
 
   displayAdminHomeScreen() {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        onPressed: (){
+          uploadImageToFeed(context);
+        },
+      ),
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -127,6 +139,59 @@ class _UploadPageState extends State<UploadPage>
         ),
       ),
     );
+  }
+
+  uploadImageToFeed(mContext){
+    return showDialog(
+        context: mContext,
+        builder: (con) {
+          return SimpleDialog(
+            title: Text(
+              "Select Option",
+              style: TextStyle(color: Colors.white, fontFamily: "Poppins"),
+            ),
+            children: [
+              SimpleDialogOption(
+                child: Text(
+                  "Upload Feed",
+                  style: TextStyle(color: Colors.white, fontFamily: "Poppins"),
+                ),
+                onPressed: () async{
+                  await selectFeedImageFromGallery();
+                  if(feedFile!=null){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => UploadFeed(file: feedFile,)));
+                  }
+                },
+              ),
+              SimpleDialogOption(
+                child: Text(
+                  "Upload Task",
+                  style: TextStyle(color: Colors.white, fontFamily: "Poppins"),
+                ),
+                onPressed: (){
+
+                },
+              ),
+              SimpleDialogOption(
+                child: Text(
+                  "Cancel",
+                  style: TextStyle(color: Colors.white, fontFamily: "Poppins"),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          );
+        });
+  }
+
+  selectFeedImageFromGallery() async {
+    Navigator.pop(context);
+    File imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      feedFile = imageFile;
+    });
   }
 
   takeImage(mContext) {

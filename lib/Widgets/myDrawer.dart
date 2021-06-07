@@ -7,6 +7,7 @@ import 'package:e_shop/Store/cart.dart';
 import 'package:e_shop/Orders/myOrders.dart';
 import 'package:e_shop/Store/storehome.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
+import 'package:e_shop/adminFeed/userFeedPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -110,10 +111,10 @@ class _MyDrawerState extends State<MyDrawer> {
                     leading: Icon(Icons.feed),
                     title: Text("Feed & Updates",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
                     onTap: () {
-                      // Route route = MaterialPageRoute(builder: (c) {
-                      //   return StoreHome();
-                      // });
-                      // Navigator.push(context, route);
+                      Route route = MaterialPageRoute(builder: (c) {
+                        return UserFeedPageHomeScreen();
+                      });
+                      Navigator.push(context, route);
                     },
                   ),
                   ListTile(
