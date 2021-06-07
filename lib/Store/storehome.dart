@@ -142,7 +142,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
     child: Padding(
       padding: EdgeInsets.all(10.0),
       child: Container(
-        height: 200.0,
+        height: 220.0,
         width: width,
         child: Row(
           children: [
@@ -186,7 +186,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 16.0,
+                            fontSize: 18.0,
                             fontFamily: "Poppins"),
                       ))
                     ],
@@ -203,8 +203,8 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                           child: Text(
                         model.shortInfo,
                         style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12.0,
+                            color: Colors.grey[400],
+                            fontSize: 14.0,
                             fontFamily: "Poppins"),
                       ))
                     ],
@@ -224,8 +224,8 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                             child: Text(
                               "Status: ",
                               style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 14.0,
+                                  color: Colors.green,
+                                  fontSize: 16.0,
                                   fontFamily: "Poppins"),
                             ),
                           ),
@@ -233,6 +233,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                             child: Text(
                               model.status,
                               style: TextStyle(
+                                  fontSize: 16.0,
                                   color: Colors.white, fontFamily: "Poppins"),
                             ),
                           )
@@ -247,8 +248,8 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                             child: Text(
                               "Availability: ",
                               style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 14.0,
+                                  color: Colors.green,
+                                  fontSize: 16.0,
                                   fontFamily: "Poppins"),
                             ),
                           ),
@@ -256,6 +257,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                             child: Text(
                               model.price.toString(),
                               style: TextStyle(
+                                  fontSize: 16.0,
                                   color: Colors.white, fontFamily: "Poppins"),
                             ),
                           )
@@ -274,7 +276,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                               checkItemInCart(model.shortInfo, context);
                             },
                             icon: Icon(
-                              Icons.star_border,
+                              Icons.queue,
                               color: Colors.white,
                             ))
                         : IconButton(

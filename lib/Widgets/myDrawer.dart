@@ -110,30 +110,30 @@ class _MyDrawerState extends State<MyDrawer> {
                     leading: Icon(Icons.feed),
                     title: Text("Feed & Updates",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
                     onTap: () {
-                      Route route = MaterialPageRoute(builder: (c) {
-                        return StoreHome();
-                      });
-                      Navigator.push(context, route);
+                      // Route route = MaterialPageRoute(builder: (c) {
+                      //   return StoreHome();
+                      // });
+                      // Navigator.push(context, route);
                     },
                   ),
                   ListTile(
                     leading: Icon(Icons.chat_bubble_outline),
                     title: Text("Chats",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
                     onTap: () {
-                      Route route = MaterialPageRoute(builder: (c) {
-                        return StoreHome();
-                      });
-                      Navigator.push(context, route);
+                      // Route route = MaterialPageRoute(builder: (c) {
+                      //   return StoreHome();
+                      // });
+                      // Navigator.push(context, route);
                     },
                   ),
                   ListTile(
                     leading: Icon(Icons.beenhere_rounded),
                     title: Text("Tasks & Fun",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
                     onTap: () {
-                      Route route = MaterialPageRoute(builder: (c) {
-                        return StoreHome();
-                      });
-                      Navigator.push(context, route);
+                      // Route route = MaterialPageRoute(builder: (c) {
+                      //   return StoreHome();
+                      // });
+                      // Navigator.push(context, route);
                     },
                   ),
                   Divider(
@@ -174,15 +174,15 @@ class _MyDrawerState extends State<MyDrawer> {
                     leading: Icon(Icons.support_agent),
                     title: Text("Support",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0)),
                     onTap: () {
-                      Route route = MaterialPageRoute(builder: (c) {
-                        return AddAddress();
-                      });
-                      Navigator.push(context, route);
+                      // Route route = MaterialPageRoute(builder: (c) {
+                      //   return AddAddress();
+                      // });
+                      // Navigator.push(context, route);
                     },
                   ),
                   ListTile(
                     leading: Icon(Icons.update),
-                    title: Text("Update My Details",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0)),
+                    title: Text("Add My Details",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0)),
                     onTap: () {
                       Route route = MaterialPageRoute(builder: (c) {
                         return AddAddress();
@@ -198,10 +198,10 @@ class _MyDrawerState extends State<MyDrawer> {
                     leading: Icon(Icons.info_rounded),
                     title: Text("About App",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0)),
                     onTap: () {
-                      Route route = MaterialPageRoute(builder: (c) {
-                        return AddAddress();
-                      });
-                      Navigator.push(context, route);
+                      // Route route = MaterialPageRoute(builder: (c) {
+                      //   return AddAddress();
+                      // });
+                      // Navigator.push(context, route);
                     },
                   ),
                   ListTile(
