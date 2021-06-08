@@ -12,11 +12,11 @@ import 'Counters/changeAddresss.dart';
 import 'Counters/totalMoney.dart';
 import 'Store/storehome.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 Future<void> main() async
 {
   WidgetsFlutterBinding.ensureInitialized();
-
   EcommerceApp.auth = FirebaseAuth.instance;
   EcommerceApp.sharedPreferences = await SharedPreferences.getInstance();
   EcommerceApp.firestore = Firestore.instance;
@@ -57,12 +57,18 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen>
 {
 
+  final FirebaseMessaging _messaging = FirebaseMessaging();
+
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
     displaySplash();
+    _messaging.getToken().then((token){
+      print(token);
+    });
   }
 
 

@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "208627491987",
-    "project_id": "vcare-5ea84",
-    "storage_bucket": "vcare-5ea84.appspot.com"
+    "project_number": "276111001359",
+    "project_id": "vcarenew-43050",
+    "storage_bucket": "vcarenew-43050.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:208627491987:android:979cd4ef97f76e74195966",
+        "mobilesdk_app_id": "1:276111001359:android:5a5a8a3e7ccd1a3995607a",
         "android_client_info": {
-          "package_name": "com.example.vcare"
+          "package_name": "com.muralijha.vcare"
         }
       },
       "oauth_client": [
         {
-          "client_id": "208627491987-pno5anf44crstgrjhmt7dgg59f3s15tr.apps.googleusercontent.com",
+          "client_id": "276111001359-ams00loitu2kpb5s7ipllsuff1hq64ur.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.muralijha.vcare",
+            "certificate_hash": "65543d94886b8b3536211e696bf14deae11758f1"
+          }
+        },
+        {
+          "client_id": "276111001359-cjlp7h77h9cduiiggr6smar1iinca1if.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAGhVIc2i_U12Pjly3GuQIVrdv-Lfnyfb0"
+          "current_key": "AIzaSyCcjNOq7jFLT9KwqV8EYYl-AO5L7bR7_Qc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "208627491987-pno5anf44crstgrjhmt7dgg59f3s15tr.apps.googleusercontent.com",
+              "client_id": "276111001359-cjlp7h77h9cduiiggr6smar1iinca1if.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
