@@ -24,30 +24,46 @@ class PaymentPage extends StatefulWidget
 class _PaymentPageState extends State<PaymentPage> {
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Container(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Image.asset("images/welcome.png"),
-              ),
-              SizedBox(height: 10.0,),
-              FlatButton(
-                color: Colors.green,
-                textColor: Colors.white,
-                padding: EdgeInsets.all(8.0),
-                splashColor: Colors.deepOrange,
-                onPressed: ()=> addOrderDetails(),
-                child: Text("Confirm Appointment", style: TextStyle(fontSize: 20.0,fontFamily: "Poppins"),),
-              ),
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        shape: ContinuousRectangleBorder(
+          borderRadius: const BorderRadius.only(
+            bottomRight: Radius.circular(40.0),
+            bottomLeft: Radius.circular(40.0),
+          ),),
+        title: Text(
+          "Confirmation Page",
+          style: TextStyle(fontFamily: "Poppins"),
+        ),
+      ),
+      body: Material(
+        child: Container(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Image.asset("images/confirm.png",width: 120.0,),
+                ),
+                SizedBox(height: 10.0,),
+                Center(
+                  child: FlatButton(
+                    color: Colors.green,
+                    textColor: Colors.white,
+                    padding: EdgeInsets.all(8.0),
+                    splashColor: Colors.deepOrange,
+                    onPressed: ()=> addOrderDetails(),
+                    child: Text("Confirm Appointment", style: TextStyle(fontSize: 16.0,fontFamily: "Poppins"),),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
+
   }
 
   addOrderDetails()

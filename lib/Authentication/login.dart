@@ -43,15 +43,12 @@ class _LoginState extends State<Login>
               height: 150.0,
               width:150.0,
             ),
-            SizedBox(
-              height: 18.0,
-            ),
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(20.0),
               child: Text("Welcome to vCare Family!",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
             ),
             SizedBox(
-              height: 22.0,
+              height: 18.0,
             ),
             Form(
               key: _formKey,

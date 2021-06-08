@@ -72,12 +72,9 @@ class _AdminSignInScreenState extends State<AdminSignInScreen> {
             ),
             Container(
               alignment: Alignment.bottomCenter,
-              child: Image.asset("images/login.png"),
-              height: 150.0,
-              width:150.0,
-            ),
-            SizedBox(
-              height: 18.0,
+              child: Image.asset("images/adminlogin.png",),
+              height: 170.0,
+              width:170.0,
             ),
             Padding(
               padding: EdgeInsets.all(8.0),

@@ -267,7 +267,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                   ],
                 ),
 
-                Flexible(child: Container()),
+
                 Align(
                     alignment: Alignment.centerRight,
                     child: removeCartFunction == null
@@ -455,7 +455,7 @@ void checkItemInCart(String shortInfoAsId, BuildContext context) {
   EcommerceApp.sharedPreferences
           .getStringList(EcommerceApp.userCartList)
           .contains(shortInfoAsId)
-      ? Fluttertoast.showToast(msg: "Person Already added to favourites")
+      ? Fluttertoast.showToast(msg: "Already added to queue")
       : addItemToCart(shortInfoAsId, context);
 }
 
@@ -470,7 +470,7 @@ addItemToCart(String shortInfoAsId, BuildContext context) {
       .updateData({
     EcommerceApp.userCartList: tempCartList,
   }).then((v) {
-    Fluttertoast.showToast(msg: "Added to favourite Successfully!");
+    Fluttertoast.showToast(msg: "Added to queue Successfully!");
     EcommerceApp.sharedPreferences
         .setStringList(EcommerceApp.userCartList, tempCartList);
     Provider.of<CartItemCounter>(context, listen: false).displayResult();
