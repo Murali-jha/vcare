@@ -146,7 +146,7 @@ class _UploadTaskAndFun extends State<UploadTaskAndFun> {
               style: TextStyle(color: Colors.white, fontFamily: "Poppins"),
               controller: _urlTextEditingController,
               decoration: InputDecoration(
-                  hintText: "Url of Poster",
+                  hintText: "Url of questionnaire",
                   hintStyle:
                   TextStyle(color: Colors.grey, fontFamily: "Poppins"),
                   border: InputBorder.none),

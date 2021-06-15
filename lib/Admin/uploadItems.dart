@@ -8,6 +8,7 @@ import 'package:e_shop/adminFeed/adminTaskAndFun.dart';
 import 'package:e_shop/main.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:image/image.dart' as ImD;
@@ -25,6 +26,7 @@ class _UploadPageState extends State<UploadPage>
   TextEditingController _descriptionTextEditingController =
       TextEditingController();
   TextEditingController _titleTextEditingController = TextEditingController();
+  TextEditingController _tagTextEditingController = TextEditingController();
   TextEditingController _priceTextEditingController = TextEditingController();
   TextEditingController _shortInfoTextEditingController =
       TextEditingController();
@@ -349,6 +351,27 @@ class _UploadPageState extends State<UploadPage>
           ),
           ListTile(
             leading: Icon(
+              Icons.tag,
+              color: Colors.white,
+            ),
+            title: Container(
+              width: 250.0,
+              child: TextField(
+                style: TextStyle(color: Colors.white, fontFamily: "Poppins"),
+                controller: _tagTextEditingController,
+                decoration: InputDecoration(
+                    hintText: "Counsellor / Psychiatrist / Listener",
+                    hintStyle:
+                    TextStyle(color: Colors.grey, fontFamily: "Poppins"),
+                    border: InputBorder.none),
+              ),
+            ),
+          ),
+          Divider(
+            color: Colors.green,
+          ),
+          ListTile(
+            leading: Icon(
               Icons.info_outline,
               color: Colors.white,
             ),
@@ -413,7 +436,7 @@ class _UploadPageState extends State<UploadPage>
 
     String imageDownloadUrl = await uploadItemImage(file);
     saveItemInfo(imageDownloadUrl);
-
+    Fluttertoast.showToast(msg: "Details uploaded successfully!");
   }
 
   Future<String> uploadItemImage(mFileImage) async{
@@ -434,6 +457,7 @@ class _UploadPageState extends State<UploadPage>
       "status": "available",
       "thumbnailUrl": downloadUrl,
       "title": _titleTextEditingController.text.trim(),
+      "tag": _tagTextEditingController.text.trim()
     });
     setState(() {
       file = null;

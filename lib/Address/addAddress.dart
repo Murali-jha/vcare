@@ -19,6 +19,7 @@ class AddAddress extends StatelessWidget {
   final cCity = TextEditingController();
   final cState = TextEditingController();
   final cPinCode = TextEditingController();
+  final cSemester = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +36,7 @@ class AddAddress extends StatelessWidget {
                 phoneNumber: cPhoneNumber.text,
                 flatNumber: cFlatHomeNumber.text,
                 city: cCity.text.trim(),
+                semester: cSemester.text.trim()
               ).toJson();
 
               //add to firestore
@@ -169,6 +171,11 @@ class AddAddress extends StatelessWidget {
                   label: "Email Id",
                   hint: "Email Id",
                   controller: cFlatHomeNumber,
+                ),
+                MyTextField(
+                  label: "Semester",
+                  hint: "Semester",
+                  controller: cSemester,
                 ),
                 MyTextField(
                   label: "Preferred Time Slot",

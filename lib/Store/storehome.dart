@@ -267,26 +267,46 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                   ],
                 ),
 
-
-                Align(
-                    alignment: Alignment.centerRight,
-                    child: removeCartFunction == null
-                        ? IconButton(
-                            onPressed: () {
-                              checkItemInCart(model.shortInfo, context);
-                            },
-                            icon: Icon(
-                              Icons.queue,
-                              color: Colors.white,
-                            ))
-                        : IconButton(
-                            onPressed: () {
-                              removeCartFunction();
-                              Route route = MaterialPageRoute(
-                                  builder: (context) => StoreHome());
-                              Navigator.pushReplacement(context, route);
-                            },
-                            icon: Icon(Icons.delete))),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10.0),
+                                        side: BorderSide(color: Colors.green, width: 1.0)))),
+                            child: Text(model.tag,style: TextStyle(fontFamily: "Poppins"),),
+                            onPressed: () {},
+                          ),
+                      ),
+                    ),
+                    Expanded(
+                        child: Align(
+                            alignment: Alignment.centerRight,
+                            child: removeCartFunction == null
+                                ? IconButton(
+                                onPressed: () {
+                                  checkItemInCart(model.shortInfo, context);
+                                },
+                                icon: Icon(
+                                  Icons.queue,
+                                  color: Colors.white,
+                                ))
+                                : IconButton(
+                                onPressed: () {
+                                  removeCartFunction();
+                                  Route route = MaterialPageRoute(
+                                      builder: (context) => StoreHome());
+                                  Navigator.pushReplacement(context, route);
+                                },
+                                icon: Icon(Icons.delete))),
+                    )
+                  ],
+                ),
                 Divider(
                   color: Colors.green,
                 )
