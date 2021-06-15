@@ -1,9 +1,8 @@
+import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_shop/Models/item.dart';
+import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
-import 'package:e_shop/Widgets/searchBox.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -15,12 +14,52 @@ class UserTaskAndFunPageHomeScreen extends StatefulWidget {
 }
 
 class _UserTaskAndFunPageHomeScreen extends State<UserTaskAndFunPageHomeScreen> {
+
+
+  int creditPoints;
+  int numberToBeAdded;
+  var random = new Random();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    readData(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID));
+  }
+
+
+  Future readData(String fUser) async
+  {
+    Firestore.instance.collection("rewards").document(fUser).get().then((dataSnapshot)
+    async {
+      setState(() {
+        creditPoints = dataSnapshot.data["credits"];
+        if(creditPoints>1000){
+          setState(() {
+            creditPoints=0;
+          });
+        }
+        numberToBeAdded = random.nextInt(15) + 5;
+        print(numberToBeAdded);
+        creditPoints  = creditPoints + numberToBeAdded;
+      });
+    });
+  }
+
+  Future updateCreditPoints(String fUser) async
+  {
+    Firestore.instance.collection("rewards").document(fUser).updateData({
+      "credits": creditPoints
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
-          title: Text("Task & Fun"),
+          centerTitle: true,
+          title: Text("Task & Fun",style: TextStyle(fontFamily: "Poppins"),),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16.0)),
           ),
@@ -41,6 +80,7 @@ class _UserTaskAndFunPageHomeScreen extends State<UserTaskAndFunPageHomeScreen> 
                 children: snapshot.data.documents.map((document) {
                   return InkWell(
                     onTap: () async{
+                      updateCreditPoints(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID));
                       Fluttertoast.showToast(msg: "Redirecting to your task");
                       await launch(document['url']);
                     },

@@ -31,6 +31,7 @@ class _RegisterState extends State<Register> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String userImageUrl = "";
   File _imageFile;
+  int creditPoints = 100;
 
   @override
   Widget build(BuildContext context) {
@@ -266,6 +267,10 @@ class _RegisterState extends State<Register> {
       "name": _nameTextEditingController.text.trim(),
       "url": userImageUrl,
       EcommerceApp.userCartList: ["garbageValue"],
+    });
+
+    Firestore.instance.collection("rewards").document(fUser.uid).setData({
+      "credits": creditPoints
     });
 
     await EcommerceApp.sharedPreferences.setString("uid", fUser.uid);

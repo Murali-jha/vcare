@@ -2,7 +2,6 @@ import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';
 import 'package:e_shop/Store/cart.dart';
 import 'package:e_shop/Store/storehome.dart';
-import 'package:e_shop/Widgets/customAppBar.dart';
 import 'package:e_shop/Models/address.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

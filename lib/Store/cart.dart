@@ -88,7 +88,7 @@ class _CartPageState extends State<CartPage>
                   child: cartProvider.count == 0
                       ? Container()
                       : Text(
-                    "Your Favourites",
+                    "In Queue",
                     style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.w500,fontFamily: "Poppins"),
                   ),
                 ),

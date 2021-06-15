@@ -18,7 +18,8 @@ class _UserFeedPageHomeScreenState extends State<UserFeedPageHomeScreen> {
     width = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
-          title: Text("Feed & Updates"),
+          centerTitle: true,
+          title: Text("Feed & Updates",style: TextStyle(fontFamily: "Poppins"),),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16.0)),
           ),

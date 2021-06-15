@@ -9,6 +9,7 @@ import 'package:e_shop/Store/storehome.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
 import 'package:e_shop/adminFeed/userFeedPage.dart';
 import 'package:e_shop/adminFeed/userTaskAndFun.dart';
+import 'package:e_shop/credits/creditsHomePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -134,6 +135,16 @@ class _MyDrawerState extends State<MyDrawer> {
                     onTap: () {
                       Route route = MaterialPageRoute(builder: (c) {
                         return UserTaskAndFunPageHomeScreen();
+                      });
+                      Navigator.push(context, route);
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.auto_awesome),
+                    title: Text("CryptoV",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
+                    onTap: () {
+                      Route route = MaterialPageRoute(builder: (c) {
+                        return CreditsHomePage();
                       });
                       Navigator.push(context, route);
                     },
