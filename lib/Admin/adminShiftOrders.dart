@@ -20,7 +20,7 @@ class _MyOrdersState extends State<AdminShiftOrders> {
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white),
           centerTitle: true,
-          title: Text("Appointments Requests", style: TextStyle(color: Colors.white),),
+          title: Text("Appointment Requests", style: TextStyle(color: Colors.white),),
 
         ),
         body: StreamBuilder<QuerySnapshot>(
