@@ -185,14 +185,14 @@ class AdminShippingDetails extends StatelessWidget {
               TableRow(
                   children: [
                     KeyText(msg: "Phone Number :",),
-                    Text(model.phoneNumber,style: TextStyle(fontFamily: "Poppins"),),
+                    SelectableText(model.phoneNumber,style: TextStyle(fontFamily: "Poppins"),),
                   ]
               ),
 
               TableRow(
                   children: [
                     KeyText(msg: "Email Id :",),
-                    Text(model.flatNumber,style: TextStyle(fontFamily: "Poppins"),),
+                    SelectableText(model.flatNumber,style: TextStyle(fontFamily: "Poppins"),),
                   ]
               ),
 

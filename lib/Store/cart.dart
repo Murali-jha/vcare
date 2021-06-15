@@ -40,7 +40,7 @@ class _CartPageState extends State<CartPage>
         {
           if(EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList).length == 1)
           {
-            Fluttertoast.showToast(msg: "You have not selected any doctor yet");
+            Fluttertoast.showToast(msg: "You have not added any person yet");
           }
           else
           {
@@ -150,8 +150,8 @@ class _CartPageState extends State<CartPage>
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(Icons.insert_emoticon, color: Colors.white,),
-              Text("Favourite List is empty."),
-              Text("Start exploring and add to your favourite list."),
+              Text("Queue is empty.",style: TextStyle(fontFamily: "Poppins"),),
+              Text("Start exploring and add people to your Queue.",style: TextStyle(fontFamily: "Poppins"),),
             ],
           ),
         ),

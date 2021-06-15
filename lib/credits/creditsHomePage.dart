@@ -64,17 +64,34 @@ class _CreditsHomePageState extends State<CreditsHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Center(child: Image.asset("images/CryptoVLogo.png",width: 120.0,)),
-                Text("CryptoV coins in your Wallet",style: TextStyle(fontFamily: "Poppins",fontSize: 20.0),),
-                creditPoints==null?
-                    circularProgress():
-                    Text(creditPoints.toString(),style: TextStyle(fontFamily: "Poppins",fontSize: 70.0,color: Colors.green),),
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.black38,
+                      border: Border.all(
+                        color: Colors.blue,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(20))
+                  ),
+                  padding: EdgeInsets.all(10.0),
+                  margin: EdgeInsets.all(10.0),
+                  child: Column(
+                    children: [
+                      Center(child: Image.asset("images/CryptoVLogo.png",width: 150.0,)),
+                      Text("CryptoV coins in your Wallet",style: TextStyle(fontFamily: "Poppins",fontSize: 18.0),),
+                      creditPoints==null?
+                      circularProgress():
+                      Text(creditPoints.toString(),style: TextStyle(fontFamily: "Poppins",fontSize: 70.0,color: Colors.green),),
+                    ],
+                  ),
+                ),
+
                 SizedBox(height: 30.0,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(child: Center(child: Text("Number of CryptoV coins you need to unlock reward",style: TextStyle(fontFamily: "Poppins",fontSize: 20.0),))),
+                    Icon(Icons.arrow_forward_ios_outlined,color: Colors.blue,),
                     creditPoints==null?
                     circularProgress():
                     Expanded(child: Center(child: Text(remaining.toString(),style: TextStyle(fontFamily: "Poppins",fontSize: 50.0,color: Colors.red),))),

@@ -34,7 +34,9 @@ class _ProductPageState extends State<ProductPage> {
           title: Text(
             widget.itemModel.title,
             style: TextStyle(
-                color: Colors.white),
+                color: Colors.white,
+              fontFamily: "Poppins"
+            ),
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16.0)),
@@ -84,7 +86,7 @@ class _ProductPageState extends State<ProductPage> {
         body: ListView(
           children: [
             Container(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.only(top: 8.0,bottom: 8.0,right: 6.0,left: 4.0),
               width: MediaQuery.of(context).size.width,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,11 +140,24 @@ class _ProductPageState extends State<ProductPage> {
                             ),
                           ),
                           SizedBox(height: 10.0,),
+                          Center(
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                          side: BorderSide(color: Colors.green, width: 1.0)))),
+                              child: Text(widget.itemModel.tag,style: TextStyle(fontFamily: "Poppins"),),
+                              onPressed: () {},
+                            ),
+                          ),
+                          SizedBox(height: 10.0,),
                           Text(
                             widget.itemModel.longDescription,
                             style: TextStyle(color: Colors.white, fontSize: 17,fontFamily: "Poppins"),
                           ),
-                          SizedBox(height: 10.0,),
+                          SizedBox(height: 30.0,),
                           Row(
                             children: [
                               Expanded(
@@ -220,7 +235,8 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                       ),
                     ),
-                  )
+                  ),
+                  SizedBox(height: 50.0,),
                 ],
               ),
             )

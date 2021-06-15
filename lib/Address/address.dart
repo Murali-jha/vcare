@@ -94,16 +94,17 @@ class _AddressState extends State<Address>
 
   noAddressCard() {
     return Card(
-      color: Colors.pink.withOpacity(0.5),
+      color: Theme.of(context).primaryColor.withOpacity(0.5),
       child: Container(
         height: 100.0,
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Icon(Icons.add, color: Colors.white,),
-            Text("No details has been saved."),
-            Text("Please add your details so that we can send you appointment details"),
+            Text("No details has been saved.",style: TextStyle(fontFamily: "Poppins"),),
+            Center(child: Text("Click add details to add your details",style: TextStyle(fontFamily: "Poppins"),)),
           ],
         ),
       ),
