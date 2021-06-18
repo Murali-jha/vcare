@@ -61,13 +61,13 @@ class _SearchProductState extends State<SearchProduct>
         decoration: BoxDecoration(
             color: Colors.black38,
             borderRadius: BorderRadius.circular(8.0),
-            border: Border.all(color: Colors.blueGrey)
+            border: Border.all(color: Colors.grey)
         ),
         child: Row(
           children: [
             Padding(
               padding: EdgeInsets.only(left: 8.0),
-              child: Icon(Icons.search, color: Colors.blueGrey,),
+              child: Icon(Icons.search, color: Colors.grey,),
             ),
             Flexible(
               child: Padding(
@@ -77,7 +77,7 @@ class _SearchProductState extends State<SearchProduct>
                   {
                     startSearching(value);
                   },
-                  decoration: InputDecoration.collapsed(hintText: "Search here..."),
+                  decoration: InputDecoration.collapsed(hintText: "Search Here..."),
                 ),
               ),
             ),

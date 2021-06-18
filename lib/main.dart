@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_shop/About%20App/abouthomepage.dart';
 import 'package:e_shop/Counters/ItemQuantity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -73,10 +74,19 @@ class _SplashScreenState extends State<SplashScreen>
 
 
   displaySplash(){
-    Timer(Duration(seconds: 3),()async{
+    Timer(Duration(seconds: 2),()async{
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      bool _seen = (prefs.getBool('seen') ?? false);
+
       if(await EcommerceApp.auth.currentUser() != null){
-        Route route = MaterialPageRoute(builder: (_)=>StoreHome());
-        Navigator.pushReplacement(context, route);
+        if (_seen) {
+          Route route = MaterialPageRoute(builder: (_)=>StoreHome());
+          Navigator.pushReplacement(context, route);
+        } else {
+          await prefs.setBool('seen', true);
+          Navigator.of(context).pushReplacement(
+              new MaterialPageRoute(builder: (context) => new AboutAppHomePage()));
+        }
       }
       else{
         Route route = MaterialPageRoute(builder: (_)=>AuthenticScreen());

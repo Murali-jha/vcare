@@ -27,6 +27,9 @@ dependencies:
   share: 0.6.4
   url_launcher: ^5.2.4
   firebase_messaging: ^5.1.6
+  expandable: ^5.0.1
+  cached_network_image:
+  assets_audio_player:
 
 dev_dependencies:
   flutter_test:
@@ -48,6 +51,9 @@ flutter:
     - images/adminlogin.png
     - images/confirm.png
     - images/CryptoVLogo.png
+    - images/onboarding/
+    - assets/gifs/
+    - audios/
 
 
 

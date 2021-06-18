@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:e_shop/Store/storehome.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../main.dart';
 
 class CartPage extends StatefulWidget {
@@ -30,7 +31,64 @@ class _CartPageState extends State<CartPage>
 
     totalAmount = 0;
     Provider.of<TotalAmount>(context, listen: false).display(0);
+    checkDialogIntroShown();
   }
+
+  Future checkDialogIntroShown() async {
+    SharedPreferences queueHomePageView = await SharedPreferences.getInstance();
+    bool _seen = (queueHomePageView.getBool('seenQueueHomePageView') ?? false);
+
+    if (_seen) {
+
+
+    }
+    else{
+      await queueHomePageView.setBool('seenQueueHomePageView', true);
+      showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => CustomAlertDialog(
+          title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
+          desc: "Here you will find a people you have added in a queue. To book an appointment with a people in a queue click 'Book a Slot'.",
+        ),
+      );
+    }
+  }
+
+  // showAlertDialog(BuildContext context) {
+  //
+  //   // set up the button
+  //   Widget okButton = FlatButton(
+  //     child: Text("OK",style: TextStyle(fontFamily: "Poppins"),),
+  //     color: Colors.green,
+  //     onPressed: () {
+  //       Navigator.pop(context);
+  //     },
+  //   );
+  //
+  //
+  //   // set up the AlertDialog
+  //   AlertDialog alert = AlertDialog(
+  //     shape: RoundedRectangleBorder(
+  //       borderRadius: BorderRadius.circular(10),
+  //     ),
+  //     title: Text("Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",style: TextStyle(fontFamily: "Poppins"),),
+  //     content: Text("Here you will find a people you have added in a queue. To book an appointment with a people in a queue click 'Book a Slot'.",style: TextStyle(fontFamily: "Poppins"),),
+  //     actions: [
+  //       okButton,
+  //     ],
+  //   );
+  //
+  //   // show the dialog
+  //   showDialog(
+  //
+  //     barrierDismissible: false,
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return alert;
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -177,5 +235,101 @@ class _CartPageState extends State<CartPage>
 
       totalAmount = 0;
     });
+  }
+}
+
+
+
+class CustomAlertDialog extends StatelessWidget {
+
+  final String title,desc;
+
+  CustomAlertDialog({ this.title, this.desc,});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16)
+      ),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: dialogContent(context),
+    );
+  }
+
+  dialogContent(BuildContext context){
+    return Stack(
+      children: [
+        Container(
+          padding: EdgeInsets.only(
+              top: 100.0,
+              bottom: 16.0,
+              left: 16.0,
+              right: 16.0
+          ),
+          margin: EdgeInsets.only(
+              top: 16.0
+          ),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(17),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 10.0,
+                  offset: Offset(0.0,10.0),
+                )
+              ]
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,fontFamily: "Poppins"
+                ),
+              ),
+              SizedBox(height: 24.0,),
+              Text(
+                desc,
+                style: TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.black,fontFamily: "Poppins"
+                ),
+              ),
+              SizedBox(height: 24.0,),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: FlatButton(
+                  color: Colors.green,
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  child: Text("Confirm",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
+                ),
+              ),
+
+
+            ],
+          ),
+        ),
+        Positioned(
+            top: 0.0,
+            left: 16.0,
+            right: 16.0,
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 50.0,
+              backgroundImage: AssetImage("assets/gifs/7t4e.gif"),
+            )
+        )
+      ],
+    );
   }
 }

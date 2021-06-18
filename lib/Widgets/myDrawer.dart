@@ -1,3 +1,4 @@
+import 'package:e_shop/About%20App/abouthomepage.dart';
 import 'package:e_shop/Authentication/authenication.dart';
 import 'package:e_shop/Authentication/login.dart';
 import 'package:e_shop/Config/config.dart';
@@ -10,9 +11,11 @@ import 'package:e_shop/Widgets/loadingWidget.dart';
 import 'package:e_shop/adminFeed/userFeedPage.dart';
 import 'package:e_shop/adminFeed/userTaskAndFun.dart';
 import 'package:e_shop/credits/creditsHomePage.dart';
+import 'package:e_shop/howtouse/help.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -127,6 +130,7 @@ class _MyDrawerState extends State<MyDrawer> {
                       //   return StoreHome();
                       // });
                       // Navigator.push(context, route);
+                      Fluttertoast.showToast(msg: "Chat feature currently not available");
                     },
                   ),
                   ListTile(
@@ -208,13 +212,23 @@ class _MyDrawerState extends State<MyDrawer> {
                     color: Colors.blueGrey,
                   ),
                   ListTile(
+                    leading: Icon(Icons.help_outline_outlined),
+                    title: Text("How to use?",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0)),
+                    onTap: () {
+                      Route route = MaterialPageRoute(builder: (c) {
+                        return HelpHomePage();
+                      });
+                      Navigator.push(context, route);
+                    },
+                  ),
+                  ListTile(
                     leading: Icon(Icons.info_rounded),
                     title: Text("About App",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0)),
                     onTap: () {
-                      // Route route = MaterialPageRoute(builder: (c) {
-                      //   return AddAddress();
-                      // });
-                      // Navigator.push(context, route);
+                      Route route = MaterialPageRoute(builder: (c) {
+                        return AboutAppHomePage();
+                      });
+                      Navigator.pushReplacement(context, route);
                     },
                   ),
                   ListTile(

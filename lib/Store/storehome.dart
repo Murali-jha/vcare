@@ -2,12 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Store/cart.dart';
 import 'package:e_shop/Store/product_page.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';
+import 'package:e_shop/howtouse/help.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:e_shop/Config/config.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../Widgets/loadingWidget.dart';
 import '../Widgets/myDrawer.dart';
 import '../Widgets/searchBox.dart';
@@ -21,6 +24,83 @@ class StoreHome extends StatefulWidget {
 }
 
 class _StoreHomeState extends State<StoreHome> {
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+      checkDialogIntroShown();
+
+  }
+
+
+  Future checkDialogIntroShown() async {
+    SharedPreferences storeHomePrefs = await SharedPreferences.getInstance();
+    bool _seen = (storeHomePrefs.getBool('seenHomePageDialog') ?? false);
+
+    if (_seen) {
+
+
+    }
+    else{
+      await storeHomePrefs.setBool('seenHomePageDialog', true);
+      showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (context) => CustomAlertDialog(
+            title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
+            desc: "Before starting have a look at user manual to make your experience seem less!",
+          ),
+      );
+        //showAlertDialog(context);
+    }
+  }
+
+  // showAlertDialog(BuildContext context) {
+  //
+  //   // set up the button
+  //   Widget okButton = FlatButton(
+  //     child: Text("OK",style: TextStyle(fontFamily: "Poppins"),),
+  //     color: Colors.green,
+  //     onPressed: () {
+  //       Navigator.pop(context);
+  //       Navigator.push(context, MaterialPageRoute(builder: (context)=>HelpHomePage()));
+  //     },
+  //   );
+  //
+  //   Widget cancelButton = FlatButton(
+  //     child: Text("Cancel",style: TextStyle(fontFamily: "Poppins"),),
+  //     color: Colors.red,
+  //     onPressed: () {
+  //       Navigator.pop(context);
+  //     },
+  //   );
+  //
+  //   // set up the AlertDialog
+  //   AlertDialog alert = AlertDialog(
+  //     shape: RoundedRectangleBorder(
+  //       borderRadius: BorderRadius.circular(10),
+  //     ),
+  //     title: Text("Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",style: TextStyle(fontFamily: "Poppins"),),
+  //     content: Text("Before starting have a look at user manual to make your experience seem less!",style: TextStyle(fontFamily: "Poppins"),),
+  //     actions: [
+  //       cancelButton,
+  //       okButton,
+  //     ],
+  //   );
+  //
+  //   // show the dialog
+  //   showDialog(
+  //
+  //     barrierDismissible: false,
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return alert;
+  //     },
+  //   );
+  // }
+
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
@@ -495,4 +575,115 @@ addItemToCart(String shortInfoAsId, BuildContext context) {
         .setStringList(EcommerceApp.userCartList, tempCartList);
     Provider.of<CartItemCounter>(context, listen: false).displayResult();
   });
+}
+
+
+class CustomAlertDialog extends StatelessWidget {
+
+  final String title,desc;
+
+  CustomAlertDialog({ this.title, this.desc,});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16)
+      ),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: dialogContent(context),
+    );
+  }
+
+  dialogContent(BuildContext context){
+    return Stack(
+      children: [
+        Container(
+          padding: EdgeInsets.only(
+              top: 100.0,
+              bottom: 16.0,
+              left: 16.0,
+              right: 16.0
+          ),
+          margin: EdgeInsets.only(
+              top: 16.0
+          ),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(17),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 10.0,
+                  offset: Offset(0.0,10.0),
+                )
+              ]
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,fontFamily: "Poppins"
+                ),
+              ),
+              SizedBox(height: 24.0,),
+              Text(
+                desc,
+                style: TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.black,fontFamily: "Poppins"
+                ),
+              ),
+              SizedBox(height: 24.0,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: FlatButton(
+                      color: Colors.red,
+                      onPressed: (){
+                        Navigator.pop(context);
+                      },
+                      child: Text("Cancel",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
+                    ),
+                  ),
+                  SizedBox(width: 10.0,),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: FlatButton(
+                      color: Colors.green,
+                      onPressed: (){
+                        Navigator.pop(context);
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>HelpHomePage()));
+                      },
+                      child: Text("Okay",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
+                    ),
+                  ),
+                ],
+              ),
+
+            ],
+          ),
+        ),
+        Positioned(
+            top: 0.0,
+            left: 16.0,
+            right: 16.0,
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 50.0,
+              backgroundImage: AssetImage("assets/gifs/7t4e.gif"),
+            )
+        )
+      ],
+    );
+  }
 }

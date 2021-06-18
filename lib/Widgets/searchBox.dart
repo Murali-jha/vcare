@@ -28,17 +28,17 @@ class SearchBoxDelegate extends SliverPersistentHeaderDelegate {
               decoration: BoxDecoration(
                 color: Colors.black38,
                 borderRadius: BorderRadius.circular(8.0),
-                  border: Border.all(color: Colors.blueGrey)
+                  border: Border.all(color: Colors.grey)
               ),
               child: Row(
                 children: [
                   Padding(
                       padding: EdgeInsets.only(left: 8.0),
-                    child: Icon(Icons.search,color: Colors.blueGrey,),
+                    child: Icon(Icons.search,color: Colors.grey,),
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 8.0),
-                    child: Text("Search Here",style: TextStyle(fontFamily: "Poppins",color: Colors.blueGrey),),
+                    child: Text("Search Here",style: TextStyle(fontFamily: "Poppins",color: Colors.grey),),
                   ),
 
                 ],

@@ -4,6 +4,7 @@ import 'package:e_shop/Authentication/forgotpassword.dart';
 import 'package:e_shop/Widgets/customTextField.dart';
 import 'package:e_shop/DialogBox/errorDialog.dart';
 import 'package:e_shop/DialogBox/loadingDialog.dart';
+import 'package:e_shop/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -162,7 +163,7 @@ class _LoginState extends State<Login>
         readData(firebaseUser).then((s) {
           Navigator.pop(context);
           Route route = MaterialPageRoute(builder: (_) {
-            return StoreHome();
+            return SplashScreen();
           });
           Navigator.pushReplacement(context, route);
         });

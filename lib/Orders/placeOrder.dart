@@ -1,5 +1,7 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Config/config.dart';
+import 'package:e_shop/Orders/myOrders.dart';
 import 'package:e_shop/Store/storehome.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';
 import 'package:e_shop/main.dart';
@@ -22,10 +24,15 @@ class PaymentPage extends StatefulWidget
 
 
 class _PaymentPageState extends State<PaymentPage> {
+
+  final audioPlayerConfirm = AssetsAudioPlayer();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         shape: ContinuousRectangleBorder(
           borderRadius: const BorderRadius.only(
             bottomRight: Radius.circular(40.0),
@@ -53,7 +60,12 @@ class _PaymentPageState extends State<PaymentPage> {
                     textColor: Colors.white,
                     padding: EdgeInsets.all(8.0),
                     splashColor: Colors.deepOrange,
-                    onPressed: ()=> addOrderDetails(),
+                    onPressed: (){
+                      addOrderDetails();
+                      audioPlayerConfirm.open(
+                        Audio("audios/cofirmMusic.wav"),
+                      );
+                    },
                     child: Text("Confirm Appointment", style: TextStyle(fontSize: 16.0,fontFamily: "Poppins"),),
                   ),
                 ),
@@ -104,10 +116,16 @@ class _PaymentPageState extends State<PaymentPage> {
       Provider.of<CartItemCounter>(context, listen: false).displayResult();
     });
 
-    Fluttertoast.showToast(msg: "Congratulations, your request have been taken Successfully. Further details will be shared soon");
+    //Fluttertoast.showToast(msg: "Congratulations, your request have been taken Successfully. Further details will be shared soon");
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => CustomAlertDialog(
+          title: "Success",
+          desc: "Congratulations!! your request have been taken Successfully. You can check your appointment details in My appointment section. Further appointment details will be shared soon via Email.",
+        )
+    );
 
-    Route route = MaterialPageRoute(builder: (c) => SplashScreen());
-    Navigator.pushReplacement(context, route);
   }
 
   Future writeOrderDetailsForUser(Map<String, dynamic> data) async
@@ -125,5 +143,100 @@ class _PaymentPageState extends State<PaymentPage> {
         .collection(EcommerceApp.collectionOrders)
         .document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID) + data['orderTime'])
         .setData(data);
+  }
+}
+
+
+class CustomAlertDialog extends StatelessWidget {
+
+  final String title,desc;
+
+  CustomAlertDialog({ this.title, this.desc,});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16)
+      ),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: dialogContent(context),
+    );
+  }
+
+  dialogContent(BuildContext context){
+    return Stack(
+      children: [
+        Container(
+          padding: EdgeInsets.only(
+              top: 100.0,
+              bottom: 16.0,
+              left: 16.0,
+              right: 16.0
+          ),
+          margin: EdgeInsets.only(
+              top: 16.0
+          ),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(17),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 10.0,
+                  offset: Offset(0.0,10.0),
+                )
+              ]
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,fontFamily: "Poppins"
+                ),
+              ),
+              SizedBox(height: 24.0,),
+              Text(
+                desc,
+                style: TextStyle(
+                  fontSize: 16.0,
+                    color: Colors.black,fontFamily: "Poppins"
+                ),
+              ),
+              SizedBox(height: 24.0,),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: FlatButton(
+                  color: Colors.green,
+                  onPressed: (){
+                    Route route = MaterialPageRoute(builder: (c) => SplashScreen());
+                    Navigator.pushReplacement(context, route);
+                  },
+                  child: Text("Confirm",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
+                ),
+              ),
+
+            ],
+          ),
+        ),
+        Positioned(
+            top: 0.0,
+            left: 16.0,
+            right: 16.0,
+            child: CircleAvatar(
+              backgroundColor: Colors.blue,
+              radius: 50.0,
+              backgroundImage: AssetImage("assets/gifs/confirmOrder.gif"),
+            )
+        )
+      ],
+    );
   }
 }
