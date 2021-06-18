@@ -33,44 +33,52 @@ class _MyOrdersState extends State<MyOrders> {
     }
     else{
       await userAppointmentsFixedDialog.setBool('seenUserAppointmentsFixedDialog', true);
-      showAlertDialog(context);
+      //showAlertDialog(context);
+      showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => CustomAlertDialog(
+          title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
+          desc: "Here you will find all your appointment details. And You will receive meeting details through mail within 15 to 30 minutes of your booking",
+        ),
+      );
     }
   }
 
-  showAlertDialog(BuildContext context) {
-
-    // set up the button
-    Widget okButton = FlatButton(
-      child: Text("OK! that's cool",style: TextStyle(fontFamily: "Poppins"),),
-      color: Colors.green,
-      onPressed: () {
-        Navigator.pop(context);
-      },
-    );
-
-
-    // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      title: Text("Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",style: TextStyle(fontFamily: "Poppins"),),
-      content: Text("Here you will find all your appointment details. And You will receive meeting details through mail within 15 to 30 minutes of your booking",style: TextStyle(fontFamily: "Poppins"),),
-      actions: [
-        okButton,
-      ],
-    );
-
-    // show the dialog
-    showDialog(
-
-      barrierDismissible: false,
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
-  }
+  // showAlertDialog(BuildContext context) {
+  //
+  //   // set up the button
+  //   Widget okButton = FlatButton(
+  //     child: Text("OK! that's cool",style: TextStyle(fontFamily: "Poppins"),),
+  //     color: Colors.green,
+  //     onPressed: () {
+  //       Navigator.pop(context);
+  //     },
+  //   );
+  //
+  //
+  //   // set up the AlertDialog
+  //   AlertDialog alert = AlertDialog(
+  //     shape: RoundedRectangleBorder(
+  //       borderRadius: BorderRadius.circular(10),
+  //     ),
+  //     title: Text("Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",style: TextStyle(fontFamily: "Poppins"),),
+  //     content: Text("Here you will find all your appointment details. And You will receive meeting details through mail within 15 to 30 minutes of your booking",style: TextStyle(fontFamily: "Poppins"),),
+  //     actions: [
+  //       okButton,
+  //     ],
+  //   );
+  //
+  //   // show the dialog
+  //   showDialog(
+  //
+  //     barrierDismissible: false,
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return alert;
+  //     },
+  //   );
+  // }
 
 
   @override
@@ -125,6 +133,101 @@ class _MyOrdersState extends State<MyOrders> {
           },
         ),
       ),
+    );
+  }
+}
+
+
+class CustomAlertDialog extends StatelessWidget {
+
+  final String title,desc;
+
+  CustomAlertDialog({ this.title, this.desc,});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16)
+      ),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: dialogContent(context),
+    );
+  }
+
+  dialogContent(BuildContext context){
+    return Stack(
+      children: [
+        Container(
+          padding: EdgeInsets.only(
+              top: 100.0,
+              bottom: 16.0,
+              left: 16.0,
+              right: 16.0
+          ),
+          margin: EdgeInsets.only(
+              top: 16.0
+          ),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(17),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 10.0,
+                  offset: Offset(0.0,10.0),
+                )
+              ]
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,fontFamily: "Poppins"
+                ),
+              ),
+              SizedBox(height: 24.0,),
+              Text(
+                desc,
+                style: TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.black,fontFamily: "Poppins"
+                ),
+              ),
+              SizedBox(height: 24.0,),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: FlatButton(
+                  color: Colors.green,
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  child: Text("Confirm",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
+                ),
+              ),
+
+
+            ],
+          ),
+        ),
+        Positioned(
+            top: 0.0,
+            left: 16.0,
+            right: 16.0,
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 50.0,
+              backgroundImage: AssetImage("assets/gifs/7t4e.gif"),
+            )
+        )
+      ],
     );
   }
 }

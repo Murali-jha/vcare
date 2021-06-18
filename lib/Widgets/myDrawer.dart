@@ -228,7 +228,7 @@ class _MyDrawerState extends State<MyDrawer> {
                       Route route = MaterialPageRoute(builder: (c) {
                         return AboutAppHomePage();
                       });
-                      Navigator.pushReplacement(context, route);
+                      Navigator.push(context, route);
                     },
                   ),
                   ListTile(

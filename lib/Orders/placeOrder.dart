@@ -217,7 +217,7 @@ class CustomAlertDialog extends StatelessWidget {
                   color: Colors.green,
                   onPressed: (){
                     Route route = MaterialPageRoute(builder: (c) => SplashScreen());
-                    Navigator.pushReplacement(context, route);
+                    Navigator.of(context).pushAndRemoveUntil(route, (Route<dynamic> route) => false);
                   },
                   child: Text("Confirm",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
                 ),

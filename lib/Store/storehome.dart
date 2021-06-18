@@ -220,10 +220,8 @@ Widget sourceInfo(ItemModel model, BuildContext context,
     },
     splashColor: Colors.green,
     child: Padding(
-      padding: EdgeInsets.all(10.0),
+      padding: EdgeInsets.fromLTRB(10.0,5.0,10.0,5.0),
       child: Container(
-        height: 220.0,
-        width: width,
         child: Row(
           children: [
             Material(
@@ -253,9 +251,6 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: 20.0,
-                ),
                 Container(
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
@@ -387,6 +382,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                     )
                   ],
                 ),
+                SizedBox(height: 10.0,),
                 Divider(
                   color: Colors.green,
                 )
