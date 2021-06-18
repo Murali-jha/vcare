@@ -89,7 +89,9 @@ class _UserFeedPageHomeScreenState extends State<UserFeedPageHomeScreen> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Feed & Updates",style: TextStyle(fontFamily: "Poppins"),),
+          title: Text("Feed & Updates",style: TextStyle(fontFamily: "Poppins",
+              fontWeight: FontWeight.bold
+          ),),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16.0)),
           ),

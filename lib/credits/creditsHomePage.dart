@@ -104,7 +104,9 @@ class _CreditsHomePageState extends State<CreditsHomePage> {
         title: Text(
           "CryptoV Coins",
           style: TextStyle(
-            fontFamily: "Poppins"
+            fontFamily: "Poppins",
+              fontWeight: FontWeight.bold
+
           ),
         ),
         actions: [

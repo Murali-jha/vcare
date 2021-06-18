@@ -111,24 +111,12 @@ class _CartPageState extends State<CartPage>
         icon: Icon(Icons.navigate_next,color: Colors.white,),
       ),
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "V - ",
-              style: TextStyle(
-                fontFamily: "Signatra",
-                fontSize: 45.0,
-              ),
-            ),
-            Text(
-              "Care",
-              style: TextStyle(
-                  fontFamily: "Signatra",
-                  fontSize: 45.0,
-                  color: Colors.green),
-            ),
-          ],
+        title: Text(
+          "Queue",
+          style: TextStyle(
+            fontFamily: "Poppins",
+            fontWeight: FontWeight.bold
+          ),
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(16.0)),
@@ -147,7 +135,7 @@ class _CartPageState extends State<CartPage>
                       ? Container()
                       : Text(
                     "In Queue",
-                    style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.w500,fontFamily: "Poppins"),
+                    style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold,fontFamily: "Poppins"),
                   ),
                 ),
               );

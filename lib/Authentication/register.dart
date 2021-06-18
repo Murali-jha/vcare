@@ -183,10 +183,11 @@ class _RegisterState extends State<Register> {
 
   uploadToStorage() async {
     showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (c) {
           return LoadingAlertDialog(
-            message: "Registering,Please wait.....",
+            message: "Registering..Please wait...",
           );
         });
 

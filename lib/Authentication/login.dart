@@ -138,7 +138,7 @@ class _LoginState extends State<Login>
     showDialog(
         barrierDismissible: false,
         context: context,builder: (c){
-      return LoadingAlertDialog(message:"Authenticating,Please wait");
+      return LoadingAlertDialog(message:"Authenticating..Please wait...");
     });
     FirebaseUser firebaseUser;
     await _auth.signInWithEmailAndPassword(

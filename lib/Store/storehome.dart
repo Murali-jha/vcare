@@ -111,7 +111,7 @@ class _StoreHomeState extends State<StoreHome> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "V - ",
+                "v",
                 style: TextStyle(
                   fontFamily: "Signatra",
                   fontSize: 45.0,

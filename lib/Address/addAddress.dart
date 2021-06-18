@@ -69,7 +69,7 @@ class AddAddress extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "V - ",
+                "v",
                 style: TextStyle(
                   fontFamily: "Signatra",
                   fontSize: 45.0,
@@ -142,12 +142,14 @@ class AddAddress extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    "Add yor details",
-                    style: TextStyle(
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20.0
+                  child: Center(
+                    child: Text(
+                      "Add your details",
+                      style: TextStyle(
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0
+                      ),
                     ),
                   ),
                 ),

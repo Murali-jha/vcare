@@ -198,7 +198,7 @@ class _MyDrawerState extends State<MyDrawer> {
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.update),
+                    leading: Icon(Icons.details_rounded),
                     title: Text("Add My Details",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0)),
                     onTap: () {
                       Route route = MaterialPageRoute(builder: (c) {

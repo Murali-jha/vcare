@@ -19,7 +19,7 @@ class MyAppBar extends StatelessWidget
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "V - ",
+            "v",
             style: TextStyle(
               fontFamily: "Signatra",
               fontSize: 45.0,

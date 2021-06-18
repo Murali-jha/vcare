@@ -90,6 +90,7 @@ class _MyOrdersState extends State<MyOrders> {
               "My Appointments",
               style: TextStyle(
                   fontFamily: "Poppins",
+                  fontWeight: FontWeight.bold,
                   fontSize: 20.0,
                   color: Colors.white),
             ),

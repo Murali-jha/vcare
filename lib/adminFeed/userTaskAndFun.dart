@@ -120,7 +120,8 @@ class _UserTaskAndFunPageHomeScreen extends State<UserTaskAndFunPageHomeScreen> 
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Task & Fun",style: TextStyle(fontFamily: "Poppins"),),
+          title: Text("Task & Fun",style: TextStyle(fontFamily: "Poppins",            fontWeight: FontWeight.bold
+          ),),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16.0)),
           ),

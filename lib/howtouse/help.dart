@@ -15,7 +15,8 @@ class HelpHomePage extends StatelessWidget {
         title: Text(
           "How to use?",
           style: TextStyle(
-              fontFamily: "Poppins"
+              fontFamily: "Poppins",
+              fontWeight: FontWeight.bold
           ),
         ),
       ),
