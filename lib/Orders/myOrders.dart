@@ -86,7 +86,6 @@ class _MyOrdersState extends State<MyOrders> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        drawer: MyDrawer(),
           appBar: AppBar(
             title: Text(
               "My Appointments",
