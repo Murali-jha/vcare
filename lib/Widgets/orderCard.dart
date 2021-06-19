@@ -54,8 +54,6 @@ Widget sourceOrderInfo(ItemModel model, BuildContext context,
   width =  MediaQuery.of(context).size.width;
 
   return Container(
-    height: 220.0,
-    width: width,
     child: Row(
       children: [
         Material(
@@ -175,7 +173,7 @@ Widget sourceOrderInfo(ItemModel model, BuildContext context,
                           )
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
                 //Implement cart item remove feature
