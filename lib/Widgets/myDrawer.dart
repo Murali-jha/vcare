@@ -1,6 +1,7 @@
 import 'package:e_shop/About%20App/abouthomepage.dart';
 import 'package:e_shop/Authentication/authenication.dart';
 import 'package:e_shop/Authentication/login.dart';
+import 'package:e_shop/BottomNavHomePage.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Address/addAddress.dart';
 import 'package:e_shop/Store/Search.dart';
@@ -107,7 +108,7 @@ class _MyDrawerState extends State<MyDrawer> {
                     title: Text("Home",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
                     onTap: () {
                       Route route = MaterialPageRoute(builder: (c) {
-                        return StoreHome();
+                        return BottomNavBar();
                       });
                       Navigator.pushReplacement(context, route);
                     },
@@ -269,35 +270,13 @@ class _MyDrawerState extends State<MyDrawer> {
                     title: Text("Logout",style: TextStyle(color: Colors.red,fontFamily: "Poppins",fontSize: 15.0),),
                     onTap: () {
                       showDialog(
-                          context: context,
-                          builder: (c) {
-                            return AlertDialog(
-                              content: Text("Do you want to logout?",style: TextStyle(fontFamily: "Poppins"),),
-                              actions: <Widget>[
-
-                                RaisedButton(
-                                  onPressed: () {
-                                    EcommerceApp.auth.signOut().then((c) {
-                                      Navigator.of(context).pushAndRemoveUntil(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  AuthenticScreen()),
-                                              (Route<dynamic> route) => false);
-                                    });
-                                  },
-                                  color: Colors.red,
-                                  child: Text("Yes",style: TextStyle(fontFamily: "Poppins"),),
-                                ),
-                                RaisedButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  color: Colors.green,
-                                  child: Text("No",style: TextStyle(fontFamily: "Poppins"),),
-                                ),
-                              ],
-                            );
-                          });
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) => CustomAlertDialog(
+                          title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
+                          message: "Do you want to logout? You have to login Again..",
+                        ),
+                      );
                     },
                   ),
                   Divider(
@@ -310,6 +289,122 @@ class _MyDrawerState extends State<MyDrawer> {
           ],
         ),
       ),
+    );
+  }
+}
+
+
+class CustomAlertDialog extends StatelessWidget {
+
+  final String message,title;
+
+  CustomAlertDialog({this.message,this.title});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16)
+      ),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: dialogContent(context),
+    );
+  }
+
+  dialogContent(BuildContext context){
+    return Stack(
+      children: [
+        Container(
+          padding: EdgeInsets.only(
+              top: 100.0,
+              bottom: 16.0,
+              left: 16.0,
+              right: 16.0
+          ),
+          margin: EdgeInsets.only(
+              top: 16.0
+          ),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(17),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 10.0,
+                  offset: Offset(0.0,10.0),
+                )
+              ]
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,fontFamily: "Poppins"
+                ),
+              ),
+              SizedBox(height: 15.0,),
+              Text(
+                message,
+                style: TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.black,fontFamily: "Poppins"
+                ),
+              ),
+              SizedBox(height: 24.0,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: FlatButton(
+                      color: Colors.red,
+                      onPressed: (){
+                        EcommerceApp.auth.signOut().then((c) {
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      AuthenticScreen()),
+                                  (Route<dynamic> route) => false);
+                        });                      },
+                      child: Text("Yes",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
+                    ),
+                  ),
+                  SizedBox(width: 10.0,),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: FlatButton(
+                      color: Colors.green,
+                      onPressed: (){
+                        Navigator.pop(context);
+                      },
+                      child: Text("No",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
+                    ),
+                  ),
+                ],
+              ),
+
+
+            ],
+          ),
+        ),
+        Positioned(
+            top: 0.0,
+            left: 16.0,
+            right: 16.0,
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 50.0,
+              backgroundImage: AssetImage("assets/gifs/alert.gif"),
+            )
+        )
+      ],
     );
   }
 }

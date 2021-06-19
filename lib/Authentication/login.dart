@@ -82,7 +82,9 @@ class _LoginState extends State<Login>
                       onPressed: () {
                         _emailTextEditingController.text.isNotEmpty
                             && _passwordTextEditingController.text.isNotEmpty?
-                        loginUser():showDialog(context: context,builder: (c){
+                        loginUser():showDialog(
+                          barrierDismissible: false,
+                            context: context,builder: (c){
                           return ErrorAlertDialog(message: "Please fill all the data",);
                         });
                       },
@@ -149,6 +151,7 @@ class _LoginState extends State<Login>
     }).catchError((error) {
       Navigator.pop(context);
       showDialog(
+        barrierDismissible: false,
           context: context,
           builder: (c) {
             return ErrorAlertDialog(
@@ -171,6 +174,7 @@ class _LoginState extends State<Login>
         await _auth.signOut();
         Navigator.pop(context);
         showDialog(
+          barrierDismissible: false,
             context: context,
             builder: (c) {
               return ErrorAlertDialog(

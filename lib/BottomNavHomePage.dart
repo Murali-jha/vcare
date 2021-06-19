@@ -15,7 +15,7 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int _page = 1;
+  int _page = 2;
   GlobalKey _bottomNavigationKey = GlobalKey();
 
   final List<Widget> _children = [
