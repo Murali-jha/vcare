@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:e_shop/About%20App/dataOnBoarding.dart';
+import 'package:e_shop/BottomNavHomePage.dart';
 import 'package:e_shop/Store/storehome.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -87,7 +88,7 @@ class _AboutAppHomePageState extends State<AboutAppHomePage> {
       GestureDetector(
         onTap: (){
           Route route = MaterialPageRoute(builder: (c) {
-            return StoreHome();
+            return BottomNavBar();
           });
           Navigator.pushReplacement(context, route);
         },

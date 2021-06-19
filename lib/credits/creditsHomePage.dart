@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
+import 'package:e_shop/Widgets/myDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -96,6 +97,7 @@ class _CreditsHomePageState extends State<CreditsHomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      drawer: MyDrawer(),
       appBar: AppBar(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(16.0)),

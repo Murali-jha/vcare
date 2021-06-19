@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
+import 'package:e_shop/Widgets/myDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -118,6 +119,7 @@ class _UserTaskAndFunPageHomeScreen extends State<UserTaskAndFunPageHomeScreen> 
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
     return Scaffold(
+      drawer: MyDrawer(),
         appBar: AppBar(
           centerTitle: true,
           title: Text("Task & Fun",style: TextStyle(fontFamily: "Poppins",            fontWeight: FontWeight.bold

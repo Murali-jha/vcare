@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/About%20App/abouthomepage.dart';
+import 'package:e_shop/BottomNavHomePage.dart';
 import 'package:e_shop/Counters/ItemQuantity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -80,7 +81,7 @@ class _SplashScreenState extends State<SplashScreen>
 
       if(await EcommerceApp.auth.currentUser() != null){
         if (_seen) {
-          Route route = MaterialPageRoute(builder: (_)=>StoreHome());
+          Route route = MaterialPageRoute(builder: (_)=>BottomNavBar());
           Navigator.pushReplacement(context, route);
         } else {
           await prefs.setBool('seen', true);

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_shop/Widgets/myDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:flutter/services.dart';
@@ -85,6 +86,7 @@ class _MyOrdersState extends State<MyOrders> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        drawer: MyDrawer(),
           appBar: AppBar(
             title: Text(
               "My Appointments",
