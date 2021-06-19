@@ -264,7 +264,7 @@ class AdminShippingDetails extends StatelessWidget {
     getOrderId = "";
 
     Route route = MaterialPageRoute(builder: (c) => UploadPage());
-    Navigator.pushReplacement(context, route);
+    Navigator.of(context).pushAndRemoveUntil(route, (Route<dynamic> route) => false);
 
     Fluttertoast.showToast(msg: "Meeting has been completed. Confirmed.");
   }
