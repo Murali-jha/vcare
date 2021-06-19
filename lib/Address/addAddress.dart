@@ -1,3 +1,4 @@
+import 'package:e_shop/BottomNavHomePage.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';
 import 'package:e_shop/Store/cart.dart';
@@ -50,7 +51,7 @@ class AddAddress extends StatelessWidget {
                 formKey.currentState.reset();
               });
 
-              Route route = MaterialPageRoute(builder: (c) => StoreHome());
+              Route route = MaterialPageRoute(builder: (c) => BottomNavBar());
               Navigator.pushReplacement(context, route);
             }
           },

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_shop/BottomNavHomePage.dart';
 import 'package:e_shop/Store/cart.dart';
 import 'package:e_shop/Store/product_page.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';
@@ -375,7 +376,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                                 onPressed: () {
                                   removeCartFunction();
                                   Route route = MaterialPageRoute(
-                                      builder: (context) => StoreHome());
+                                      builder: (context) => BottomNavBar());
                                   Navigator.pushReplacement(context, route);
                                 },
                                 icon: Icon(Icons.delete))),
