@@ -97,6 +97,7 @@ class _CreditsHomePageState extends State<CreditsHomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      drawer: MyDrawer(),
       appBar: AppBar(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(16.0)),

@@ -4,6 +4,7 @@ import 'package:e_shop/Store/storehome.dart';
 import 'package:e_shop/adminFeed/userFeedPage.dart';
 import 'package:e_shop/adminFeed/userTaskAndFun.dart';
 import 'package:e_shop/credits/creditsHomePage.dart';
+import 'package:e_shop/howtouse/help.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
@@ -14,11 +15,11 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int _page = 2;
+  int _page = 1;
   GlobalKey _bottomNavigationKey = GlobalKey();
 
   final List<Widget> _children = [
-    UserFeedPageHomeScreen(),StoreHome(),UserTaskAndFunPageHomeScreen(),// create the pages you want to navigate between
+    HelpHomePage(),UserFeedPageHomeScreen(),StoreHome(),UserTaskAndFunPageHomeScreen(),CreditsHomePage()// create the pages you want to navigate between
   ];
 
   @override
@@ -31,9 +32,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
           key: _bottomNavigationKey,
           height: 47.0,
           items: <Widget>[
-            Icon(Icons.feed, size: 23,color: Colors.white,),
-            Icon(Icons.home, size: 23,color: Colors.white,),
+            Icon(Icons.help_outline_outlined, size: 25,color: Colors.white,),
+            Icon(Icons.feed, size: 25,color: Colors.white,),
+            Icon(Icons.home, size: 25,color: Colors.white,),
             Icon(Icons.beenhere_rounded, size: 23,color: Colors.white,),
+            Icon(Icons.auto_awesome, size: 25,color: Colors.white,),
           ],
           animationCurve: Curves.easeIn,
           animationDuration: Duration(
