@@ -276,7 +276,7 @@ class _MyDrawerState extends State<MyDrawer> {
                         context: context,
                         builder: (context) => CustomAlertDialog(
                           title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
-                          message: "Do you want to logout? You have to login Again..",
+                          message: "Do you want to logout? If you logout now you have to login Again!!",
                         ),
                       );
                     },
