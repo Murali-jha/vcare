@@ -250,7 +250,7 @@ class _AddAddressState extends State<AddAddress> {
         context: context,
         builder: (context) => CustomAlertDialog(
           title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
-          desc: "Here you can add your details to contact you. If you want meeting to be Anonymous then you can mention it in message field. If you have any kind of suggestions regarding appointment you can enter in message text field our mods will consider it",
+          desc: "Here you can add your details so that we can contact you. If you want meeting to be Anonymous then you can mention it in message field. If you have any kind of suggestions regarding appointment you can enter in message text field our mods will consider it",
         ),
       );
     }
@@ -287,7 +287,7 @@ class _AddAddressState extends State<AddAddress> {
               });
 
               Route route = MaterialPageRoute(builder: (c) => BottomNavBar());
-              Navigator.pushReplacement(context, route);
+              Navigator.of(context).pushAndRemoveUntil(route, (Route<dynamic> route) => false);
             }
           },
           label: Text(

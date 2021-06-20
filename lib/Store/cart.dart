@@ -103,7 +103,7 @@ class _CartPageState extends State<CartPage>
           else
           {
             Route route = MaterialPageRoute(builder: (c) => Address());
-            Navigator.pushReplacement(context, route);
+            Navigator.push(context, route);
           }
         },
         label: Text("Book a slot",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),

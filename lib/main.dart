@@ -106,7 +106,7 @@ class _SplashScreenState extends State<SplashScreen>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('images/welcome.png',width: 200.0,height: 200.0,),
+                Image.asset('images/login.png',width: 180.0,height: 180.0,),
                 SpinKitSquareCircle(
                   color: Colors.green,
                   size: 45.0,

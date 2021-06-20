@@ -345,9 +345,10 @@ Widget sourceInfo(ItemModel model, BuildContext context,
 
                 Row(
                   children: [
-                    Expanded(
+                    Flexible(
+                      flex: 2,
                       child: Align(
-                          alignment: Alignment.centerLeft,
+                          alignment: Alignment.bottomLeft,
                           child: ElevatedButton(
                             style: ButtonStyle(
                                 backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
@@ -360,7 +361,8 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                           ),
                       ),
                     ),
-                    Expanded(
+                    Flexible(
+                      flex: 1,
                         child: Align(
                             alignment: Alignment.centerRight,
                             child: removeCartFunction == null
@@ -377,7 +379,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                                   removeCartFunction();
                                   Route route = MaterialPageRoute(
                                       builder: (context) => BottomNavBar());
-                                  Navigator.pushReplacement(context, route);
+                                  Navigator.of(context).pushAndRemoveUntil(route, (Route<dynamic> route) => false);
                                 },
                                 icon: Icon(Icons.delete))),
                     )

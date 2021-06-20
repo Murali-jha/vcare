@@ -47,7 +47,6 @@ flutter:
       fonts:
         - asset: assets/fonts/Poppins.ttf
   assets:
-    - images/welcome.png
     - images/login.png
     - images/adminlogin.png
     - images/confirm.png
