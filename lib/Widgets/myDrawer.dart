@@ -123,23 +123,23 @@ class _MyDrawerState extends State<MyDrawer> {
                       Navigator.push(context, route);
                     },
                   ),
-                  ListTile(
-                    leading: Icon(Icons.chat_bubble_outline),
-                    title: Text("Chats",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
-                    onTap: () {
-                      // Route route = MaterialPageRoute(builder: (c) {
-                      //   return StoreHome();
-                      // });
-                      // Navigator.push(context, route);
-                      Fluttertoast.showToast(msg: "Chat feature currently not available");
-                    },
-                  ),
+
                   ListTile(
                     leading: Icon(Icons.beenhere_rounded),
                     title: Text("Tasks & Fun",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
                     onTap: () {
                       Route route = MaterialPageRoute(builder: (c) {
                         return UserTaskAndFunPageHomeScreen();
+                      });
+                      Navigator.push(context, route);
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.reorder),
+                    title: Text("My Appointments",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0)),
+                    onTap: () {
+                      Route route = MaterialPageRoute(builder: (c) {
+                        return MyOrders();
                       });
                       Navigator.push(context, route);
                     },
@@ -159,15 +159,17 @@ class _MyDrawerState extends State<MyDrawer> {
                     color: Colors.blueGrey,
                   ),
                   ListTile(
-                    leading: Icon(Icons.reorder),
-                    title: Text("My Appointments",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0)),
+                    leading: Icon(Icons.chat_bubble_outline),
+                    title: Text("Chats",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
                     onTap: () {
-                      Route route = MaterialPageRoute(builder: (c) {
-                        return MyOrders();
-                      });
-                      Navigator.push(context, route);
+                      // Route route = MaterialPageRoute(builder: (c) {
+                      //   return StoreHome();
+                      // });
+                      // Navigator.push(context, route);
+                      Fluttertoast.showToast(msg: "Chat feature currently not available");
                     },
                   ),
+
                   ListTile(
                     leading: Icon(Icons.supervisor_account_rounded),
                     title: Text("Queue",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0)),
