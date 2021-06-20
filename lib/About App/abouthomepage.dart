@@ -90,7 +90,7 @@ class _AboutAppHomePageState extends State<AboutAppHomePage> {
           Route route = MaterialPageRoute(builder: (c) {
             return BottomNavBar();
           });
-          Navigator.pushReplacement(context, route);
+          Navigator.of(context).pushAndRemoveUntil(route, (Route<dynamic> route) => false);
         },
         child: Container(
           alignment: Alignment.center,
