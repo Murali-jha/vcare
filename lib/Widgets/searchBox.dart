@@ -26,7 +26,7 @@ class SearchBoxDelegate extends SliverPersistentHeaderDelegate {
               width: MediaQuery.of(context).size.width,
               height: 50.0,
               decoration: BoxDecoration(
-                color: Colors.black38,
+                color: Colors.black45,
                 borderRadius: BorderRadius.circular(8.0),
                   border: Border.all(color: Colors.grey)
               ),

@@ -40,7 +40,7 @@ class _PaymentPageState extends State<PaymentPage> {
           ),),
         title: Text(
           "Confirmation Page",
-          style: TextStyle(fontFamily: "Poppins"),
+          style: TextStyle(fontFamily: "Poppins",fontWeight: FontWeight.bold),
         ),
       ),
       body: Material(

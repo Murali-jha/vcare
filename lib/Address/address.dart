@@ -113,7 +113,7 @@ class _AddressState extends State<Address>
         floatingActionButton: FloatingActionButton.extended(
           label: Text("Add New Details",style: TextStyle(fontFamily: "Poppins",color: Colors.white),),
           backgroundColor: Colors.green,
-          icon: Icon(Icons.details_rounded,color: Colors.white,),
+          icon: Icon(Icons.add,color: Colors.white,),
           onPressed: ()
           {
             Route route = MaterialPageRoute(builder: (c) => AddAddress());
@@ -134,7 +134,7 @@ class _AddressState extends State<Address>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(Icons.add, color: Colors.white,),
+            Icon(Icons.details_rounded, color: Colors.white,),
             Text("No details has been saved.",style: TextStyle(fontFamily: "Poppins"),),
             Center(child: Text("Click add details to add your details",style: TextStyle(fontFamily: "Poppins"),)),
           ],
