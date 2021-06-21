@@ -130,11 +130,20 @@ class _PaymentPageState extends State<PaymentPage> {
 
   Future writeOrderDetailsForUser(Map<String, dynamic> data) async
   {
+
+    String feedId = DateTime.now().millisecondsSinceEpoch.toString();
+
     await EcommerceApp.firestore.collection(EcommerceApp.collectionUser)
         .document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
         .collection(EcommerceApp.collectionOrders)
         .document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID) + data['orderTime'])
         .setData(data);
+
+    final itemsRef =  Firestore.instance.collection("notifications").document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID));
+    itemsRef.collection("notificationData").document(feedId).setData({
+      "message": "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)}! Thank you for booking your appointment. You will receive Details of appointment soon.",
+      "publishedDate": DateTime.now(),
+    });
   }
 
   Future writeOrderDetailsForAdmin(Map<String, dynamic> data) async

@@ -13,6 +13,7 @@ import 'package:e_shop/adminFeed/userFeedPage.dart';
 import 'package:e_shop/adminFeed/userTaskAndFun.dart';
 import 'package:e_shop/credits/creditsHomePage.dart';
 import 'package:e_shop/howtouse/help.dart';
+import 'package:e_shop/userNotifications/userNotificationHomePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -140,6 +141,16 @@ class _MyDrawerState extends State<MyDrawer> {
                     onTap: () {
                       Route route = MaterialPageRoute(builder: (c) {
                         return MyOrders();
+                      });
+                      Navigator.push(context, route);
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.notifications_active),
+                    title: Text("Notifications",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
+                    onTap: () {
+                      Route route = MaterialPageRoute(builder: (c) {
+                        return UserNotificationsHomePage();
                       });
                       Navigator.push(context, route);
                     },

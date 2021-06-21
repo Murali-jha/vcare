@@ -262,6 +262,8 @@ class _RegisterState extends State<Register> {
 
   Future saveUserInfoToFireStore(FirebaseUser fUser) async
   {
+    String feedId = DateTime.now().millisecondsSinceEpoch.toString();
+
     Firestore.instance.collection("users").document(fUser.uid).setData({
       "uid": fUser.uid,
       "email": fUser.email,
@@ -272,6 +274,12 @@ class _RegisterState extends State<Register> {
 
     Firestore.instance.collection("rewards").document(fUser.uid).setData({
       "credits": creditPoints
+    });
+
+    final itemsRef = Firestore.instance.collection("notifications").document(fUser.uid);
+    itemsRef.collection("notificationData").document(feedId).setData({
+      "message": "Hey ${_nameTextEditingController.text.trim()}! Welcome to vCare Family. We are thrilled to have you here. We will try our best to help you out. If you have any queries do check 'How to use' section. Thank you!",
+      "publishedDate": DateTime.now(),
     });
 
     await EcommerceApp.sharedPreferences.setString("uid", fUser.uid);

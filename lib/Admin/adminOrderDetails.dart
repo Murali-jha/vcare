@@ -261,6 +261,7 @@ class AdminShippingDetails extends StatelessWidget {
         .document(mOrderId)
         .delete();
 
+
     getOrderId = "";
 
     Route route = MaterialPageRoute(builder: (c) => UploadPage());

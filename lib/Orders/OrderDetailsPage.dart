@@ -173,7 +173,7 @@ class ShippingDetails extends StatelessWidget
           child: Center(
             child: Text(
               "Your Details:",
-              style: TextStyle(color: Colors.blue,fontSize: 20.0, fontWeight: FontWeight.bold,fontFamily: "Poppins"),
+              style: TextStyle(color: Colors.white,fontSize: 20.0, fontWeight: FontWeight.bold,fontFamily: "Poppins"),
             ),
           ),
         ),

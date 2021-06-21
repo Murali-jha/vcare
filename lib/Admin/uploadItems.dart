@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_shop/Admin/MyUsers.dart';
 import 'package:e_shop/Admin/adminShiftOrders.dart';
 import 'package:e_shop/Authentication/authenication.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
 import 'package:e_shop/adminFeed/adminFeedUpload.dart';
 import 'package:e_shop/adminFeed/adminTaskAndFun.dart';
+import 'package:e_shop/adminFeed/sendNotificationToUser.dart';
 import 'package:e_shop/main.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -122,21 +124,62 @@ class _UploadPageState extends State<UploadPage>
               color: Colors.green,
               size: 100.0,
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 20.0),
-              child: RaisedButton(
-                color: Colors.green,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(9.0)),
-                child: Text(
-                  "Add Doctor",
-                  style: TextStyle(
-                      fontFamily: "Poppins",
-                      fontSize: 20.0,
-                      color: Colors.white),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 20.0),
+                  child: RaisedButton(
+                    color: Colors.green,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(9.0)),
+                    child: Text(
+                      "Add Person",
+                      style: TextStyle(
+                          fontFamily: "Poppins",
+                          fontSize: 20.0,
+                          color: Colors.white),
+                    ),
+                    onPressed: () => takeImage(context),
+                  ),
                 ),
-                onPressed: () => takeImage(context),
-              ),
+                Padding(
+                  padding: EdgeInsets.only(top: 20.0),
+                  child: RaisedButton(
+                    color: Colors.green,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(9.0)),
+                    child: Text(
+                      "Send Notification",
+                      style: TextStyle(
+                          fontFamily: "Poppins",
+                          fontSize: 20.0,
+                          color: Colors.white),
+                    ),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>SendNotificationToUser()));
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 20.0),
+                  child: RaisedButton(
+                    color: Colors.green,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(9.0)),
+                    child: Text(
+                      "View Users",
+                      style: TextStyle(
+                          fontFamily: "Poppins",
+                          fontSize: 20.0,
+                          color: Colors.white),
+                    ),
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>MyVCareUsers()));
+                    },
+                  ),
+                ),
+              ],
             )
           ],
         ),

@@ -1,29 +1,23 @@
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Admin/uploadItems.dart';
-import 'package:e_shop/Widgets/customAppBar.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class UploadFeed extends StatefulWidget {
-  final File file;
-
-  const UploadFeed({Key key, this.file}) : super(key: key);
+class SendNotificationToUser extends StatefulWidget {
 
   @override
-  _UploadFeedState createState() => _UploadFeedState(file);
+  _SendNotificationToUserState createState() => _SendNotificationToUserState();
 }
 
-class _UploadFeedState extends State<UploadFeed> {
-  final File file;
+class _SendNotificationToUserState extends State<SendNotificationToUser> {
 
-  _UploadFeedState(this.file);
+  TextEditingController _notificationTextEditingController = TextEditingController();
+  TextEditingController _userUIDTextEditingController = TextEditingController();
 
-  TextEditingController _messageTextEditingController = TextEditingController();
   String feedId = DateTime.now().millisecondsSinceEpoch.toString();
   bool uploading = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -59,30 +53,34 @@ class _UploadFeedState extends State<UploadFeed> {
         ),
         centerTitle: true,
       ),
-      body: displayFeedUploadScreen(),
+      body: displayNotificationUploadScreen(),
     );
   }
 
-  displayFeedUploadScreen() {
+  displayNotificationUploadScreen() {
     return ListView(
       children: [
         uploading ? linearProgress() : Text(""),
-        Container(
-          height: 230.0,
-          width: MediaQuery.of(context).size.width * 0.8,
-          child: Center(
-            child: AspectRatio(
-              aspectRatio: 16 / 16,
-              child: Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: FileImage(file), fit: BoxFit.cover)),
-              ),
+        ListTile(
+          leading: Icon(
+            Icons.perm_identity_sharp,
+            color: Colors.white,
+          ),
+          title: Container(
+            width: 250.0,
+            child: TextField(
+              style: TextStyle(color: Colors.white, fontFamily: "Poppins"),
+              controller: _userUIDTextEditingController,
+              decoration: InputDecoration(
+                  hintText: "Enter UID",
+                  hintStyle:
+                  TextStyle(color: Colors.grey, fontFamily: "Poppins"),
+                  border: InputBorder.none),
             ),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(top: 12.0),
+        Divider(
+          color: Colors.green,
         ),
         ListTile(
           leading: Icon(
@@ -95,11 +93,11 @@ class _UploadFeedState extends State<UploadFeed> {
               keyboardType: TextInputType.multiline,
               maxLines: null,
               style: TextStyle(color: Colors.white, fontFamily: "Poppins"),
-              controller: _messageTextEditingController,
+              controller: _notificationTextEditingController,
               decoration: InputDecoration(
-                  hintText: "Message",
+                  hintText: "Enter Notification",
                   hintStyle:
-                      TextStyle(color: Colors.grey, fontFamily: "Poppins"),
+                  TextStyle(color: Colors.grey, fontFamily: "Poppins"),
                   border: InputBorder.none),
             ),
           ),
@@ -111,14 +109,14 @@ class _UploadFeedState extends State<UploadFeed> {
           padding: EdgeInsets.all(10.0),
           child: Center(
             child: InkWell(
-              onTap: uploading ? null : () => uploadFeedImageAndSaveItemInfo(),
+              onTap: uploading ? null : () => uploadNotification(),
               child: Container(
                 color: Colors.green,
                 width: MediaQuery.of(context).size.width - 40.0,
                 height: 50.0,
                 child: Center(
                   child: Text(
-                    "Upload",
+                    "Send",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 15.0,
@@ -133,37 +131,32 @@ class _UploadFeedState extends State<UploadFeed> {
     );
   }
 
-  uploadFeedImageAndSaveItemInfo() async{
+  uploadNotification() async{
     setState(() {
       uploading = true;
     });
 
-    String imageDownloadUrl = await uploadFeedItemImage(file);
-    await saveFeedItemInfo(imageDownloadUrl);
+    await saveNotificationInfo();
     Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
         UploadPage()), (Route<dynamic> route) => false);
-    Fluttertoast.showToast(msg: "Feed uploaded successfully!");
+    Fluttertoast.showToast(msg: "Notification Sent Successfully");
   }
 
-  Future<String> uploadFeedItemImage(mFileImage) async{
-    final StorageReference storageReference = FirebaseStorage.instance.ref().child("FeedItems");
-    StorageUploadTask uploadTask = storageReference.child("product_$feedId.jpg").putFile(mFileImage);
-    StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
-    String downloadUrl = await taskSnapshot.ref.getDownloadURL();
-    return downloadUrl;
-  }
-
-  saveFeedItemInfo(String downloadUrl) async{
-    final itemsRef = Firestore.instance.collection("feedItems");
-    itemsRef.document(feedId).setData({
-      "message": _messageTextEditingController.text.trim(),
+  saveNotificationInfo() async{
+    final itemsRef = Firestore.instance.collection("notifications").document(_userUIDTextEditingController.text.trim());
+    itemsRef.collection("notificationData").document(feedId).setData({
+      "message": _notificationTextEditingController.text.trim(),
       "publishedDate": DateTime.now(),
-      "thumbnailUrl": downloadUrl,
     });
     setState(() {
       uploading=false;
       feedId = DateTime.now().millisecondsSinceEpoch.toString();
-      _messageTextEditingController.clear();
+      _notificationTextEditingController.clear();
+      _userUIDTextEditingController.clear();
     });
   }
+
+
 }
+
+
