@@ -27,6 +27,10 @@ class StoreHome extends StatefulWidget {
 class _StoreHomeState extends State<StoreHome> {
 
 
+  String dropdownValue = 'ALL';
+  List slots = [];
+
+
   @override
   void initState() {
     // TODO: implement initState
@@ -181,6 +185,63 @@ class _StoreHomeState extends State<StoreHome> {
         drawer: MyDrawer(),
         body: CustomScrollView(slivers: [
           SliverPersistentHeader(pinned: true, delegate: SearchBoxDelegate()),
+          SliverList(
+            delegate: SliverChildListDelegate([
+              Container(
+                margin: EdgeInsets.fromLTRB(20.0, 0.0, 10.0, 0.0),
+                child: Column(
+                  children: [
+                    Divider(),
+                    Row(
+                      children: [
+                        Expanded(
+                          flex:1,
+                            child: Text("Sort By : ",style: TextStyle(fontFamily: "Poppins",fontSize: 17.0),)),
+                        SizedBox(
+                          width: 10.0,
+                        ),
+                        Expanded(
+                          flex:2,
+                          child: Container(
+                            height: 52.0,
+                            child: DropdownButton<String>(
+                              isExpanded: true,
+                              value: dropdownValue,
+                              icon: const Icon(Icons.arrow_drop_down_sharp),
+                              iconSize: 24,
+                              elevation: 16,
+                              style: const TextStyle(color: Colors.white),
+                              underline: Container(
+                                height: 2,
+                                color: Colors.grey.shade400,
+                              ),
+                              onChanged: (String newValue) {
+                                setState(() {
+                                  dropdownValue = newValue;
+                                });
+                              },
+                              items: <String>[
+                                'ALL',
+                                'LISTENERS',
+                                'MENTORS',
+                                'PSYCHIATRISTS'
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    Divider()
+                  ],
+                ),
+              )
+            ]),
+          ),
           StreamBuilder<QuerySnapshot>(
             stream: Firestore.instance
                 .collection("items")
@@ -200,7 +261,21 @@ class _StoreHomeState extends State<StoreHome> {
                       itemBuilder: (context, index) {
                         ItemModel model = ItemModel.fromJson(
                             dataSnapshot.data.documents[index].data);
-                        return sourceInfo(model, context);
+                        if(dropdownValue == "LISTENERS" && model.tag == "Listener"){
+                          return sourceInfo(model, context);
+                        }
+                        else if(dropdownValue == "MENTORS" && model.tag == "Mentor"){
+                          return sourceInfo(model, context);
+                        }
+                        else if(dropdownValue == "PSYCHIATRISTS" && model.tag == "Psychiatrist"){
+                          return sourceInfo(model, context);
+                        }
+                        else if(dropdownValue == "ALL"){
+                          return sourceInfo(model, context);
+                        }
+                        else{
+                          return Text("",style: TextStyle(fontSize: 0.0),);
+                        }
                       },
                       itemCount: dataSnapshot.data.documents.length);
             },
