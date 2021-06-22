@@ -32,6 +32,7 @@ dependencies:
   assets_audio_player:
   curved_navigation_bar:
   flutter_speed_dial: ^3.0.5
+  date_format: ^2.0.2
 
 dev_dependencies:
   flutter_test:

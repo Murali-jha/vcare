@@ -8,9 +8,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:date_format/date_format.dart';
+
 
 // class AddAddress extends StatelessWidget {
 //
@@ -219,6 +222,12 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
 
   ScrollController scrollController;
   bool dialVisible = true;
+  String _setTime;
+
+  String _hour, _minute, _time;
+
+  String dateTime;
+  TimeOfDay selectedTime = TimeOfDay(hour: 00, minute: 00);
 
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -240,6 +249,24 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
       ..addListener(() {
         setDialVisible(scrollController.position.userScrollDirection ==
             ScrollDirection.forward);
+      });
+  }
+
+  Future<Null> _selectTime(BuildContext context) async {
+    final TimeOfDay picked = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+    );
+    if (picked != null)
+      setState(() {
+        selectedTime = picked;
+        _hour = selectedTime.hour.toString();
+        _minute = selectedTime.minute.toString();
+        _time = _hour + ' : ' + _minute;
+        cCity.text = _time;
+        cCity.text = formatDate(
+            DateTime(2019, 08, 1, selectedTime.hour, selectedTime.minute),
+            [hh, ':', nn, " ", am]).toString();
       });
   }
 
@@ -399,6 +426,7 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    dateTime = DateFormat.yMd().format(DateTime.now());
     return SafeArea(
       child: Scaffold(
         floatingActionButton: buildSpeedDial(),
@@ -556,10 +584,49 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
                       hint: "Semester",
                       controller: cSemester,
                     ),
-                    MyTextField(
-                      label: "Preferred Time Slot",
-                      hint: "Preferred Time Slot",
-                      controller: cCity,
+                    InkWell(
+                      onTap: () {
+                        _selectTime(context);
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.only(left: 10.0),
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.white,
+                            ),
+                            borderRadius: BorderRadius.all(Radius.circular(15))
+                        ),
+                        child: TextFormField(
+                          // controller: controller,
+                          // decoration: InputDecoration.collapsed(hintText: hint),
+                          // validator: (val) => val.isEmpty ? "Field can not be empty." : null,
+                          keyboardType: TextInputType.multiline,
+                          maxLines: null,
+                          controller: cCity,
+                          onSaved: (String val) {
+                            _setTime = val;
+                          },
+                          enabled: false,
+                          style: TextStyle(color: Colors.white,fontFamily: "Poppins"),
+                          cursorColor: Colors.grey[300],
+                          decoration: InputDecoration(
+                            hintText: "Select Time",
+                            hintStyle: TextStyle(color: Colors.grey[300], fontFamily: "Poppins"),
+                            labelStyle: TextStyle(color: Colors.grey[300], fontSize: 20.0,fontFamily: "Poppins"),
+                            //border: InputBorder.none,
+                            labelText: "Preferred Time",
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                              borderSide: BorderSide(
+                                color: Colors.grey[300],
+                                width: 1.0,
+                              ),
+                            ),
+                          ),
+                          validator: (val) => val.isEmpty ? "Field can not be empty." : null,
+                        ),
+                      ),
                     ),
                     MyTextField(
                       label: "Message",
