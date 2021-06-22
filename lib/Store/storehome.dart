@@ -51,7 +51,7 @@ class _StoreHomeState extends State<StoreHome> {
           context: context,
           builder: (context) => CustomAlertDialog(
             title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
-            desc: "Before starting have a look at user manual to make your experience seem less!",
+            desc: "Before starting have a look at user manual to make your experience seam less!",
           ),
       );
         //showAlertDialog(context);

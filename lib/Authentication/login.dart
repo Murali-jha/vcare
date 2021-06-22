@@ -52,7 +52,7 @@ class _LoginState extends State<Login>
         context: context,
         builder: (context) => CustomAlertDialog(
           title: "Hey there!",
-          desc: "I'm Quacky! I will help you to explore this app! Initially If you are are new then register yourself!",
+          desc: "I'm Quacky! Welcome to vCare Family. I will help you to explore this app! Initially If you are new then register yourself!",
         ),
       );
     }
