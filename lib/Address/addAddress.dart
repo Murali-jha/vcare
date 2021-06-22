@@ -6,9 +6,11 @@ import 'package:e_shop/Store/storehome.dart';
 import 'package:e_shop/Models/address.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 // class AddAddress extends StatelessWidget {
 //
@@ -213,8 +215,10 @@ class AddAddress extends StatefulWidget {
   _AddAddressState createState() => _AddAddressState();
 }
 
-class _AddAddressState extends State<AddAddress> {
+class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
 
+  ScrollController scrollController;
+  bool dialVisible = true;
 
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -232,6 +236,143 @@ class _AddAddressState extends State<AddAddress> {
     // TODO: implement initState
     super.initState();
     checkDialogIntroShown();
+    scrollController = ScrollController()
+      ..addListener(() {
+        setDialVisible(scrollController.position.userScrollDirection ==
+            ScrollDirection.forward);
+      });
+  }
+
+  void setDialVisible(bool value) {
+    setState(() {
+      dialVisible = value;
+    });
+  }
+
+  Widget buildBody() {
+    return ListView.builder(
+      controller: scrollController,
+      itemCount: 30,
+      itemBuilder: (ctx, i) => ListTile(title: Text('Item $i')),
+    );
+  }
+
+  SpeedDial buildSpeedDial() {
+    return SpeedDial(
+      marginEnd: 18,
+      marginBottom: 20,
+      icon: Icons.check,
+      activeIcon: Icons.remove,
+      buttonSize: 56.0,
+      visible: true,
+      closeManually: false,
+      curve: Curves.bounceIn,
+      overlayColor: Colors.black,
+      overlayOpacity: 0.5,
+      onOpen: () => print('OPENING DIAL'),
+      onClose: () => print('DIAL CLOSED'),
+      tooltip: 'Click Here to save you details',
+      heroTag: 'speed-dial-hero-tag',
+      backgroundColor: Colors.green,
+      foregroundColor: Colors.white,
+      elevation: 8.0,
+      shape: CircleBorder(),
+      gradientBoxShape: BoxShape.circle,
+      children: [
+        SpeedDialChild(
+          child: Icon(Icons.group_work_rounded),
+          backgroundColor: Colors.orange,
+          label: 'Save Anonymously',
+          labelStyle: TextStyle(fontSize: 18.0),
+          onTap: () {
+            if (formKey.currentState.validate()) {
+              final model = AddressModel(
+                  name: "[Anonymous]\n${cName.text.trim()}",
+                  state: "[Anonymous]\n${cState.text.trim()}",
+                  pincode: "[Anonymous]\n${cPinCode.text.trim()}",
+                  phoneNumber: "[Anonymous]\n${cPhoneNumber.text.trim()}",
+                  flatNumber: "[Anonymous]\n${cFlatHomeNumber.text.trim()}",
+                  city: "[Anonymous]\n${cCity.text.trim()}",
+                  semester: "[Anonymous]\n${cSemester.text.trim()}")
+                  .toJson();
+
+              //add to firestore
+              EcommerceApp.firestore
+                  .collection(EcommerceApp.collectionUser)
+                  .document(EcommerceApp.sharedPreferences
+                  .getString(EcommerceApp.userUID))
+                  .collection(EcommerceApp.subCollectionAddress)
+                  .document(DateTime.now().millisecondsSinceEpoch.toString())
+                  .setData(model)
+                  .then((value) {
+                Fluttertoast.showToast(msg: "New Details added Anonymously.");
+                FocusScope.of(context).requestFocus(FocusNode());
+                formKey.currentState.reset();
+              });
+
+              Route route = MaterialPageRoute(builder: (c) => StoreHome());
+              Navigator.pushReplacement(context, route);
+            }
+          },
+          onLongPress: () {
+            Fluttertoast.showToast(
+                msg:
+                "Click here to save your details anonymously. Your info only will be visible to you");
+          },
+        ),
+        SpeedDialChild(
+          child: Icon(Icons.check),
+          backgroundColor: Colors.blue,
+          label: 'Save',
+          labelStyle: TextStyle(fontSize: 18.0),
+          onTap: () {
+            if (formKey.currentState.validate()) {
+              final model = AddressModel(
+                  name: cName.text.trim(),
+                  state: cState.text.trim(),
+                  pincode: cPinCode.text,
+                  phoneNumber: cPhoneNumber.text,
+                  flatNumber: cFlatHomeNumber.text,
+                  city: cCity.text.trim(),
+                  semester: cSemester.text.trim())
+                  .toJson();
+
+              //add to firestore
+              EcommerceApp.firestore
+                  .collection(EcommerceApp.collectionUser)
+                  .document(EcommerceApp.sharedPreferences
+                  .getString(EcommerceApp.userUID))
+                  .collection(EcommerceApp.subCollectionAddress)
+                  .document(DateTime.now().millisecondsSinceEpoch.toString())
+                  .setData(model)
+                  .then((value) {
+                Fluttertoast.showToast(msg: "New Details added successfully.");
+                FocusScope.of(context).requestFocus(FocusNode());
+                formKey.currentState.reset();
+              });
+
+              Route route = MaterialPageRoute(builder: (c) => StoreHome());
+              Navigator.pushReplacement(context, route);
+            }
+          },
+          onLongPress: () {
+            Fluttertoast.showToast(
+                msg:
+                "Click here to save your information. Your info will be visible to vCare");
+          },
+        ),
+        SpeedDialChild(
+          child: Icon(Icons.transit_enterexit),
+          backgroundColor: Colors.red,
+          label: 'Close',
+          labelStyle: TextStyle(fontSize: 18.0),
+          onTap: () => print("Pressed"),
+          onLongPress: () {
+            Fluttertoast.showToast(msg: "Click here to cancel");
+          },
+        ),
+      ],
+    );
   }
 
   Future checkDialogIntroShown() async {
@@ -250,7 +391,7 @@ class _AddAddressState extends State<AddAddress> {
         context: context,
         builder: (context) => CustomAlertDialog(
           title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
-          desc: "Here you can add your details so that we can contact you. If you want meeting to be Anonymous then you can mention it in message field. If you have any kind of suggestions regarding appointment you can enter in message text field our mods will consider it",
+          desc: "Here you can add your details so that we can contact you. If you want meeting to be Anonymous then click on 'save anonymously'. If you have any kind of suggestions regarding appointment you can enter in message text field our mods will consider it",
         ),
       );
     }
@@ -260,46 +401,47 @@ class _AddAddressState extends State<AddAddress> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            if(formKey.currentState.validate())
-            {
-              final model = AddressModel(
-                  name:  cName.text.trim(),
-                  state: cState.text.trim(),
-                  pincode: cPinCode.text,
-                  phoneNumber: cPhoneNumber.text,
-                  flatNumber: cFlatHomeNumber.text,
-                  city: cCity.text.trim(),
-                  semester: cSemester.text.trim()
-              ).toJson();
-
-              //add to firestore
-              EcommerceApp.firestore.collection(EcommerceApp.collectionUser)
-                  .document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
-                  .collection(EcommerceApp.subCollectionAddress)
-                  .document(DateTime.now().millisecondsSinceEpoch.toString())
-                  .setData(model)
-                  .then((value){
-                Fluttertoast.showToast(msg: "New Details added successfully.");
-                FocusScope.of(context).requestFocus(FocusNode());
-                formKey.currentState.reset();
-              });
-
-              Route route = MaterialPageRoute(builder: (c) => BottomNavBar());
-              Navigator.of(context).pushAndRemoveUntil(route, (Route<dynamic> route) => false);
-            }
-          },
-          label: Text(
-            "Save",
-            style: TextStyle(color: Colors.white, fontFamily: "Poppins"),
-          ),
-          backgroundColor: Colors.green,
-          icon: Icon(
-            Icons.check,
-            color: Colors.white,
-          ),
-        ),
+        floatingActionButton: buildSpeedDial(),
+        // floatingActionButton: FloatingActionButton.extended(
+        //   onPressed: () {
+        //     if(formKey.currentState.validate())
+        //     {
+        //       final model = AddressModel(
+        //           name:  cName.text.trim(),
+        //           state: cState.text.trim(),
+        //           pincode: cPinCode.text,
+        //           phoneNumber: cPhoneNumber.text,
+        //           flatNumber: cFlatHomeNumber.text,
+        //           city: cCity.text.trim(),
+        //           semester: cSemester.text.trim()
+        //       ).toJson();
+        //
+        //       //add to firestore
+        //       EcommerceApp.firestore.collection(EcommerceApp.collectionUser)
+        //           .document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
+        //           .collection(EcommerceApp.subCollectionAddress)
+        //           .document(DateTime.now().millisecondsSinceEpoch.toString())
+        //           .setData(model)
+        //           .then((value){
+        //         Fluttertoast.showToast(msg: "New Details added successfully.");
+        //         FocusScope.of(context).requestFocus(FocusNode());
+        //         formKey.currentState.reset();
+        //       });
+        //
+        //       Route route = MaterialPageRoute(builder: (c) => BottomNavBar());
+        //       Navigator.of(context).pushAndRemoveUntil(route, (Route<dynamic> route) => false);
+        //     }
+        //   },
+        //   label: Text(
+        //     "Save",
+        //     style: TextStyle(color: Colors.white, fontFamily: "Poppins"),
+        //   ),
+        //   backgroundColor: Colors.green,
+        //   icon: Icon(
+        //     Icons.check,
+        //     color: Colors.white,
+        //   ),
+        // ),
         appBar: AppBar(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
