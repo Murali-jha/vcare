@@ -315,12 +315,12 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
             if (formKey.currentState.validate()) {
               final model = AddressModel(
                   name: "[Anonymous]\n${cName.text.trim()}",
-                  state: "[Anonymous]\n${cState.text.trim()}",
+                  state: cState.text.trim(),
                   pincode: "[Anonymous]\n${cPinCode.text.trim()}",
                   phoneNumber: "[Anonymous]\n${cPhoneNumber.text.trim()}",
                   flatNumber: "[Anonymous]\n${cFlatHomeNumber.text.trim()}",
-                  city: "[Anonymous]\n${cCity.text.trim()}",
-                  semester: "[Anonymous]\n${cSemester.text.trim()}")
+                  city: cCity.text.trim(),
+                  semester: cSemester.text.trim())
                   .toJson();
 
               //add to firestore
