@@ -214,7 +214,7 @@ class ShippingDetails extends StatelessWidget
 
               TableRow(
                   children: [
-                    KeyText(msg: "Time Slot :",),
+                    KeyText(msg: "Preferred time :",),
                     Text(model.city,style: TextStyle(fontFamily: "Poppins",),),
                   ]
               ),

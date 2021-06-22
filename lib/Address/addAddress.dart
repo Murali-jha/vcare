@@ -307,10 +307,11 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
       gradientBoxShape: BoxShape.circle,
       children: [
         SpeedDialChild(
-          child: Icon(Icons.group_work_rounded),
+          child: Icon(Icons.group_work_rounded,color: Colors.white,),
           backgroundColor: Colors.orange,
+          labelBackgroundColor: Colors.orange,
           label: 'Save Anonymously',
-          labelStyle: TextStyle(fontSize: 18.0),
+          labelStyle: TextStyle(fontSize: 18.0,fontFamily: "Poppins",color: Colors.white),
           onTap: () {
             if (formKey.currentState.validate()) {
               final model = AddressModel(
@@ -348,10 +349,11 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
           },
         ),
         SpeedDialChild(
-          child: Icon(Icons.check),
+          child: Icon(Icons.check,color: Colors.white),
           backgroundColor: Colors.blue,
+          labelBackgroundColor: Colors.blue,
           label: 'Save',
-          labelStyle: TextStyle(fontSize: 18.0),
+          labelStyle: TextStyle(fontSize: 18.0,fontFamily: "Poppins",color: Colors.white),
           onTap: () {
             if (formKey.currentState.validate()) {
               final model = AddressModel(
@@ -389,10 +391,11 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
           },
         ),
         SpeedDialChild(
-          child: Icon(Icons.transit_enterexit),
+          child: Icon(Icons.transit_enterexit,color: Colors.white),
           backgroundColor: Colors.red,
+          labelBackgroundColor: Colors.red,
           label: 'Close',
-          labelStyle: TextStyle(fontSize: 18.0),
+          labelStyle: TextStyle(fontSize: 18.0,fontFamily: "Poppins",color: Colors.white),
           onTap: () => print("Pressed"),
           onLongPress: () {
             Fluttertoast.showToast(msg: "Click here to cancel");
