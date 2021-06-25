@@ -224,6 +224,13 @@ class _AddressCardState extends State<AddressCard> {
 
                           TableRow(
                               children: [
+                                KeyText(msg: "Date :",),
+                                Text(widget.model.date,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
+                              ]
+                          ),
+
+                          TableRow(
+                              children: [
                                 KeyText(msg: "Preferred time : ",),
                                 Text(widget.model.city,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
                               ]

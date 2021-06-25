@@ -222,12 +222,13 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
 
   ScrollController scrollController;
   bool dialVisible = true;
-  String _setTime;
+  String _setTime,_setDate;
 
   String _hour, _minute, _time;
 
   String dateTime;
   TimeOfDay selectedTime = TimeOfDay(hour: 00, minute: 00);
+  DateTime selectedDate = DateTime.now();
 
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -238,6 +239,7 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
   final cState = TextEditingController();
   final cPinCode = TextEditingController();
   final cSemester = TextEditingController();
+  final cDate = TextEditingController();
 
 
   @override
@@ -249,6 +251,20 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
       ..addListener(() {
         setDialVisible(scrollController.position.userScrollDirection ==
             ScrollDirection.forward);
+      });
+  }
+
+  Future<Null> _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        initialDatePickerMode: DatePickerMode.day,
+        firstDate: DateTime(2015),
+        lastDate: DateTime(2101));
+    if (picked != null)
+      setState(() {
+        selectedDate = picked;
+        cDate.text = DateFormat.yMd().format(selectedDate);
       });
   }
 
@@ -320,6 +336,7 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
                   pincode: "[Anonymous]\n${cPinCode.text.trim()}",
                   phoneNumber: "[Anonymous]\n${cPhoneNumber.text.trim()}",
                   flatNumber: "[Anonymous]\n${cFlatHomeNumber.text.trim()}",
+                  date: cDate.text.trim(),
                   city: cCity.text.trim(),
                   semester: cSemester.text.trim())
                   .toJson();
@@ -363,6 +380,7 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
                   phoneNumber: cPhoneNumber.text,
                   flatNumber: cFlatHomeNumber.text,
                   city: cCity.text.trim(),
+                  date: cDate.text.trim(),
                   semester: cSemester.text.trim())
                   .toJson();
 
@@ -586,6 +604,50 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
                       label: "Semester",
                       hint: "Semester",
                       controller: cSemester,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        _selectDate(context);
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.only(left: 10.0),
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.white,
+                            ),
+                            borderRadius: BorderRadius.all(Radius.circular(15))
+                        ),
+                        child: TextFormField(
+                          // controller: controller,
+                          // decoration: InputDecoration.collapsed(hintText: hint),
+                          // validator: (val) => val.isEmpty ? "Field can not be empty." : null,
+                          keyboardType: TextInputType.multiline,
+                          maxLines: null,
+                          controller: cDate,
+                          onSaved: (String val) {
+                            _setDate = val;
+                          },
+                          enabled: false,
+                          style: TextStyle(color: Colors.white,fontFamily: "Poppins"),
+                          cursorColor: Colors.grey[300],
+                          decoration: InputDecoration(
+                            hintText: "Select Date",
+                            hintStyle: TextStyle(color: Colors.grey[300], fontFamily: "Poppins"),
+                            labelStyle: TextStyle(color: Colors.grey[300], fontSize: 20.0,fontFamily: "Poppins"),
+                            //border: InputBorder.none,
+                            labelText: "Preferred Date",
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                              borderSide: BorderSide(
+                                color: Colors.grey[300],
+                                width: 1.0,
+                              ),
+                            ),
+                          ),
+                          validator: (val) => val.isEmpty ? "Field can not be empty." : null,
+                        ),
+                      ),
                     ),
                     InkWell(
                       onTap: () {
