@@ -85,14 +85,14 @@ class _RegisterState extends State<Register> {
                   ),
                   CustomTextField(
                     labelText: "Password",
-                    hintText: "Password",
+                    hintText: "Minimum 6 characters",
                     controller: _passwordTextEditingController,
                     isObsecure: true,
                     data: Icons.vpn_key,
                   ),
                   CustomTextField(
                     labelText: "Confirm Password",
-                    hintText: "Confirm Password",
+                    hintText: "Minimum 6 Characters",
                     controller: _confirmPasswordTextEditingController,
                     isObsecure: true,
                     data: Icons.vpn_key,
@@ -234,15 +234,26 @@ class _RegisterState extends State<Register> {
       await firebaseUser.sendEmailVerification();
       await _auth.signOut();
     } catch (e) {
-      showDialog(
-          context: context,
-          builder: (c) {
-            return ErrorAlertDialog(
-              message: e.message.toString(),
-            );
-          });
-      print(e.toString());
-      print('unable to send email');
+      if(e.message.toString() == null){
+        showDialog(
+            context: context,
+            builder: (c) {
+              return ErrorAlertDialog(
+                message: "Something went wrong!",
+              );
+            });
+      }
+      else{
+        showDialog(
+            context: context,
+            builder: (c) {
+              return ErrorAlertDialog(
+                message: e.message.toString(),
+              );
+            });
+      }
+      //print(e.toString());
+      //print('unable to send email');
     }
 
     if (firebaseUser != null) {

@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (c)=>TotalAmount()),
         ],
         child:MaterialApp(
-          title: 'V-Care',
+          title: 'vCare',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
               brightness: Brightness.dark
