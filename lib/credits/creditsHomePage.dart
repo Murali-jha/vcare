@@ -150,15 +150,14 @@ class _CreditsHomePageState extends State<CreditsHomePage> {
                 ),
 
                 SizedBox(height: 30.0,),
-                Row(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Expanded(child: Center(child: Text("Number of CryptoV coins you need to unlock reward",style: TextStyle(fontFamily: "Poppins",fontSize: 20.0),))),
-                    Icon(Icons.arrow_forward_ios_outlined,color: Colors.blue,),
+                    Center(child: Text("Number of CryptoV coins you need to unlock reward :",style: TextStyle(fontFamily: "Poppins",fontSize: 20.0),)),
                     creditPoints==null?
                     circularProgress():
-                    Expanded(child: Center(child: Text(remaining.toString(),style: TextStyle(fontFamily: "Poppins",fontSize: 50.0,color: Colors.red),))),
+                    Center(child: Text(remaining.toString(),style: TextStyle(fontFamily: "Poppins",fontSize: 50.0,color: Colors.red),)),
                   ],
                 ),
 
