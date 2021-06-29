@@ -39,7 +39,7 @@ class _CreditsHomePageState extends State<CreditsHomePage> {
         context: context,
         builder: (context) => CustomAlertDialog(
           title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
-          desc: "Here you can see number of CryptoV coins in your wallet and number of coins you need to unlock the rewards",
+          desc: "Here you can see number of CryptoV coins in your wallet and number of coins you need to unlock the rewards. Initially as joining bonus you received 100 CryptoV coins!",
         ),
       );
     }

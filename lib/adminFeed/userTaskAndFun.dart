@@ -138,47 +138,57 @@ class _UserTaskAndFunPageHomeScreen extends State<UserTaskAndFunPageHomeScreen> 
               );
             }
 
-            return Scrollbar(
-              showTrackOnHover: true,
-              child: ListView(
-                children: snapshot.data.documents.map((document) {
-                  return InkWell(
-                    onTap: () async{
-                      updateCreditPoints(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID));
-                      Fluttertoast.showToast(msg: "Redirecting to your task");
-                      await launch(document['url']);
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.black38,
-                          border: Border.all(
-                            color: Colors.blueGrey,
+            return ListView(
+              children: snapshot.data.documents.map((document) {
+                return InkWell(
+                  onTap: () async{
+                    updateCreditPoints(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID));
+                    Fluttertoast.showToast(msg: "Redirecting to your task");
+                    await launch(document['url']);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.black38,
+                        border: Border.all(
+                          color: Colors.blueGrey,
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(10))
+                    ),
+                    padding: EdgeInsets.all(10.0),
+                    margin: EdgeInsets.all(10.0),
+                    child: Column(
+                      children: [
+                        Text(document['title'],style: TextStyle(fontFamily: "Poppins",fontSize: 20.0),),
+                        SizedBox(height: 10.0,),
+                        Text(document['description'],style: TextStyle(fontFamily: "Poppins",fontSize: 16.0,color: Colors.grey[400]),),
+                        SizedBox(height: 10.0,),
+                        document['thumbnailUrl']==null?
+                        circularProgress():
+                        Container(
+                          child: CachedNetworkImage(
+                            imageUrl: document['thumbnailUrl'],
+                            placeholder: (context, url) => circularProgress(),
+                            errorWidget: (context, url, error) => Icon(Icons.error),
                           ),
-                          borderRadius: BorderRadius.all(Radius.circular(20))
-                      ),
-                      padding: EdgeInsets.all(10.0),
-                      margin: EdgeInsets.all(10.0),
-                      child: Column(
-                        children: [
-                          Text(document['title'],style: TextStyle(fontFamily: "Poppins",fontSize: 20.0),),
-                          SizedBox(height: 10.0,),
-                          Text(document['description'],style: TextStyle(fontFamily: "Poppins",fontSize: 16.0,color: Colors.grey),),
-                          SizedBox(height: 10.0,),
-                          document['thumbnailUrl']==null?
-                          circularProgress():
-                          Container(
-                            child: CachedNetworkImage(
-                              imageUrl: document['thumbnailUrl'],
-                              placeholder: (context, url) => circularProgress(),
-                              errorWidget: (context, url, error) => Icon(Icons.error),
+                        ),
+                        SizedBox(height: 10.0,),
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: Text(
+                            "Click Here",
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontFamily: "Poppins",
+                              decoration: TextDecoration.underline,
+                              fontStyle: FontStyle.italic
                             ),
                           ),
-                        ],
-                      ),
+                        )
+                      ],
                     ),
-                  );
-                }).toList(),
-              ),
+                  ),
+                );
+              }).toList(),
             );
           },
         ));
