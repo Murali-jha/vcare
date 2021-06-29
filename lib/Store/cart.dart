@@ -135,7 +135,8 @@ class _CartPageState extends State<CartPage>
                       ? Container()
                       : Text(
                     "In Queue",
-                    style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold,fontFamily: "Poppins"),
+                    style: TextStyle(decoration: TextDecoration.underline,
+                        decorationStyle: TextDecorationStyle.double,color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold,fontFamily: "Poppins"),
                   ),
                 ),
               );

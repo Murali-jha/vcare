@@ -582,6 +582,8 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
                     child: Text(
                       "Add your details",
                       style: TextStyle(
+                        decoration: TextDecoration.underline,
+                          decorationStyle: TextDecorationStyle.double,
                           fontFamily: "Poppins",
                           fontWeight: FontWeight.bold,
                           fontSize: 20.0

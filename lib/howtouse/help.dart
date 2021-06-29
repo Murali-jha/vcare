@@ -31,7 +31,7 @@ class HelpHomePage extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Colors.black38,
                     border: Border.all(
-                      color: Colors.blueGrey,
+                      color: Colors.green,
                     ),
                     borderRadius: BorderRadius.all(Radius.circular(12))
                 ),
@@ -62,7 +62,7 @@ class HelpHomePage extends StatelessWidget {
                           ),
                           Container(
                             child: CachedNetworkImage(
-                              imageUrl: "https://drive.google.com/uc?export=view&id=17h9ywqAvwKqeVDDWUfMtd8qGbq4NFkYU",
+                              imageUrl: "https://drive.google.com/uc?export=view&id=10YBpMZ5ceVLsFDhjvbzurQQcKAn4zWPW",
                               placeholder: (context, url) => circularProgress(),
                               errorWidget: (context, url, error) => Icon(Icons.error),
                             ),
@@ -90,7 +90,7 @@ class HelpHomePage extends StatelessWidget {
                           Text("Click on Queue button on top right corner of appbar as shown in below figure then you will be directed to other page where you can see a person you have added into queue",style: TextStyle(fontFamily: "Poppins",fontSize: 16.0),),
                           Container(
                             child: CachedNetworkImage(
-                              imageUrl: "https://drive.google.com/uc?export=view&id=13woDtm7Gk79C3hjM6ywjH2nVtI8LRQd9",
+                              imageUrl: "https://drive.google.com/uc?export=view&id=15BBMgMrhBUbq1vjaTSaozEdwWb8CI-Lt",
                               placeholder: (context, url) => circularProgress(),
                               errorWidget: (context, url, error) => Icon(Icons.error),
                             ),
@@ -137,7 +137,7 @@ class HelpHomePage extends StatelessWidget {
                           ),
                           Container(
                             child: CachedNetworkImage(
-                              imageUrl: "https://drive.google.com/uc?export=view&id=1Qwnv0mUUTnVJqCL-T08DJawnarVAnrDc",
+                              imageUrl: "https://drive.google.com/uc?export=view&id=1B1K2YPOjxizPgnRT22TTpIVaQ8QIK6Hv",
                               placeholder: (context, url) => circularProgress(),
                               errorWidget: (context, url, error) => Icon(Icons.error),
                             ),
@@ -149,10 +149,69 @@ class HelpHomePage extends StatelessWidget {
                   ],
                 ),
               ),
+
+
+
               SizedBox(height: 14.0,),
+              //How to book an appointment anonymously
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.black38,
+                    border: Border.all(
+                      color: Colors.blueGrey,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(12))
+                ),
+                child: ExpansionTile(
+                  title: Text("How to book an appointment anonymously?",style: TextStyle(fontFamily: "Poppins",fontSize: 18.0,),),
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.fromLTRB(17.0,10.0,17.0,10.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ListTile(
+                            title: Text("It is very simple after entering your details click save button at bottom right corner",
+                              style: TextStyle(fontSize: 17.0,fontFamily: "Poppins"),
+
+                            ),
+                            leading: Icon(Icons.looks_one),
+                          ),
+                          Container(
+                            child: CachedNetworkImage(
+                              imageUrl: "https://drive.google.com/uc?export=view&id=1ztts9Y_bS3OpjFGuDnbM8-Lcn-ghRIg1",
+                              placeholder: (context, url) => circularProgress(),
+                              errorWidget: (context, url, error) => Center(child: Icon(Icons.error)),
+                            ),
+                          ),
+                          ListTile(
+                            title: Text("Then you will have two option either to save normally or save anonymously. Click on save anonymously. ",
+                              style: TextStyle(fontSize: 17.0,fontFamily: "Poppins"),
+
+                            ),
+                            leading: Icon(Icons.looks_one),
+                          ),
+                          Container(
+                            child: CachedNetworkImage(
+                              imageUrl: "https://drive.google.com/uc?export=view&id=18__3G8cuqoEey1WWJ67wSyBf0u_CbE46",
+                              placeholder: (context, url) => circularProgress(),
+                              errorWidget: (context, url, error) => Center(child: Icon(Icons.error)),
+                            ),
+                          ),
+                          Text("That's it! your details have been saved successfully. No one can see your details except you.",style: TextStyle(fontSize: 17.0,fontFamily: "Poppins"),)
+
+          ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
 
 
 
+
+              SizedBox(height: 14.0,),
               //Who are listeners
               Container(
                 decoration: BoxDecoration(
@@ -235,42 +294,6 @@ class HelpHomePage extends StatelessWidget {
                 ),
               ),
 
-
-
-              SizedBox(height: 14.0,),
-              //How to book an appointment anonymously
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.black38,
-                    border: Border.all(
-                      color: Colors.blueGrey,
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(12))
-                ),
-                child: ExpansionTile(
-                  title: Text("How to book an appointment anonymously?",style: TextStyle(fontFamily: "Poppins",fontSize: 18.0,),),
-                  children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.fromLTRB(17.0,10.0,17.0,10.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("It is very simple just while entering you details in message section you can enter that you want to conduct meeting anonymously. Our mods will hide your all details and anonymously arrange meeting with the person you have booked an appointment",style: TextStyle(fontFamily: "Poppins",fontSize: 16.0),),
-                          Container(
-                            child: CachedNetworkImage(
-                              imageUrl: "https://drive.google.com/uc?export=view&id=13WyHZOmxEffu06b3Ql4_qrBY3QnmYYUI",
-                              placeholder: (context, url) => circularProgress(),
-                              errorWidget: (context, url, error) => Icon(Icons.error),
-                            ),
-                          ),
-                          Text("If you want any other queries mod must know then you can add that also over there",style: TextStyle(fontFamily: "Poppins",fontSize: 16.0),),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
 
 
               SizedBox(height: 14.0,),
