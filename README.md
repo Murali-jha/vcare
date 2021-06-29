@@ -1,7 +1,6 @@
 
 
 
-Flutter Android & iOS eCommerce App like Amazon | FlipKart | AliExpress | Daraz using Firebase Firestore.
-Developed by: Coding Cafe
+Flutter vCare app 
 
-Mail us at: alizeb875@gmail.com
+contact me @muralijha01@gmail.com
