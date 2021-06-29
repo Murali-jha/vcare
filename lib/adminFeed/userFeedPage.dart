@@ -42,7 +42,7 @@ class _UserFeedPageHomeScreenState extends State<UserFeedPageHomeScreen> {
         context: context,
         builder: (context) => CustomAlertDialog(
           title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
-          desc: "Here you will find all the news and updates. And also here vCare will be posting all the info about all the future events",
+          desc: "All the News, Updates and all the future events of vCare will we uploaded here.",
         ),
       );
     }

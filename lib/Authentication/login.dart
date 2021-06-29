@@ -51,8 +51,8 @@ class _LoginState extends State<Login>
         barrierDismissible: false,
         context: context,
         builder: (context) => CustomAlertDialog(
-          title: "Hey there!",
-          desc: "I'm Quacky! Welcome to vCare Family. I will help you to explore this app! Initially If you are new then register yourself!",
+          title: "Hey!",
+          desc: " I am Quacky. Welcome to vCare Family. I’ll help you in exploring the app. If you are new to the app, please get Registered",
         ),
       );
     }
@@ -309,7 +309,7 @@ class CustomAlertDialog extends StatelessWidget {
                   onPressed: (){
                     Navigator.pop(context);
                   },
-                  child: Text("Okay!Cool",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
+                  child: Text("Cool!",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
                 ),
               ),
 

@@ -47,7 +47,7 @@ class _UserTaskAndFunPageHomeScreen extends State<UserTaskAndFunPageHomeScreen> 
         context: context,
         builder: (context) => CustomAlertDialog(
           title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
-          desc: "Here you will find all the tasks assigned. After clicking on any post you will be redirected to a webpage where you have to fill a questionnaire and after successful submit CryptoV coins will be credited to your wallet",
+          desc: "Welcome to Task & Fun. Here you will find all the tasks assigned. Just click on any post, complete the fun task and earn CryptoV coins as a reward.",
         ),
       );
     }

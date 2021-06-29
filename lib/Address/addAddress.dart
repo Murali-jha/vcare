@@ -448,7 +448,7 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
         context: context,
         builder: (context) => CustomAlertDialog(
           title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
-          desc: "Here you can add your details so that we can contact you.",
+          desc: "Please add your details so that we can contact you.\nNote: The details will not be shared with any third party.",
         ),
       );
     }
