@@ -446,7 +446,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                                   checkItemInCart(model.shortInfo, context);
                                 },
                                 icon: Icon(
-                                  Icons.queue,
+                                  Icons.add_box_rounded,
                                   color: Colors.white,
                                 ))
                                 : IconButton(

@@ -223,6 +223,7 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
   ScrollController scrollController;
   bool dialVisible = true;
   String _setTime,_setDate;
+  String dropdownValue = 'Reason:';
 
   String _hour, _minute, _time;
 
@@ -332,7 +333,7 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
             if (formKey.currentState.validate()) {
               final model = AddressModel(
                   name: "[Anonymous]\n${cName.text.trim()}",
-                  state: cState.text.trim(),
+                  state: dropdownValue,
                   pincode: "[Anonymous]\n${cPinCode.text.trim()}",
                   phoneNumber: "[Anonymous]\n${cPhoneNumber.text.trim()}",
                   flatNumber: "[Anonymous]\n${cFlatHomeNumber.text.trim()}",
@@ -375,7 +376,7 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
             if (formKey.currentState.validate()) {
               final model = AddressModel(
                   name: cName.text.trim(),
-                  state: cState.text.trim(),
+                  state: dropdownValue,
                   pincode: cPinCode.text,
                   phoneNumber: cPhoneNumber.text,
                   flatNumber: cFlatHomeNumber.text,
@@ -693,11 +694,57 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
                         ),
                       ),
                     ),
-                    MyTextField(
-                      label: "Message",
-                      hint: "Message",
-                      controller: cState,
+                    // MyTextField(
+                    //   label: "Message",
+                    //   hint: "Message",
+                    //   controller: cState,
+                    // ),
+
+
+
+                    Container(
+                      margin: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.only(left: 10.0,right: 10.0,top: 4.0,bottom: 4.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.white,
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(15))
+                      ),
+                      child: DropdownButton<String>(
+                        isExpanded: true,
+                        value: dropdownValue,
+                        icon: const Icon(Icons.arrow_drop_down_sharp),
+                        iconSize: 24,
+                        elevation: 16,
+                        style: const TextStyle(color: Colors.white),
+                        underline: Container(
+                          color: Colors.transparent,
+                        ),
+                        onChanged: (String newValue) {
+                          setState(() {
+                            dropdownValue = newValue;
+                          });
+                        },
+                        items: <String>[
+                          'Reason:',
+                          'Have a talk',
+                          'Sexual Assault',
+                          'Motivation',
+                          'Depressed',
+                          'Others'
+                        ].map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value,style: TextStyle(fontFamily: "Poppins",fontSize: 18.0),),
+                          );
+                        }).toList(),
+                      ),
                     ),
+
+
+
+
                     MyTextField(
                       label: "Pin Code",
                       hint: "Pin Code",
@@ -754,7 +801,7 @@ class MyTextField extends StatelessWidget {
         ),
         validator: (val) => val.isEmpty ? "Field can not be empty." : null,
       ),
-      );
+    );
   }
 }
 

@@ -45,17 +45,22 @@ class _PaymentPageState extends State<PaymentPage> {
       ),
       body: Material(
         child: Container(
+
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Image.asset("images/confirm.png",width: 120.0,),
+                  child: Image.asset("images/confirm.png",width: 200.0,),
                 ),
                 SizedBox(height: 10.0,),
                 Center(
                   child: FlatButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                        side: BorderSide(color: Colors.grey)
+                    ),
                     color: Colors.green,
                     textColor: Colors.white,
                     padding: EdgeInsets.all(8.0),
