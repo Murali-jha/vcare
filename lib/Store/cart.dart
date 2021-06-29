@@ -216,7 +216,7 @@ class _CartPageState extends State<CartPage>
         .updateData({
       EcommerceApp.userCartList: tempCartList,
     }).then((v){
-      Fluttertoast.showToast(msg: "Person removed from your favourite list.");
+      Fluttertoast.showToast(msg: "Removed from cart successfully!");
 
       EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, tempCartList);
 

@@ -52,7 +52,7 @@ class _LoginState extends State<Login>
         context: context,
         builder: (context) => CustomAlertDialog(
           title: "Hey!",
-          desc: " I am Quacky. Welcome to vCare Family. I’ll help you in exploring the app. If you are new to the app, please get Registered",
+          desc: "I am Quacky. Welcome to vCare Family. I’ll help you in exploring the app. If you are new to the app, please get Registered",
         ),
       );
     }
@@ -169,7 +169,7 @@ class _LoginState extends State<Login>
     showDialog(
         barrierDismissible: false,
         context: context,builder: (c){
-      return LoadingAlertDialog(message:"Authenticating..Please wait...");
+      return LoadingAlertDialog(message:"Authenticating, Please wait...");
     });
     FirebaseUser firebaseUser;
     await _auth.signInWithEmailAndPassword(

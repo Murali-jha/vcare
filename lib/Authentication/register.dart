@@ -187,7 +187,7 @@ class _RegisterState extends State<Register> {
         context: context,
         builder: (c) {
           return LoadingAlertDialog(
-            message: "Registering..Please wait...",
+            message: "Registering, Please wait...",
           );
         });
 

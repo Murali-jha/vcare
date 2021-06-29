@@ -99,7 +99,7 @@ class ErrorAlertDialog extends StatelessWidget {
                   onPressed: (){
                     Navigator.pop(context);
                   },
-                  child: Text("Confirm",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
+                  child: Text("Okay",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
                 ),
               ),
 

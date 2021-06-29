@@ -57,20 +57,20 @@ List<SliderModel> getSlides(){
 //3
   sliderModel.setImageAssetPath("images/onboarding/task and fun.png");
   sliderModel.setTitle("Task & Fun");
-  sliderModel.setDesc("Participate in task given by vCare and get rewarded");
+  sliderModel.setDesc("Complete the task assigned and receive rewards!");
   slides.add(sliderModel);
   sliderModel = new SliderModel();
 //4
   sliderModel.setImageAssetPath("images/onboarding/cryptovonboard.png");
   sliderModel.setTitle("CryptoV Coins");
-  sliderModel.setDesc("Introducing CryptoV coins. Receive CryptoV coins after completing each task");
+  sliderModel.setDesc("Introducing CryptoV coins. Receive CryptoV coins as reward after completing every task");
   slides.add(sliderModel);
   sliderModel = new SliderModel();
 
 //5
   sliderModel.setImageAssetPath("images/onboarding/rewards.png");
   sliderModel.setTitle("Rewards");
-  sliderModel.setDesc("Complete the target of CryptoV and get many rewards each week");
+  sliderModel.setDesc("Unlimited Tasks, Unlimited Rewards and Unlimited CryptoV Coins");
   slides.add(sliderModel);
   sliderModel = new SliderModel();
 
