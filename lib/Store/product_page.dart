@@ -223,7 +223,7 @@ class _ProductPageState extends State<ProductPage> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12.0),
                               side: BorderSide(color: Colors.white)),
-                          onPressed: () => checkItemInCart(widget.itemModel.shortInfo, context),
+                          onPressed: () => checkItemInCart(widget.itemModel.shortInfo, context,widget.itemModel.title),
                           child: Text(
                             "Add to Queue",
                             style: TextStyle(

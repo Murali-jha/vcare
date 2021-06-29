@@ -443,10 +443,10 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                             child: removeCartFunction == null
                                 ? IconButton(
                                 onPressed: () {
-                                  checkItemInCart(model.shortInfo, context);
+                                  checkItemInCart(model.shortInfo, context,model.title.toString());
                                 },
                                 icon: Icon(
-                                  Icons.add_box_rounded,
+                                  Icons.queue_rounded,
                                   color: Colors.white,
                                 ))
                                 : IconButton(
@@ -455,6 +455,14 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                                   Route route = MaterialPageRoute(
                                       builder: (context) => BottomNavBar());
                                   Navigator.of(context).pushAndRemoveUntil(route, (Route<dynamic> route) => false);
+                                  showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (context) => CustomAlertDialogRemoveQueue(
+                                      title: "Alert!",
+                                      desc:  "${model.title.toString()} removed from queue Successfully",
+                                    ),
+                                  );
                                 },
                                 icon: Icon(Icons.delete))),
                     )
@@ -625,15 +633,22 @@ Widget card({Color primaryColor = Colors.redAccent, String imgPath}) {
   );
 }
 
-void checkItemInCart(String shortInfoAsId, BuildContext context) {
+void checkItemInCart(String shortInfoAsId, BuildContext context,String name) {
   EcommerceApp.sharedPreferences
           .getStringList(EcommerceApp.userCartList)
           .contains(shortInfoAsId)
-      ? Fluttertoast.showToast(msg: "Already added to queue")
-      : addItemToCart(shortInfoAsId, context);
+      ? showDialog(
+    barrierDismissible: false,
+    context: context,
+    builder: (context) => CustomAlertDialogQueue(
+      title: "Already Present in Queue!",
+      desc: "To book an appointment with $name click proceed!",
+    ),
+  )
+      : addItemToCart(shortInfoAsId, context,name);
 }
 
-addItemToCart(String shortInfoAsId, BuildContext context) {
+addItemToCart(String shortInfoAsId, BuildContext context,String name) {
   List tempCartList =
       EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
   tempCartList.add(shortInfoAsId);
@@ -644,7 +659,15 @@ addItemToCart(String shortInfoAsId, BuildContext context) {
       .updateData({
     EcommerceApp.userCartList: tempCartList,
   }).then((v) {
-    Fluttertoast.showToast(msg: "Added to queue Successfully!");
+    Fluttertoast.showToast(msg: "$name Added to queue Successfully!");
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) => CustomAlertDialogQueue(
+        title: "Added to Queue Successfully!",
+        desc: "To book an appointment with $name click proceed!",
+      ),
+    );
     EcommerceApp.sharedPreferences
         .setStringList(EcommerceApp.userCartList, tempCartList);
     Provider.of<CartItemCounter>(context, listen: false).displayResult();
@@ -755,6 +778,214 @@ class CustomAlertDialog extends StatelessWidget {
               backgroundColor: Colors.white,
               radius: 50.0,
               backgroundImage: AssetImage("assets/gifs/7t4e.gif"),
+            )
+        )
+      ],
+    );
+  }
+}
+
+
+class CustomAlertDialogQueue extends StatelessWidget {
+
+  final String title,desc;
+
+  CustomAlertDialogQueue({ this.title, this.desc,});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16)
+      ),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: dialogContent(context),
+    );
+  }
+
+  dialogContent(BuildContext context){
+    return Stack(
+      children: [
+        Container(
+          padding: EdgeInsets.only(
+              top: 100.0,
+              bottom: 16.0,
+              left: 16.0,
+              right: 16.0
+          ),
+          margin: EdgeInsets.only(
+              top: 16.0
+          ),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(17),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 10.0,
+                  offset: Offset(0.0,10.0),
+                )
+              ]
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,fontFamily: "Poppins"
+                ),
+              ),
+              SizedBox(height: 22.0,),
+              Text(
+                desc,
+                style: TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.black,fontFamily: "Poppins"
+                ),
+              ),
+              SizedBox(height: 24.0,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: FlatButton(
+                      color: Colors.red,
+                      onPressed: (){
+                        Navigator.pop(context);
+                      },
+                      child: Text("Cancel",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
+                    ),
+                  ),
+                  SizedBox(width: 10.0,),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: FlatButton(
+                      color: Colors.green,
+                      onPressed: (){
+                        Navigator.pop(context);
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>CartPage()));
+                      },
+                      child: Text("Proceed",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
+                    ),
+                  ),
+                ],
+              ),
+
+            ],
+          ),
+        ),
+        Positioned(
+            top: 0.0,
+            left: 16.0,
+            right: 16.0,
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 50.0,
+              backgroundImage: AssetImage("assets/gifs/alert.gif"),
+            )
+        )
+      ],
+    );
+  }
+}
+
+
+class CustomAlertDialogRemoveQueue extends StatelessWidget {
+
+  final String title,desc;
+
+  CustomAlertDialogRemoveQueue({ this.title, this.desc,});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16)
+      ),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: dialogContent(context),
+    );
+  }
+
+  dialogContent(BuildContext context){
+    return Stack(
+      children: [
+        Container(
+          padding: EdgeInsets.only(
+              top: 100.0,
+              bottom: 16.0,
+              left: 16.0,
+              right: 16.0
+          ),
+          margin: EdgeInsets.only(
+              top: 16.0
+          ),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(17),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 10.0,
+                  offset: Offset(0.0,10.0),
+                )
+              ]
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,fontFamily: "Poppins"
+                ),
+              ),
+              SizedBox(height: 24.0,),
+              Text(
+                desc,
+                style: TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.black,fontFamily: "Poppins"
+                ),
+              ),
+              SizedBox(height: 24.0,),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: FlatButton(
+                  color: Colors.green,
+                  onPressed: (){
+                    Navigator.pop(context);
+                    Route route = MaterialPageRoute(
+                        builder: (context) => BottomNavBar());
+                    Navigator.of(context).pushAndRemoveUntil(route, (Route<dynamic> route) => false);
+                  },
+                  child: Text("Confirm",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
+                ),
+              ),
+
+            ],
+          ),
+        ),
+        Positioned(
+            top: 0.0,
+            left: 16.0,
+            right: 16.0,
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 50.0,
+              backgroundImage: AssetImage("assets/gifs/alert.gif"),
             )
         )
       ],
