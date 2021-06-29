@@ -1,3 +1,4 @@
+import 'package:e_shop/Address/address.dart';
 import 'package:e_shop/BottomNavHomePage.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';
@@ -357,7 +358,17 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
               });
 
               Route route = MaterialPageRoute(builder: (c) => StoreHome());
-              Navigator.pushReplacement(context, route);
+
+              Navigator.of(context).pushAndRemoveUntil(route, (Route<dynamic> route) => false);
+              showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (context) => CustomAlertDialogBook(
+                  title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
+                  desc: "Your details have been saved successfully. Now click proceed to book an appointment",
+                ),
+              );
+
             }
           },
           onLongPress: () {
@@ -400,7 +411,15 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
               });
 
               Route route = MaterialPageRoute(builder: (c) => StoreHome());
-              Navigator.pushReplacement(context, route);
+              Navigator.of(context).pushAndRemoveUntil(route, (Route<dynamic> route) => false);
+              showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (context) => CustomAlertDialogBook(
+                  title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
+                  desc: "Your details have been saved successfully. Now click proceed to book an appointment",
+                ),
+              );
             }
           },
           onLongPress: () {
@@ -882,6 +901,102 @@ class CustomAlertDialog extends StatelessWidget {
               backgroundColor: Colors.white,
               radius: 50.0,
               backgroundImage: AssetImage("assets/gifs/7t4e.gif"),
+            )
+        )
+      ],
+    );
+  }
+}
+
+
+class CustomAlertDialogBook extends StatelessWidget {
+
+  final String title,desc;
+
+  CustomAlertDialogBook({ this.title, this.desc,});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16)
+      ),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: dialogContent(context),
+    );
+  }
+
+  dialogContent(BuildContext context){
+    return Stack(
+      children: [
+        Container(
+          padding: EdgeInsets.only(
+              top: 100.0,
+              bottom: 16.0,
+              left: 16.0,
+              right: 16.0
+          ),
+          margin: EdgeInsets.only(
+              top: 16.0
+          ),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(17),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 10.0,
+                  offset: Offset(0.0,10.0),
+                )
+              ]
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,fontFamily: "Poppins"
+                ),
+              ),
+              SizedBox(height: 24.0,),
+              Text(
+                desc,
+                style: TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.black,fontFamily: "Poppins"
+                ),
+              ),
+              SizedBox(height: 24.0,),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: FlatButton(
+                  color: Colors.green,
+                  onPressed: (){
+                    Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Address()));
+                  },
+                  child: Text("Proceed",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
+                ),
+              ),
+
+
+            ],
+          ),
+        ),
+        Positioned(
+            top: 0.0,
+            left: 16.0,
+            right: 16.0,
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 50.0,
+              backgroundImage: AssetImage("assets/gifs/alert.gif"),
             )
         )
       ],
