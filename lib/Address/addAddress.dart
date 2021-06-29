@@ -409,17 +409,6 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
                 "Click here to save your information. Your info will be visible to vCare");
           },
         ),
-        SpeedDialChild(
-          child: Icon(Icons.transit_enterexit,color: Colors.white),
-          backgroundColor: Colors.red,
-          labelBackgroundColor: Colors.red,
-          label: 'Close',
-          labelStyle: TextStyle(fontSize: 18.0,fontFamily: "Poppins",color: Colors.white),
-          onTap: () => print("Pressed"),
-          onLongPress: () {
-            Fluttertoast.showToast(msg: "Click here to cancel");
-          },
-        ),
       ],
     );
   }
@@ -440,7 +429,7 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
         context: context,
         builder: (context) => CustomAlertDialog(
           title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
-          desc: "Here you can add your details so that we can contact you. If you want meeting to be Anonymous then click on 'save anonymously'. If you have any kind of suggestions regarding appointment you can enter in message text field our mods will consider it",
+          desc: "Here you can add your details so that we can contact you.",
         ),
       );
     }
