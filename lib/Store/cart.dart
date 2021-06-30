@@ -49,7 +49,7 @@ class _CartPageState extends State<CartPage>
         context: context,
         builder: (context) => CustomAlertDialog(
           title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
-          desc: "Here you will find an expert you have added in a queue. To book an appointment with an expert in a queue click 'Book a Slot'.",
+          desc: "Welcome to draft section. Draft represents unbooked experts.",
         ),
       );
     }
