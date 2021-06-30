@@ -142,8 +142,9 @@ class _EditAddressDetailHomePageState extends State<EditAddressDetailHomePage> w
       child: Scaffold(
         floatingActionButton: FloatingActionButton.extended(
           backgroundColor: Colors.green,
+            icon: Icon(Icons.navigate_next,color: Colors.white,),
             onPressed: (){
-              if (formKey.currentState.validate()) {
+              if (formKey.currentState.validate() && dropdownValue!="Reason:") {
                 final model = AddressModel(
                     name: name.toString(),
                     state: dropdownValue,
@@ -170,6 +171,9 @@ class _EditAddressDetailHomePageState extends State<EditAddressDetailHomePage> w
                 });
 
                 Navigator.pop(context);
+              }
+              else{
+                Fluttertoast.showToast(msg: "Please select reason");
               }
             },
             label: Text("Update",style: TextStyle(fontFamily: "Poppins",color: Colors.white),)
@@ -264,8 +268,8 @@ class _EditAddressDetailHomePageState extends State<EditAddressDetailHomePage> w
                       controller: cPhoneNumber,
                     ),
                     MyTextField(
-                      label: "Semester",
-                      hint: "Semester",
+                      label: "Age",
+                      hint: "Age",
                       controller: cSemester,
                     ),
                     InkWell(

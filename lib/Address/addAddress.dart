@@ -342,7 +342,7 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
           label: 'Save Anonymously',
           labelStyle: TextStyle(fontSize: 18.0,fontFamily: "Poppins",color: Colors.white),
           onTap: () {
-            if (formKey.currentState.validate()) {
+            if (formKey.currentState.validate() && dropdownValue!="Reason:") {
               final model = AddressModel(
                   name: "[Anonymous]\n${name.toString()}",
                   state: dropdownValue,
@@ -381,6 +381,9 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
               );
 
             }
+            else{
+              Fluttertoast.showToast(msg: "Please select reason");
+            }
           },
           onLongPress: () {
             Fluttertoast.showToast(
@@ -395,7 +398,7 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
           label: 'Save',
           labelStyle: TextStyle(fontSize: 18.0,fontFamily: "Poppins",color: Colors.white),
           onTap: () {
-            if (formKey.currentState.validate()) {
+            if (formKey.currentState.validate() && dropdownValue!="Reason:") {
               final model = AddressModel(
                   name: name.toString(),
                   state: dropdownValue,
@@ -431,6 +434,9 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
                   desc: "Your details have been saved successfully. Now click proceed to book an appointment",
                 ),
               );
+            }
+            else{
+              Fluttertoast.showToast(msg: "Please select reason");
             }
           },
           onLongPress: () {
@@ -573,8 +579,8 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
                       controller: cPhoneNumber,
                     ),
                     MyTextField(
-                      label: "Semester",
-                      hint: "Semester",
+                      label: "Age",
+                      hint: "Age",
                       controller: cSemester,
                     ),
                     InkWell(

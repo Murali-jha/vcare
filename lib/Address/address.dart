@@ -239,7 +239,7 @@ class _AddressCardState extends State<AddressCard> {
 
                               TableRow(
                                   children: [
-                                    KeyText(msg: "Semester :",),
+                                    KeyText(msg: "Age :",),
                                     Text(widget.model.semester,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
                                   ]
                               ),

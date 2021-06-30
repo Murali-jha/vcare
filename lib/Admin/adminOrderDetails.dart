@@ -198,7 +198,7 @@ class AdminShippingDetails extends StatelessWidget {
 
               TableRow(
                   children: [
-                    KeyText(msg: "Semester:",),
+                    KeyText(msg: "Age:",),
                     Text(model.semester,style: TextStyle(fontFamily: "Poppins"),),
                   ]
               ),
