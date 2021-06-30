@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Config/config.dart';
+import 'package:e_shop/DetailsEditPage/editdetailspage.dart';
 import 'package:e_shop/Models/address.dart';
 import 'package:e_shop/Orders/placeOrder.dart';
 import 'package:e_shop/Widgets/customAppBar.dart';
@@ -190,65 +191,90 @@ class _AddressCardState extends State<AddressCard> {
                     Container(
                       padding: EdgeInsets.all(10.0),
                       width: screenWidth * 0.8,
-                      child: Table(
+                      child: Column(
                         children: [
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: Container(
+                              decoration: new BoxDecoration(
+                                color: Colors.black54,
+                                shape: BoxShape.circle,
+                                border: new Border.all(
+                                  color: Colors.blueGrey,
+                                  width: 1.0,
+                                ),
+                              ),
+                              child: IconButton(
+                                icon: Icon(Icons.edit,color: Colors.white,size: 20.0,),
+                                onPressed: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>EditAddressDetailHomePage(addressId: widget.addressId,pDate: widget.model.date,pinCode: widget.model.pincode,phoneNumber: widget.model.phoneNumber,semester: widget.model.semester,time: widget.model.city,reason: widget.model.state,)));
+                                },
+                              ),
+                            ),
+                          ),
+                          Table(
+                            children: [
 
-                          TableRow(
-                              children: [
-                                KeyText(msg: "Name :",),
-                                Text(widget.model.name,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
-                              ]
+                              TableRow(
+                                  children: [
+                                    KeyText(msg: "Name :",),
+                                    Text(widget.model.name,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
+                                  ]
+                              ),
+
+                              TableRow(
+                                  children: [
+                                    KeyText(msg: "Phone Number :",),
+                                    Text(widget.model.phoneNumber,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
+
+                                  ]
+                              ),
+
+                              TableRow(
+                                  children: [
+                                    KeyText(msg: "Email Id :",),
+                                    Text(widget.model.flatNumber,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
+                                  ]
+                              ),
+
+                              TableRow(
+                                  children: [
+                                    KeyText(msg: "Semester :",),
+                                    Text(widget.model.semester,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
+                                  ]
+                              ),
+
+                              TableRow(
+                                  children: [
+                                    KeyText(msg: "Date :",),
+                                    Text(widget.model.date,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
+                                  ]
+                              ),
+
+                              TableRow(
+                                  children: [
+                                    KeyText(msg: "Preferred time : ",),
+                                    Text(widget.model.city,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
+                                  ]
+                              ),
+
+                              TableRow(
+                                  children: [
+                                    KeyText(msg: "Reason :",),
+                                    Text(widget.model.state,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
+                                  ]
+                              ),
+
+                              TableRow(
+                                  children: [
+                                    KeyText(msg: "Pin Code : ",),
+                                    Text(widget.model.pincode,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
+                                  ]
+                              ),
+
+                            ],
                           ),
 
-                          TableRow(
-                              children: [
-                                KeyText(msg: "Phone Number :",),
-                                Text(widget.model.phoneNumber,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
-
-                              ]
-                          ),
-
-                          TableRow(
-                              children: [
-                                KeyText(msg: "Email Id :",),
-                                Text(widget.model.flatNumber,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
-                              ]
-                          ),
-
-                          TableRow(
-                              children: [
-                                KeyText(msg: "Semester :",),
-                                Text(widget.model.semester,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
-                              ]
-                          ),
-
-                          TableRow(
-                              children: [
-                                KeyText(msg: "Date :",),
-                                Text(widget.model.date,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
-                              ]
-                          ),
-
-                          TableRow(
-                              children: [
-                                KeyText(msg: "Preferred time : ",),
-                                Text(widget.model.city,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
-                              ]
-                          ),
-
-                          TableRow(
-                              children: [
-                                KeyText(msg: "Reason :",),
-                                Text(widget.model.state,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
-                              ]
-                          ),
-
-                          TableRow(
-                              children: [
-                                KeyText(msg: "Pin Code : ",),
-                                Text(widget.model.pincode,style: TextStyle(color: Colors.white, fontFamily: "Poppins",fontSize: 16.0)),
-                              ]
-                          ),
 
                         ],
                       ),
