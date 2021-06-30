@@ -460,46 +460,6 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
     return SafeArea(
       child: Scaffold(
         floatingActionButton: buildSpeedDial(),
-        // floatingActionButton: FloatingActionButton.extended(
-        //   onPressed: () {
-        //     if(formKey.currentState.validate())
-        //     {
-        //       final model = AddressModel(
-        //           name:  cName.text.trim(),
-        //           state: cState.text.trim(),
-        //           pincode: cPinCode.text,
-        //           phoneNumber: cPhoneNumber.text,
-        //           flatNumber: cFlatHomeNumber.text,
-        //           city: cCity.text.trim(),
-        //           semester: cSemester.text.trim()
-        //       ).toJson();
-        //
-        //       //add to firestore
-        //       EcommerceApp.firestore.collection(EcommerceApp.collectionUser)
-        //           .document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
-        //           .collection(EcommerceApp.subCollectionAddress)
-        //           .document(DateTime.now().millisecondsSinceEpoch.toString())
-        //           .setData(model)
-        //           .then((value){
-        //         Fluttertoast.showToast(msg: "New Details added successfully.");
-        //         FocusScope.of(context).requestFocus(FocusNode());
-        //         formKey.currentState.reset();
-        //       });
-        //
-        //       Route route = MaterialPageRoute(builder: (c) => BottomNavBar());
-        //       Navigator.of(context).pushAndRemoveUntil(route, (Route<dynamic> route) => false);
-        //     }
-        //   },
-        //   label: Text(
-        //     "Save",
-        //     style: TextStyle(color: Colors.white, fontFamily: "Poppins"),
-        //   ),
-        //   backgroundColor: Colors.green,
-        //   icon: Icon(
-        //     Icons.check,
-        //     color: Colors.white,
-        //   ),
-        // ),
         appBar: AppBar(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
