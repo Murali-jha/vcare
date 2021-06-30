@@ -295,6 +295,7 @@ class _AddressCardState extends State<AddressCard> {
               },
             )
                 : Container(),
+            SizedBox(height: 20.0,)
           ],
         ),
       ),
