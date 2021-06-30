@@ -29,7 +29,7 @@ class _RegisterState extends State<Register> {
   final TextEditingController _confirmPasswordTextEditingController =
   TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String userImageUrl = "";
+  String userImageUrl;
   File _imageFile;
   int creditPoints = 100;
 
@@ -150,14 +150,114 @@ class _RegisterState extends State<Register> {
 
   Future<void> uploadAndSaveImage() async {
     if (_imageFile == null) {
-      showDialog(
-          barrierDismissible: false,
-          context: context,
-          builder: (c) {
-            return ErrorAlertDialog(
-              message: "Please Select an Image!!",
-            );
-          });
+      _passwordTextEditingController.text ==
+          _confirmPasswordTextEditingController.text
+          ? _nameTextEditingController.text.isNotEmpty &&
+          _passwordTextEditingController.text.isNotEmpty &&
+          _confirmPasswordTextEditingController.text.isNotEmpty &&
+          _emailTextEditingController.text.isNotEmpty
+          ? showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context){
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16)
+            ),
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            child: Stack(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(
+                      top: 100.0,
+                      bottom: 16.0,
+                      left: 16.0,
+                      right: 16.0
+                  ),
+                  margin: EdgeInsets.only(
+                      top: 16.0
+                  ),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(17),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 10.0,
+                          offset: Offset(0.0,10.0),
+                        )
+                      ]
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Alert!",
+                        style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,fontFamily: "Poppins"
+                        ),
+                      ),
+                      SizedBox(height: 22.0,),
+                      Text(
+                        "Do you want to proceed without uploading profile picture?",
+                        style: TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.black,fontFamily: "Poppins"
+                        ),
+                      ),
+                      SizedBox(height: 24.0,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: FlatButton(
+                              color: Colors.red,
+                              onPressed: (){
+                                Navigator.pop(context);
+                                _registerUser(1);
+                              },
+                              child: Text("Yes",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
+                            ),
+                          ),
+                          SizedBox(width: 10.0,),
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: FlatButton(
+                              color: Colors.green,
+                              onPressed: (){
+                                Navigator.pop(context);
+                              },
+                              child: Text("No",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
+                            ),
+                          ),
+                        ],
+                      ),
+
+                    ],
+                  ),
+                ),
+                Positioned(
+                    top: 0.0,
+                    left: 16.0,
+                    right: 16.0,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 50.0,
+                      backgroundImage: AssetImage("assets/gifs/alert.gif"),
+                    )
+                )
+              ],
+            )
+          );
+        }
+        )
+          : displayDialog("Please fill the all data!!")
+          : displayDialog("Password didn't match");
     } else {
       _passwordTextEditingController.text ==
           _confirmPasswordTextEditingController.text
@@ -203,13 +303,23 @@ class _RegisterState extends State<Register> {
 
     await storageTaskSnapshot.ref.getDownloadURL().then((urlImage) {
       userImageUrl = urlImage;
-      _registerUser();
+      _registerUser(0);
     });
   }
 
   FirebaseAuth _auth = FirebaseAuth.instance;
 
-  void _registerUser() async {
+  void _registerUser(int check) async {
+    if(check==1){
+      showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (c) {
+            return LoadingAlertDialog(
+              message: "Registering, Please wait...",
+            );
+          });
+    }
     FirebaseUser firebaseUser;
     await _auth
         .createUserWithEmailAndPassword(
@@ -300,3 +410,6 @@ class _RegisterState extends State<Register> {
     await EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, ["garbageValue"]);
   }
 }
+
+
+

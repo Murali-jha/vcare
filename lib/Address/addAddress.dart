@@ -272,7 +272,7 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
         context: context,
         initialDate: selectedDate,
         initialDatePickerMode: DatePickerMode.day,
-        firstDate: DateTime(2015),
+        firstDate: DateTime.now(),
         lastDate: DateTime(2101));
     if (picked != null)
       setState(() {
