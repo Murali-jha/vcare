@@ -112,7 +112,7 @@ class _CartPageState extends State<CartPage>
       ),
       appBar: AppBar(
         title: Text(
-          "Queue",
+          "Draft",
           style: TextStyle(
             fontFamily: "Poppins",
             fontWeight: FontWeight.bold
@@ -134,7 +134,7 @@ class _CartPageState extends State<CartPage>
                   child: cartProvider.count == 0
                       ? Container()
                       : Text(
-                    "In Queue",
+                    "In Draft",
                     style: TextStyle(decoration: TextDecoration.underline,
                         decorationStyle: TextDecorationStyle.double,color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold,fontFamily: "Poppins"),
                   ),
@@ -197,8 +197,8 @@ class _CartPageState extends State<CartPage>
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(Icons.insert_emoticon, color: Colors.white,),
-              Text("Queue is empty.",style: TextStyle(fontFamily: "Poppins"),),
-              Text("Start exploring and add people to your Queue.",style: TextStyle(fontFamily: "Poppins"),),
+              Text("Draft is empty.",style: TextStyle(fontFamily: "Poppins"),),
+              Text("Start exploring and book your appointment.",style: TextStyle(fontFamily: "Poppins"),),
             ],
           ),
         ),
@@ -216,7 +216,7 @@ class _CartPageState extends State<CartPage>
         .updateData({
       EcommerceApp.userCartList: tempCartList,
     }).then((v){
-      Fluttertoast.showToast(msg: "Removed from cart successfully!");
+      Fluttertoast.showToast(msg: "Removed from draft successfully!");
 
       EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, tempCartList);
 

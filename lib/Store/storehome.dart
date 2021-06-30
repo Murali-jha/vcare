@@ -143,7 +143,7 @@ class _StoreHomeState extends State<StoreHome> {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => CartPage()));
                     },
-                    icon: Icon(Icons.queue_play_next,)),
+                    icon: Icon(Icons.filter_drama_rounded,)),
                 Positioned(
                     child: Stack(
                   children: [
@@ -418,55 +418,61 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                   ],
                 ),
 
-                Row(
-                  children: [
-                    Flexible(
-                      flex: 2,
-                      child: Align(
-                          alignment: Alignment.bottomLeft,
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
-                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10.0),
-                                        side: BorderSide(color: Colors.green, width: 1.0)))),
-                            child: Text(model.tag,style: TextStyle(fontFamily: "Poppins"),),
-                            onPressed: () {},
-                          ),
-                      ),
-                    ),
-                    Flexible(
-                      flex: 1,
+                Padding(
+                  padding: const EdgeInsets.only(top:6.0),
+                  child: Row(
+                    children: [
+                      Flexible(
+                        flex: 2,
                         child: Align(
-                            alignment: Alignment.centerRight,
-                            child: removeCartFunction == null
-                                ? IconButton(
+                            alignment: Alignment.bottomLeft,
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                          side: BorderSide(color: Colors.green, width: 1.0)))),
+                              child: Text(model.tag,style: TextStyle(fontFamily: "Poppins"),),
+                              onPressed: () {},
+                            ),
+                        ),
+                      ),
+                      Flexible(
+                        flex: 1,
+                          child: Align(
+                              alignment: Alignment.centerRight,
+                              child: removeCartFunction == null
+                                  ?
+                              OutlineButton(
                                 onPressed: () {
                                   checkItemInCart(model.shortInfo, context,model.title.toString());
                                 },
-                                icon: Icon(
-                                  Icons.queue_rounded,
-                                  color: Colors.white,
-                                ))
-                                : IconButton(
-                                onPressed: () {
-                                  removeCartFunction();
-                                  Route route = MaterialPageRoute(
-                                      builder: (context) => BottomNavBar());
-                                  Navigator.of(context).pushAndRemoveUntil(route, (Route<dynamic> route) => false);
-                                  showDialog(
-                                    barrierDismissible: false,
-                                    context: context,
-                                    builder: (context) => CustomAlertDialogRemoveQueue(
-                                      title: "Alert!",
-                                      desc:  "${model.title.toString()} removed from queue Successfully",
-                                    ),
-                                  );
-                                },
-                                icon: Icon(Icons.delete))),
-                    )
-                  ],
+
+                                borderSide: BorderSide(color: Colors.blue),
+                                shape: StadiumBorder(),
+
+                                child: const Text("Book",style: TextStyle(fontFamily: "Poppins",color: Colors.white),),
+                              )
+                                  : IconButton(
+                                  onPressed: () {
+                                    removeCartFunction();
+                                    Route route = MaterialPageRoute(
+                                        builder: (context) => BottomNavBar());
+                                    Navigator.of(context).pushAndRemoveUntil(route, (Route<dynamic> route) => false);
+                                    showDialog(
+                                      barrierDismissible: false,
+                                      context: context,
+                                      builder: (context) => CustomAlertDialogRemoveQueue(
+                                        title: "Alert!",
+                                        desc:  "${model.title.toString()} removed from draft Successfully",
+                                      ),
+                                    );
+                                  },
+                                  icon: Icon(Icons.delete))),
+                      )
+                    ],
+                  ),
                 ),
                 SizedBox(height: 10.0,),
                 Divider(
@@ -641,7 +647,7 @@ void checkItemInCart(String shortInfoAsId, BuildContext context,String name) {
     barrierDismissible: false,
     context: context,
     builder: (context) => CustomAlertDialogQueue(
-      title: "Already Present in Queue!",
+      title: "Alert!",
       desc: "To book an appointment with $name click proceed!",
     ),
   )
@@ -659,12 +665,12 @@ addItemToCart(String shortInfoAsId, BuildContext context,String name) {
       .updateData({
     EcommerceApp.userCartList: tempCartList,
   }).then((v) {
-    Fluttertoast.showToast(msg: "$name Added to queue Successfully!");
+    Fluttertoast.showToast(msg: "Saved in Draft!");
     showDialog(
       barrierDismissible: false,
       context: context,
       builder: (context) => CustomAlertDialogQueue(
-        title: "Added to Queue Successfully!",
+        title: "Alert!",
         desc: "To book an appointment with $name click proceed!",
       ),
     );

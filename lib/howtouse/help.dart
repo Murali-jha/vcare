@@ -52,9 +52,9 @@ class HelpHomePage extends StatelessWidget {
                                 child: Text("Step 1",style: TextStyle(color: Colors.white,fontSize: 18.0,fontFamily: "Poppins"),), shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
                             ),
                           ),
-                          Text("Add a person to Queue. You can add a person in Queue in two ways :",style: TextStyle(fontFamily: "Poppins",fontSize: 16.0),),
+                          Text("Click book button. You can click book button in two ways :",style: TextStyle(fontFamily: "Poppins",fontSize: 16.0),),
                           ListTile(
-                            title: Text("By just clicking a '+' icon below every profile as shown in the below figure",
+                            title: Text("By just clicking a 'Book' button at bottom right corner of a profile as shown in the below figure",
                               style: TextStyle(fontSize: 17.0,fontFamily: "Poppins"),
 
                             ),
@@ -62,13 +62,13 @@ class HelpHomePage extends StatelessWidget {
                           ),
                           Container(
                             child: CachedNetworkImage(
-                              imageUrl: "https://drive.google.com/uc?export=view&id=10YBpMZ5ceVLsFDhjvbzurQQcKAn4zWPW",
+                              imageUrl: "https://drive.google.com/uc?export=view&id=18ax6i3OkN5ojQMfiLt0MyxjdTXwGyGCN",
                               placeholder: (context, url) => circularProgress(),
                               errorWidget: (context, url, error) => Icon(Icons.error),
                             ),
                           ),
                           ListTile(
-                            title: Text("By just clicking on 'Add to queue' button in person detail page as show in below figure",
+                            title: Text("By just clicking on 'Book Now' button in expert detail page as show in below figure",
                               style: TextStyle(fontSize: 17.0,fontFamily: "Poppins"),
 
                             ),
@@ -76,7 +76,7 @@ class HelpHomePage extends StatelessWidget {
                           ),
                           Container(
                             child: CachedNetworkImage(
-                              imageUrl: "https://drive.google.com/uc?export=view&id=1xzH9OSc4y9t0t5mGXVDbME5Y1CGcdtTV",
+                              imageUrl: "https://drive.google.com/uc?export=view&id=1kFAfyc7SAxAA8scKoONONpoiH1IfLNzp",
                               placeholder: (context, url) => circularProgress(),
                               errorWidget: (context, url, error) => Icon(Icons.error),
                             ),
@@ -87,12 +87,12 @@ class HelpHomePage extends StatelessWidget {
                                 child: Text("Step 2",style: TextStyle(color: Colors.white,fontSize: 18.0,fontFamily: "Poppins"),), shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
                             ),
                           ),
-                          Text("Click on Queue button on top right corner of appbar as shown in below figure then you will be directed to other page where you can see a person you have added into queue",style: TextStyle(fontFamily: "Poppins",fontSize: 16.0),),
+                          Text("After clicking on Book button a pop up with proceed message will be shown. So click proceed as shown in figure.",style: TextStyle(fontFamily: "Poppins",fontSize: 16.0),),
                           Container(
                             child: CachedNetworkImage(
-                              imageUrl: "https://drive.google.com/uc?export=view&id=15BBMgMrhBUbq1vjaTSaozEdwWb8CI-Lt",
+                              imageUrl: "https://drive.google.com/uc?export=view&id=1YkQiFNBVUefrKRN-2Yv2epjhaCYoxE8Z",
                               placeholder: (context, url) => circularProgress(),
-                              errorWidget: (context, url, error) => Icon(Icons.error),
+                              errorWidget: (context, url, error) => Center(child: Icon(Icons.error)),
                             ),
                           ),                          ListTile(
                             title: Text("Now click on book slot button at bottom right corner as shown in figure",
@@ -103,7 +103,7 @@ class HelpHomePage extends StatelessWidget {
                           ),
                           Container(
                             child: CachedNetworkImage(
-                              imageUrl: "https://drive.google.com/uc?export=view&id=1uahnE6s8cSRYimdsn-bFfmyVrw98fUj6",
+                              imageUrl: "https://drive.google.com/uc?export=view&id=1Th9TduGXxcsRXkWrJcFRDjCvDOXe9rGm",
                               placeholder: (context, url) => circularProgress(),
                               errorWidget: (context, url, error) => Icon(Icons.error),
                             ),
@@ -124,7 +124,7 @@ class HelpHomePage extends StatelessWidget {
                           ),
                           Container(
                             child: CachedNetworkImage(
-                              imageUrl: "https://drive.google.com/uc?export=view&id=13xj7MHH2atriCOXUl3bDkjcC4mLh-m7r",
+                              imageUrl: "https://drive.google.com/uc?export=view&id=12WPmUFT3oROOEzU1JCkasKVG3blS2Lvv",
                               placeholder: (context, url) => circularProgress(),
                               errorWidget: (context, url, error) => Icon(Icons.error),
                             ),
@@ -180,7 +180,7 @@ class HelpHomePage extends StatelessWidget {
                           ),
                           Container(
                             child: CachedNetworkImage(
-                              imageUrl: "https://drive.google.com/uc?export=view&id=1ztts9Y_bS3OpjFGuDnbM8-Lcn-ghRIg1",
+                              imageUrl: "https://drive.google.com/uc?export=view&id=1MgihWRwENYOeKFvCsqLM0_kt1DZs9AhZ",
                               placeholder: (context, url) => circularProgress(),
                               errorWidget: (context, url, error) => Center(child: Icon(Icons.error)),
                             ),
@@ -194,7 +194,7 @@ class HelpHomePage extends StatelessWidget {
                           ),
                           Container(
                             child: CachedNetworkImage(
-                              imageUrl: "https://drive.google.com/uc?export=view&id=18__3G8cuqoEey1WWJ67wSyBf0u_CbE46",
+                              imageUrl: "https://drive.google.com/uc?export=view&id=1ZGJ3nW9e64UxISRzyM43NKReuYTzMAuC",
                               placeholder: (context, url) => circularProgress(),
                               errorWidget: (context, url, error) => Center(child: Icon(Icons.error)),
                             ),

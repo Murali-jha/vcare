@@ -20,7 +20,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   GlobalKey _bottomNavigationKey = GlobalKey();
 
   final List<Widget> _children = [
-    UserNotificationsHomePage(),UserFeedPageHomeScreen(),StoreHome(),UserTaskAndFunPageHomeScreen(),CreditsHomePage()// create the pages you want to navigate between
+    UserFeedPageHomeScreen(),UserTaskAndFunPageHomeScreen(),StoreHome(),CreditsHomePage(),UserNotificationsHomePage()// create the pages you want to navigate between
   ];
 
   @override
@@ -33,11 +33,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
           key: _bottomNavigationKey,
           height: 47.0,
           items: <Widget>[
-            Icon(Icons.notifications_active, size: 25,color: Colors.white,),
             Icon(Icons.feed, size: 25,color: Colors.white,),
-            Icon(Icons.home, size: 25,color: Colors.white,),
             Icon(Icons.beenhere_rounded, size: 23,color: Colors.white,),
+            Icon(Icons.home, size: 25,color: Colors.white,),
             Icon(Icons.auto_awesome, size: 25,color: Colors.white,),
+            Icon(Icons.notifications_active, size: 25,color: Colors.white,),
           ],
           animationCurve: Curves.easeIn,
           animationDuration: Duration(

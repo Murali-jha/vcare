@@ -47,7 +47,7 @@ class MyAppBar extends StatelessWidget
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => CartPage()));
                 },
-                icon: Icon(Icons.queue_play_next)),
+                icon: Icon(Icons.filter_drama_rounded)),
             Positioned(
                 child: Stack(
                   children: [
