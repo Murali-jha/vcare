@@ -332,6 +332,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
+                        flex:5,
                           child: Text(
                         model.title,
                         style: TextStyle(
@@ -339,7 +340,13 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                             fontWeight: FontWeight.w500,
                             fontSize: 18.0,
                             fontFamily: "Poppins"),
-                      ))
+                      )),
+                      Expanded(
+                        flex: 1,
+                          child: Icon(
+                            Icons.info_rounded,size: 18.0,color: Colors.grey[400],
+                          )
+                      ),
                     ],
                   ),
                 ),
@@ -427,6 +434,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                         child: Align(
                             alignment: Alignment.bottomLeft,
                             child: ElevatedButton(
+
                               style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
                                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -434,7 +442,37 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                                           borderRadius: BorderRadius.circular(10.0),
                                           side: BorderSide(color: Colors.green, width: 1.0)))),
                               child: Text(model.tag,style: TextStyle(fontFamily: "Poppins"),),
-                              onPressed: () {},
+                              onPressed: () {
+                                if(model.tag=="Mentor"){
+                                  showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (context) => AlertDialogForTagDetails(
+                                      title: "who is mentor?",
+                                      message:  "Mentor are the expert who will guide you to achieve your goal",
+                                    ),
+                                  );
+                                }
+                                else if(model.tag=="Listener"){
+                                  showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (context) => AlertDialogForTagDetails(
+                                      title: "who is Listener?",
+                                      message:  "Listener are people from student community who listens to you, but do not judge or guide you",
+                                    ),
+                                  );
+                                }else{
+                                  showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (context) => AlertDialogForTagDetails(
+                                      title: "who is Psychiatrist?",
+                                      message:  "Psychiatrist are expert who help you to overcome your depression or stress",
+                                    ),
+                                  );
+                                }
+                              },
                             ),
                         ),
                       ),
@@ -486,133 +524,6 @@ Widget sourceInfo(ItemModel model, BuildContext context,
       ),
     ),
   );
-  // return InkWell(
-  //   onTap: () {
-  //     Route route = MaterialPageRoute(
-  //         builder: (context) => ProductPage(itemModel: model));
-  //     Navigator.push(context, route);
-  //   },
-  //   splashColor: Colors.green,
-  //   child: Container(
-  //     decoration: BoxDecoration(
-  //         border: Border.all(
-  //           color: Colors.grey.shade700,
-  //         ),
-  //         color: Colors.grey.shade900,
-  //         borderRadius: BorderRadius.all(Radius.circular(20))),
-  //     padding: EdgeInsets.all(10),
-  //     margin: EdgeInsets.all(10),
-  //     child: Column(
-  //       crossAxisAlignment: CrossAxisAlignment.center,
-  //       children: [
-  //         Material(
-  //           borderRadius: BorderRadius.all(Radius.circular(80.0)),
-  //           elevation: 8.0,
-  //           child: Container(
-  //             decoration: new BoxDecoration(
-  //               shape: BoxShape.circle,
-  //               border: new Border.all(
-  //                 color: Colors.blueGrey,
-  //                 width: 2.0,
-  //               ),
-  //             ),
-  //             height: 110.0,
-  //             width: 110.0,
-  //             child: CircleAvatar(
-  //               backgroundImage: NetworkImage(
-  //                 model.thumbnailUrl,
-  //               ),
-  //             ),
-  //           ),
-  //         ),
-  //         SizedBox(
-  //           height: 12.0,
-  //         ),
-  //         Text(
-  //           model.title,
-  //           style: TextStyle(fontSize: 18.0, fontFamily: "Poppins"),
-  //         ),
-  //         SizedBox(
-  //           height: 6.0,
-  //         ),
-  //         Text(
-  //           model.shortInfo,
-  //           style: TextStyle(
-  //               fontSize: 16.0, fontFamily: "Poppins", color: Colors.grey),
-  //         ),
-  //         Divider(),
-  //         Row(
-  //           children: [
-  //             Expanded(
-  //                 child: Center(
-  //               child: Text(
-  //                 "Status : ",
-  //                 style: TextStyle(
-  //                     fontSize: 16.0,
-  //                     fontFamily: "Poppins",
-  //                     color: Colors.white),
-  //               ),
-  //             )),
-  //             Expanded(
-  //                 child: Center(
-  //               child: Text(
-  //                 model.status,
-  //                 style: TextStyle(
-  //                     fontSize: 16.0,
-  //                     fontFamily: "Poppins",
-  //                     color: Colors.white),
-  //               ),
-  //             ))
-  //           ],
-  //         ),
-  //         Divider(),
-  //         Row(
-  //           children: [
-  //             Expanded(
-  //                 child: Center(
-  //               child: Text(
-  //                 "Available Between : ",
-  //                 style: TextStyle(
-  //                     fontSize: 16.0,
-  //                     fontFamily: "Poppins",
-  //                     color: Colors.white),
-  //               ),
-  //             )),
-  //             Expanded(
-  //                 child: Center(
-  //               child: Text(
-  //                 model.price,
-  //                 style: TextStyle(
-  //                     fontSize: 16.0,
-  //                     fontFamily: "Poppins",
-  //                     color: Colors.white),
-  //               ),
-  //             ))
-  //           ],
-  //         ),
-  //         Align(
-  //             alignment: Alignment.centerRight,
-  //             child: removeCartFunction == null
-  //                 ? IconButton(
-  //                     onPressed: () {
-  //                       checkItemInCart(model.shortInfo, context);
-  //                     },
-  //                     icon: Icon(
-  //                       Icons.star_border,
-  //                       color: Colors.white,
-  //                     ))
-  //                 : IconButton(
-  //                     onPressed: () {
-  //                       removeCartFunction();
-  //                       Route route = MaterialPageRoute(
-  //                           builder: (context) => StoreHome());
-  //                       Navigator.pushReplacement(context, route);
-  //                     },
-  //                     icon: Icon(Icons.delete)))
-  //       ],
-  //     ),
-  //   ),
-  // );
 }
 
 Widget card({Color primaryColor = Colors.redAccent, String imgPath}) {
@@ -998,3 +909,99 @@ class CustomAlertDialogRemoveQueue extends StatelessWidget {
     );
   }
 }
+
+
+class AlertDialogForTagDetails extends StatelessWidget {
+
+  final String message,title;
+
+  AlertDialogForTagDetails({this.message, this.title,});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16)
+      ),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: dialogContent(context),
+    );
+  }
+
+  dialogContent(BuildContext context){
+    return Stack(
+      children: [
+        Container(
+          padding: EdgeInsets.only(
+              top: 100.0,
+              bottom: 16.0,
+              left: 16.0,
+              right: 16.0
+          ),
+          margin: EdgeInsets.only(
+              top: 16.0
+          ),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(17),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 10.0,
+                  offset: Offset(0.0,10.0),
+                )
+              ]
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,fontFamily: "Poppins"
+                ),
+              ),
+              SizedBox(height: 15.0,),
+              Text(
+                message,
+                style: TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.black,fontFamily: "Poppins"
+                ),
+              ),
+              SizedBox(height: 24.0,),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: FlatButton(
+                  color: Colors.green,
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  child: Text("Cool",style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
+                ),
+              ),
+
+
+            ],
+          ),
+        ),
+        Positioned(
+            top: 0.0,
+            left: 16.0,
+            right: 16.0,
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 50.0,
+              backgroundImage: AssetImage("assets/gifs/7t4e.gif"),
+            )
+        )
+      ],
+    );
+  }
+}
+
