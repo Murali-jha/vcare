@@ -172,7 +172,7 @@ class _EditAddressDetailHomePageState extends State<EditAddressDetailHomePage> w
                 Navigator.pop(context);
               }
             },
-            label: Text("Update",style: TextStyle(fontFamily: "Poppins"),)
+            label: Text("Update",style: TextStyle(fontFamily: "Poppins",color: Colors.white),)
         ),
         appBar: AppBar(
           title: Text(
