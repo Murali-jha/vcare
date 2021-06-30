@@ -118,7 +118,7 @@ class _MyDrawerState extends State<MyDrawer> {
                                           ),
                                           SizedBox(height: 22.0,),
                                           Text(
-                                            "Do you want upload profile picture",
+                                            "Do you want to upload profile picture",
                                             style: TextStyle(
                                                 fontSize: 16.0,
                                                 color: Colors.black,fontFamily: "Poppins"
@@ -243,7 +243,7 @@ class _MyDrawerState extends State<MyDrawer> {
                                           ),
                                           SizedBox(height: 22.0,),
                                           Text(
-                                            "Do you want update profile picture",
+                                            "Do you want to update profile picture",
                                             style: TextStyle(
                                                 fontSize: 16.0,
                                                 color: Colors.black,fontFamily: "Poppins"
@@ -420,8 +420,8 @@ class _MyDrawerState extends State<MyDrawer> {
                   ),
 
                   ListTile(
-                    leading: Icon(Icons.supervisor_account_rounded),
-                    title: Text("Queue",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0)),
+                    leading: Icon(Icons.send_outlined),
+                    title: Text("Draft",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0)),
                     onTap: () {
                       Route route = MaterialPageRoute(builder: (c) {
                         return CartPage();

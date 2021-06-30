@@ -49,7 +49,7 @@ class _AddressState extends State<Address>
         context: context,
         builder: (context) => CustomAlertDialog(
           title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
-          desc: "Please add you your details if you haven't added yet. To add your details please click 'Add new details' at bottom right corner. Please Note we collect your details only to contact you..not for any third party purposes.",
+          desc: "Please add your details if you haven't added yet. To add your details please click 'Add new details' at bottom right corner. Please Note we collect your details only to contact you..not for any third party purposes.",
         ),
       );
     }

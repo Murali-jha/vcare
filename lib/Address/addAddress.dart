@@ -509,7 +509,7 @@ class _AddAddressState extends State<AddAddress> with TickerProviderStateMixin {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => CartPage()));
                     },
-                    icon: Icon(Icons.filter_drama_rounded)),
+                    icon: Icon(Icons.send_outlined)),
                 Positioned(
                     child: Stack(
                       children: [
