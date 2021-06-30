@@ -207,7 +207,7 @@ class _AddressCardState extends State<AddressCard> {
                               child: IconButton(
                                 icon: Icon(Icons.edit,color: Colors.white,size: 20.0,),
                                 onPressed: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>EditAddressDetailHomePage(addressId: widget.addressId,pDate: widget.model.date,pinCode: widget.model.pincode,phoneNumber: widget.model.phoneNumber,semester: widget.model.semester,time: widget.model.city,reason: widget.model.state,)));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>EditAddressDetailHomePage(addressId: widget.addressId,pDate: widget.model.date,pinCode: widget.model.pincode,phoneNumber: widget.model.phoneNumber,semester: widget.model.semester,time: widget.model.city,reason: widget.model.state,name: widget.model.name,email: widget.model.flatNumber,)));
                                 },
                               ),
                             ),

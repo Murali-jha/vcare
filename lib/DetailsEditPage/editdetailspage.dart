@@ -18,15 +18,15 @@ import 'package:date_format/date_format.dart';
 
 class EditAddressDetailHomePage extends StatefulWidget {
 
-  final String addressId,phoneNumber,pDate,pinCode,semester,time,reason;
+  final String addressId,phoneNumber,pDate,pinCode,semester,time,reason,name,email;
 
-  const EditAddressDetailHomePage({Key key, this.addressId, this.phoneNumber, this.pDate, this.pinCode, this.semester, this.time, this.reason}) : super(key: key);
+  const EditAddressDetailHomePage({Key key, this.addressId, this.phoneNumber, this.pDate, this.pinCode, this.semester, this.time, this.reason, this.name, this.email}) : super(key: key);
   @override
-  _EditAddressDetailHomePageState createState() => _EditAddressDetailHomePageState(addressId,phoneNumber,pDate,pinCode,semester,time,reason);
+  _EditAddressDetailHomePageState createState() => _EditAddressDetailHomePageState(addressId,phoneNumber,pDate,pinCode,semester,time,reason,name,email);
 }
 
 class _EditAddressDetailHomePageState extends State<EditAddressDetailHomePage> with TickerProviderStateMixin {
-  final String addressId,phoneNumber,pDate,pinCode,semester,time,reason;  bool dialVisible = true;
+  final String addressId,phoneNumber,pDate,pinCode,semester,time,reason,name,email;  bool dialVisible = true;
   String _setTime,_setDate;
   String dropdownValue = 'Reason:';
 
@@ -46,9 +46,8 @@ class _EditAddressDetailHomePageState extends State<EditAddressDetailHomePage> w
   final cPinCode = TextEditingController();
   final cSemester = TextEditingController();
   final cDate = TextEditingController();
-  String name,email;
 
-  _EditAddressDetailHomePageState(this.addressId, this.phoneNumber, this.pDate, this.pinCode, this.semester, this.time, this.reason);
+  _EditAddressDetailHomePageState(this.addressId, this.phoneNumber, this.pDate, this.pinCode, this.semester, this.time, this.reason, this.name, this.email);
 
 
   @override
@@ -56,18 +55,9 @@ class _EditAddressDetailHomePageState extends State<EditAddressDetailHomePage> w
     // TODO: implement initState
     super.initState();
     checkDialogIntroShown();
-    fetchDataUsersName();
     initializeTextFormField();
   }
 
-
-  Future fetchDataUsersName() async{
-    EcommerceApp.sharedPreferences = await SharedPreferences.getInstance();
-    setState(() {
-      email  = EcommerceApp.sharedPreferences.getString(EcommerceApp.userEmail);
-      name = EcommerceApp.sharedPreferences.getString(EcommerceApp.userName);
-    });
-  }
 
   Future initializeTextFormField() async{
     setState(() {
@@ -146,11 +136,11 @@ class _EditAddressDetailHomePageState extends State<EditAddressDetailHomePage> w
             onPressed: (){
               if (formKey.currentState.validate() && dropdownValue!="Reason:") {
                 final model = AddressModel(
-                    name: name.toString(),
+                    name: name,
                     state: dropdownValue,
                     pincode: cPinCode.text,
                     phoneNumber: cPhoneNumber.text,
-                    flatNumber: email.toString(),
+                    flatNumber: email,
                     city: cCity.text.trim(),
                     date: cDate.text.trim(),
                     semester: cSemester.text.trim())
