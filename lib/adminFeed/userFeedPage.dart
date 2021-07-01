@@ -132,7 +132,10 @@ class _UserFeedPageHomeScreenState extends State<UserFeedPageHomeScreen> {
                         ),
                       ),
                       SizedBox(height: 10.0,),
-                      Text(document['message'],style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
+                      Align(
+                        alignment: Alignment.topLeft,
+                          child: Text(document['message'],style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),)
+                      ),
                     ],
                   ),
                 );

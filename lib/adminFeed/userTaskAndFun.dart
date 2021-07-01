@@ -158,9 +158,13 @@ class _UserTaskAndFunPageHomeScreen extends State<UserTaskAndFunPageHomeScreen> 
                     margin: EdgeInsets.all(10.0),
                     child: Column(
                       children: [
-                        Text(document['title'],style: TextStyle(fontFamily: "Poppins",fontSize: 20.0),),
+                        Align(
+                          alignment: Alignment.topLeft,
+                            child: Text(document['title'],style: TextStyle(fontFamily: "Poppins",fontSize: 20.0),)),
                         SizedBox(height: 10.0,),
-                        Text(document['description'],style: TextStyle(fontFamily: "Poppins",fontSize: 16.0,color: Colors.grey[400]),),
+                        Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(document['description'],style: TextStyle(fontFamily: "Poppins",fontSize: 16.0,color: Colors.grey[400]),)),
                         SizedBox(height: 10.0,),
                         document['thumbnailUrl']==null?
                         circularProgress():
