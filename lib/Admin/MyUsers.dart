@@ -50,8 +50,10 @@ class _MyVCareUsersState extends State<MyVCareUsers> {
                         Center(
                           child: CircleAvatar(
                             radius: 50.0,
-                            backgroundImage: NetworkImage(
-                                document['url'],
+                            backgroundImage: document['url']==null?
+                                NetworkImage("https://thumbs.dreamstime.com/b/no-user-profile-picture-24185395.jpg")
+                                :NetworkImage(
+                              document['url'],
                             ),
                           ),
                         ),
