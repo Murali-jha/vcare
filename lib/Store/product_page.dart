@@ -50,7 +50,7 @@ class _ProductPageState extends State<ProductPage> {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => CartPage()));
                     },
-                    icon: Icon(Icons.filter_drama_rounded)),
+                    icon: Icon(Icons.send_outlined)),
                 Positioned(
                     child: Stack(
                       children: [
@@ -149,7 +149,37 @@ class _ProductPageState extends State<ProductPage> {
                                           borderRadius: BorderRadius.circular(10.0),
                                           side: BorderSide(color: Colors.green, width: 1.0)))),
                               child: Text(widget.itemModel.tag,style: TextStyle(fontFamily: "Poppins"),),
-                              onPressed: () {},
+                              onPressed: () {
+                                if(widget.itemModel.tag=="Mentor"){
+                                  showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (context) => AlertDialogForTagDetails(
+                                      title: "who is mentor?",
+                                      message:  "Mentor are the expert who will guide you to achieve your goal",
+                                    ),
+                                  );
+                                }
+                                else if(widget.itemModel.tag=="Listener"){
+                                  showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (context) => AlertDialogForTagDetails(
+                                      title: "who is Listener?",
+                                      message:  "Listener are people from student community who listens to you, but do not judge or guide you",
+                                    ),
+                                  );
+                                }else{
+                                  showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (context) => AlertDialogForTagDetails(
+                                      title: "who is Psychiatrist?",
+                                      message:  "Psychiatrist are expert who help you to overcome your depression or stress",
+                                    ),
+                                  );
+                                }
+                              },
                             ),
                           ),
                           SizedBox(height: 10.0,),

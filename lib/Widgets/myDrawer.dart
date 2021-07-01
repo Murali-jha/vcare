@@ -27,6 +27,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class MyDrawer extends StatefulWidget {
@@ -443,10 +444,7 @@ class _MyDrawerState extends State<MyDrawer> {
                     leading: Icon(Icons.support_agent),
                     title: Text("Support",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0)),
                     onTap: () {
-                      // Route route = MaterialPageRoute(builder: (c) {
-                      //   return AddAddress();
-                      // });
-                      // Navigator.push(context, route);
+                      launch("https://forms.gle/ndf7FRo9fmNBs266A");
                     },
                   ),
                   // ListTile(
