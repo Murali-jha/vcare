@@ -47,7 +47,7 @@ class _UserTaskAndFunPageHomeScreen extends State<UserTaskAndFunPageHomeScreen> 
         context: context,
         builder: (context) => CustomAlertDialog(
           title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
-          desc: "Welcome to Task & Fun. Here you will find all the tasks assigned. Just click on any post, complete the fun task and earn CryptoV coins as a reward.",
+          desc: "Welcome to Tasks. Here you will find all the tasks assigned. Just click on any post, complete the fun task and earn CryptoV coins as a reward.",
         ),
       );
     }
@@ -122,7 +122,7 @@ class _UserTaskAndFunPageHomeScreen extends State<UserTaskAndFunPageHomeScreen> 
       drawer: MyDrawer(),
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Task & Fun",style: TextStyle(fontFamily: "Poppins",            fontWeight: FontWeight.bold
+          title: Text("Tasks",style: TextStyle(fontFamily: "Poppins",            fontWeight: FontWeight.bold
           ),),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16.0)),

@@ -354,7 +354,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   ),
                   ListTile(
                     leading: Icon(Icons.feed),
-                    title: Text("Feed & Updates",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
+                    title: Text("Feed & Fun",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
                     onTap: () {
                       Route route = MaterialPageRoute(builder: (c) {
                         return UserFeedPageHomeScreen();
@@ -365,7 +365,7 @@ class _MyDrawerState extends State<MyDrawer> {
 
                   ListTile(
                     leading: Icon(Icons.beenhere_rounded),
-                    title: Text("Tasks & Fun",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
+                    title: Text("Tasks",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
                     onTap: () {
                       Route route = MaterialPageRoute(builder: (c) {
                         return UserTaskAndFunPageHomeScreen();
@@ -383,16 +383,7 @@ class _MyDrawerState extends State<MyDrawer> {
                       Navigator.push(context, route);
                     },
                   ),
-                  ListTile(
-                    leading: Icon(Icons.notifications_active),
-                    title: Text("Notifications",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
-                    onTap: () {
-                      Route route = MaterialPageRoute(builder: (c) {
-                        return UserNotificationsHomePage();
-                      });
-                      Navigator.push(context, route);
-                    },
-                  ),
+
                   ListTile(
                     leading: Icon(Icons.auto_awesome),
                     title: Text("CryptoV",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
@@ -407,18 +398,27 @@ class _MyDrawerState extends State<MyDrawer> {
                     height: 10.0,
                     color: Colors.blueGrey,
                   ),
+                  // ListTile(
+                  //   leading: Icon(Icons.chat_bubble_outline),
+                  //   title: Text("Chats",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
+                  //   onTap: () {
+                  //     // Route route = MaterialPageRoute(builder: (c) {
+                  //     //   return StoreHome();
+                  //     // });
+                  //     // Navigator.push(context, route);
+                  //     Fluttertoast.showToast(msg: "Chat feature currently not available");
+                  //   },
+                  // ),
                   ListTile(
-                    leading: Icon(Icons.chat_bubble_outline),
-                    title: Text("Chats",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
+                    leading: Icon(Icons.notifications_active),
+                    title: Text("Notifications",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
                     onTap: () {
-                      // Route route = MaterialPageRoute(builder: (c) {
-                      //   return StoreHome();
-                      // });
-                      // Navigator.push(context, route);
-                      Fluttertoast.showToast(msg: "Chat feature currently not available");
+                      Route route = MaterialPageRoute(builder: (c) {
+                        return UserNotificationsHomePage();
+                      });
+                      Navigator.push(context, route);
                     },
                   ),
-
                   ListTile(
                     leading: Icon(Icons.send_outlined),
                     title: Text("Draft",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0)),

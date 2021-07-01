@@ -66,19 +66,19 @@ class _LoginState extends State<Login>
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-
+            SizedBox(height: 10.0,),
             Container(
               alignment: Alignment.bottomCenter,
               child: Image.asset("images/login.png"),
-              height: 150.0,
-              width:150.0,
+              height: 200.0,
+              width:200.0,
             ),
             Padding(
-              padding: EdgeInsets.all(20.0),
-              child: Text("Welcome to vCare Family!",style: TextStyle(fontFamily: "Poppins",fontSize: 15.0),),
+              padding: EdgeInsets.fromLTRB(20.0,5.0,20.0,5.0),
+              child: Text("Welcome to vCare Family!",style: TextStyle(fontFamily: "Poppins",fontSize: 17.0),),
             ),
             SizedBox(
-              height: 18.0,
+              height: 12.0,
             ),
             Form(
               key: _formKey,
@@ -137,7 +137,7 @@ class _LoginState extends State<Login>
                       child:Text("Forgot Password?",style: TextStyle(fontFamily: "Poppins"),)
                   ),
                   SizedBox(
-                    height: 80.0,
+                    height: 50.0,
                   ),
                   Container(
                     padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),

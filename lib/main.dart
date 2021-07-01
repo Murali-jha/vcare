@@ -101,15 +101,16 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return Material(
       child: Container(
-        color: Colors.green,
+        //color: Colors.green[400],
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('images/login.png',width: 180.0,height: 180.0,),
-                SpinKitSquareCircle(
+                Image.asset('images/login.png',width: 250.0,height: 250.0,),
+                SizedBox(height: 10.0,),
+                SpinKitWave(
                   color: Colors.green,
-                  size: 45.0,
+                  size: 25.0,
                 )
               ],
             ),

@@ -42,7 +42,7 @@ class _UserFeedPageHomeScreenState extends State<UserFeedPageHomeScreen> {
         context: context,
         builder: (context) => CustomAlertDialog(
           title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
-          desc: "All the News, Updates and all the future events of vCare will we uploaded here.",
+          desc: "All the Memes, News, Updates and all the future events of vCare will we uploaded here.",
         ),
       );
     }
@@ -91,7 +91,7 @@ class _UserFeedPageHomeScreenState extends State<UserFeedPageHomeScreen> {
         drawer: MyDrawer(),
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Feed & Updates",style: TextStyle(fontFamily: "Poppins",
+          title: Text("Feed & Fun",style: TextStyle(fontFamily: "Poppins",
               fontWeight: FontWeight.bold
           ),),
           shape: RoundedRectangleBorder(
