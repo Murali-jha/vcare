@@ -55,7 +55,7 @@ class _StoreHomeState extends State<StoreHome> {
           context: context,
           builder: (context) => CustomAlertDialog(
             title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
-            desc: "Before starting have a look at user manual to make your experience seam less!",
+            desc: "Thank you for being a part of the vCare Family. For a seamless experience, please visit the User manual :)",
           ),
       );
         //showAlertDialog(context);
@@ -184,7 +184,7 @@ class _StoreHomeState extends State<StoreHome> {
         ),
         drawer: MyDrawer(),
         body: CustomScrollView(slivers: [
-          SliverPersistentHeader(pinned: true, delegate: SearchBoxDelegate()),
+          SliverPersistentHeader(pinned: false, delegate: SearchBoxDelegate()),
           SliverList(
             delegate: SliverChildListDelegate([
               Container(

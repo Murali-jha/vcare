@@ -5,6 +5,8 @@ import 'package:e_shop/Widgets/myDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'CreditsHelpHomePage.dart';
+
 class CreditsHomePage extends StatefulWidget {
   @override
   _CreditsHomePageState createState() => _CreditsHomePageState();
@@ -114,7 +116,10 @@ class _CreditsHomePageState extends State<CreditsHomePage> {
         actions: [
           IconButton(
               onPressed: (){
-
+                Route route = MaterialPageRoute(builder: (c) {
+                  return CryptoHelpPage();
+                });
+                Navigator.push(context, route);
               },
               icon: Icon(Icons.help)
           )

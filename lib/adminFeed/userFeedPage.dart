@@ -42,7 +42,7 @@ class _UserFeedPageHomeScreenState extends State<UserFeedPageHomeScreen> {
         context: context,
         builder: (context) => CustomAlertDialog(
           title: "Hey ${EcommerceApp.sharedPreferences.getString(EcommerceApp.userName)} !",
-          desc: "All the Memes, News, Updates and all the future events of vCare will we uploaded here.",
+          desc: "Are you looking for the best Memes, Motivation, Updates, etc.? Then you are in the right place :)",
         ),
       );
     }
