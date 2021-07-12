@@ -9,10 +9,35 @@ class MyVCareUsers extends StatefulWidget {
 }
 
 class _MyVCareUsersState extends State<MyVCareUsers> {
+
+
+
+  int lengthOfUsers = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    countNumberOfUsers();
+  }
+
+
+  Future countNumberOfUsers() async{
+    final QuerySnapshot qSnap = await Firestore.instance.collection('users').getDocuments();
+    final int documents = qSnap.documents.length;
+    setState((){
+      lengthOfUsers = documents;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          actions: [
+            Center(child: Text(lengthOfUsers.toString(),style: TextStyle(fontSize: 18.0,fontFamily: "Poppins",color: Colors.green,fontWeight: FontWeight.bold),))
+            ,SizedBox(width: 15.0,)
+          ],
           centerTitle: true,
           title: Text("My Users", style: TextStyle(fontFamily: "Poppins",
               fontWeight: FontWeight.bold
@@ -22,7 +47,7 @@ class _MyVCareUsersState extends State<MyVCareUsers> {
           ),
         ),
         body: StreamBuilder(
-          stream: Firestore.instance.collection("users").snapshots(),
+          stream: Firestore.instance.collection("users").orderBy("publishedDate").snapshots(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (!snapshot.hasData) {

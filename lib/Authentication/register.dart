@@ -390,6 +390,7 @@ class _RegisterState extends State<Register> {
       "email": fUser.email,
       "name": _nameTextEditingController.text.trim(),
       "url": userImageUrl,
+      "publishedDate": DateTime.now(),
       EcommerceApp.userCartList: ["garbageValue"],
     });
 

@@ -92,6 +92,7 @@ class _PaymentPageState extends State<PaymentPage> {
       EcommerceApp.paymentDetails: "Free",
       EcommerceApp.orderTime: DateTime.now().millisecondsSinceEpoch.toString(),
       EcommerceApp.isSuccess: true,
+      "publishedDate": DateTime.now(),
     });
 
     writeOrderDetailsForAdmin({
@@ -101,6 +102,7 @@ class _PaymentPageState extends State<PaymentPage> {
       EcommerceApp.paymentDetails: "Free",
       EcommerceApp.orderTime: DateTime.now().millisecondsSinceEpoch.toString(),
       EcommerceApp.isSuccess: true,
+      "publishedDate": DateTime.now(),
     }).whenComplete(() => {
       emptyCartNow()
     });

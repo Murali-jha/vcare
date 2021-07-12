@@ -13,11 +13,34 @@ class AdminShiftOrders extends StatefulWidget {
 
 
 class _MyOrdersState extends State<AdminShiftOrders> {
+
+  int lengthOfDocuments = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    countNumberOfAppointments();
+  }
+
+
+  Future countNumberOfAppointments() async{
+    final QuerySnapshot qSnap = await Firestore.instance.collection('orders').getDocuments();
+    final int documents = qSnap.documents.length;
+    setState((){
+      lengthOfDocuments = documents;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          actions: [
+            Center(child: Text(lengthOfDocuments.toString(),style: TextStyle(fontSize: 18.0,fontFamily: "Poppins",color: Colors.green,fontWeight: FontWeight.bold),))
+            ,SizedBox(width: 15.0,)
+          ],
           iconTheme: IconThemeData(color: Colors.white),
           centerTitle: true,
           title: Text("Appointment Requests", style: TextStyle(color: Colors.white,fontFamily: "Poppins"),),
@@ -26,6 +49,7 @@ class _MyOrdersState extends State<AdminShiftOrders> {
         body: StreamBuilder<QuerySnapshot>(
           stream: Firestore.instance
               .collection("orders")
+          .orderBy("publishedDate")
               .snapshots(),
           builder: (c, snapshot)
           {
